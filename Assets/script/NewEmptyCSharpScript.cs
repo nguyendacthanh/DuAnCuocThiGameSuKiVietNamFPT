@@ -2,24 +2,30 @@ using UnityEngine;
 
 public class NewEmptyCSharpScript : MonoBehaviour
 {
+    public float maxDistanceXY = 50f; // giới hạn theo trục x hoặc y
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) // chuột trái
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 clickPos = new Vector2(mousePos.x, mousePos.y); // 2D
+            Vector2 clickPos = new Vector2(mousePos.x, mousePos.y);
 
-            GameObject nearestArmy = FindNearestArmy(clickPos);
+            GameObject nearestArmy = FindNearestArmyWithinLimit(clickPos);
 
             if (nearestArmy != null)
             {
                 Destroy(nearestArmy);
                 Debug.Log("Đã xóa " + nearestArmy.name);
             }
+            else
+            {
+                Debug.Log("Không có Army nào trong phạm vi 50 đơn vị.");
+            }
         }
     }
 
-    GameObject FindNearestArmy(Vector2 clickPos)
+    GameObject FindNearestArmyWithinLimit(Vector2 clickPos)
     {
         GameObject[] armies = GameObject.FindGameObjectsWithTag("Army");
         float minDist = Mathf.Infinity;
@@ -27,11 +33,18 @@ public class NewEmptyCSharpScript : MonoBehaviour
 
         foreach (GameObject army in armies)
         {
-            float dist = Vector2.Distance(clickPos, army.transform.position);
-            if (dist < minDist)
+            Vector2 armyPos = army.transform.position;
+            float dx = Mathf.Abs(armyPos.x - clickPos.x);
+            float dy = Mathf.Abs(armyPos.y - clickPos.y);
+
+            if (dx <= maxDistanceXY && dy <= maxDistanceXY)
             {
-                minDist = dist;
-                closest = army;
+                float dist = Vector2.Distance(clickPos, armyPos);
+                if (dist < minDist)
+                {
+                    minDist = dist;
+                    closest = army;
+                }
             }
         }
 
