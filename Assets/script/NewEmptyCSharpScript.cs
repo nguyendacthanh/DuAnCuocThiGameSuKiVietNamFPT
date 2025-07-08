@@ -2,34 +2,36 @@ using UnityEngine;
 
 public class NewEmptyCSharpScript : MonoBehaviour
 {
-    public float maxDistanceXY = 50f; // giới hạn theo trục x hoặc y
+    public float KhoangCachGioiHanXY = 50f; // khoảng cách giới hạn khi click
+    // chuột thì đơn vị được chọn, nếu không có đơn vị nào trong phạm vi xy=50 của
+    // cú click chuột thì sẽ không có sự kiện chọn đơn vị diễn ra.
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // chuột trái
+        if (Input.GetMouseButtonDown(0)) 
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 clickPos = new Vector2(mousePos.x, mousePos.y);
 
-            GameObject nearestArmy = FindNearestArmyWithinLimit(clickPos);
+            GameObject DonViQuanGanNhat = GioiHanKhoangCachChonDonVi(clickPos);
 
-            if (nearestArmy != null)
+            if (DonViQuanGanNhat != null)
             {
-                Destroy(nearestArmy);
-                Debug.Log("Đã xóa " + nearestArmy.name);
+                Destroy(DonViQuanGanNhat);
+                Debug.Log("Đã xóa " + DonViQuanGanNhat.name);
             }
             else
             {
-                Debug.Log("Không có Army nào trong phạm vi 50 đơn vị.");
+                Debug.Log("Không có Don Vi nào trong phạm vi 50 đơn vị.");
             }
         }
     }
 
-    GameObject FindNearestArmyWithinLimit(Vector2 clickPos)
+    GameObject GioiHanKhoangCachChonDonVi(Vector2 clickPos)
     {
         GameObject[] armies = GameObject.FindGameObjectsWithTag("Army");
         float minDist = Mathf.Infinity;
-        GameObject closest = null;
+        GameObject NearestArmy = null;
 
         foreach (GameObject army in armies)
         {
@@ -37,17 +39,17 @@ public class NewEmptyCSharpScript : MonoBehaviour
             float dx = Mathf.Abs(armyPos.x - clickPos.x);
             float dy = Mathf.Abs(armyPos.y - clickPos.y);
 
-            if (dx <= maxDistanceXY && dy <= maxDistanceXY)
+            if (dx <= KhoangCachGioiHanXY && dy <= KhoangCachGioiHanXY)
             {
                 float dist = Vector2.Distance(clickPos, armyPos);
                 if (dist < minDist)
                 {
                     minDist = dist;
-                    closest = army;
+                    NearestArmy = army;
                 }
             }
         }
 
-        return closest;
+        return NearestArmy;
     }
 }
