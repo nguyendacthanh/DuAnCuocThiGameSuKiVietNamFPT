@@ -5,7 +5,8 @@ public class NewEmptyCSharpScript : MonoBehaviour
     public float KhoangCachGioiHanXY = 50f; // khoảng cách giới hạn khi click
     // chuột thì đơn vị được chọn, nếu không có đơn vị nào trong phạm vi xy=50 của
     // cú click chuột thì sẽ không có sự kiện chọn đơn vị diễn ra.
-
+    private GameObject DonViDangChon = null;
+    public GameObject gridPrefab;
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) 
@@ -13,12 +14,15 @@ public class NewEmptyCSharpScript : MonoBehaviour
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 clickPos = new Vector2(mousePos.x, mousePos.y);
 
-            GameObject DonViQuanGanNhat = GioiHanKhoangCachChonDonVi(clickPos);
+            GameObject DonViDuocChon = GioiHanKhoangCachChonDonVi(clickPos);
 
-            if (DonViQuanGanNhat != null)
+            if (DonViDuocChon != null)
             {
-                Destroy(DonViQuanGanNhat);
-                Debug.Log("Đã xóa " + DonViQuanGanNhat.name);
+                DonViDangChon = DonViDuocChon;
+                Debug.Log("Đã chọn " + DonViDuocChon.name);
+                classDonVi ThongSo = DonViDuocChon.GetComponent<classDonVi>();
+                int tocDo = Mathf.RoundToInt(ThongSo.TocDo);
+                TaoOGridHinhThoi(DonViDuocChon.transform.position, tocDo);
             }
             else
             {
@@ -51,5 +55,20 @@ public class NewEmptyCSharpScript : MonoBehaviour
         }
 
         return NearestArmy;
+    }
+    void TaoOGridHinhThoi(Vector3 goc, int banKinh)
+    {
+        // Vị trí gốc là vị trí đơn vị được chọn (ô xanh)
+        for (int dx = -banKinh; dx <= banKinh; dx++)
+        {
+            for (int dy = -banKinh; dy <= banKinh; dy++)
+            {
+                if (Mathf.Abs(dx) + Mathf.Abs(dy) <= banKinh)
+                {
+                    Vector3 viTriMoi = goc + new Vector3(dx*100, dy*100, 0);
+                    Instantiate(gridPrefab, viTriMoi, Quaternion.identity);
+                }
+            }
+        }
     }
 }
