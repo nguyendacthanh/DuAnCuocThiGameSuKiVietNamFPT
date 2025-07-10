@@ -6,6 +6,7 @@ TagManager:
   tags:
   - army
   - Army
+  - Grid
   layers:
   - Default
   - TransparentFX
