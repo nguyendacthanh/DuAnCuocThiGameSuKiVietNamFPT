@@ -2,11 +2,20 @@ using UnityEngine;
 
 public class QuanLySuKienChonDonVi : MonoBehaviour
 {
-        public float KhoangCachGioiHanXY = 50f;
+    
+    public float KhoangCachGioiHanXY = 50f;
+    //khi click trong khoảng 50f tọa độ xung quanh đơn vị thì đơn vị sẽ được chọn
+    
     public GameObject GridDiChuyen, GridChon;
-
+    //hiệu ứng khi đơn vị được chọn:
+    //grid vàng biểu thị ô di chuyển được.
+    //grid trắng là hiệu ứng được chọn của đơn vị
+    
     private GameObject DonViDangChon = null;
+    // kiểm tra xem có đơn vị nào  đang được chọn không
+    
     private bool gridActive = false;
+    //kiểm tra xem grid có đang hiện không=> tránh lỗi không hiện grid khi lặp lại việc chọn đơn vị
 
     private ChonDonVi unitSelector;
     private Grid gridHandler;

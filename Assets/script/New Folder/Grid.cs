@@ -3,7 +3,10 @@ using UnityEngine;
 public class Grid
 {
     private GameObject gridChon;
+    //hiệu ứng khi được chọn của  đơn vị
+    
     private GameObject gridDiChuyen;
+    //hiệu ứng grid show khi đơn vị được chọn, thể hiện tầm di chuyển của đơn vị
 
     public Grid(GameObject gridChon, GameObject gridDiChuyen)
     {
