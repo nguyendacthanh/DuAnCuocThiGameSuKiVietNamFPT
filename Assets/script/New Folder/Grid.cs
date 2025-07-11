@@ -1,12 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Grid
 {
+    private List<GameObject> dsGrid = new List<GameObject>();
+
     private GameObject gridChon;
-    //hiệu ứng khi được chọn của  đơn vị
-    
     private GameObject gridDiChuyen;
-    //hiệu ứng grid show khi đơn vị được chọn, thể hiện tầm di chuyển của đơn vị
+
+    private ViTriGridDiChuyen viTriManager = new ViTriGridDiChuyen();
 
     public Grid(GameObject gridChon, GameObject gridDiChuyen)
     {
@@ -16,6 +18,9 @@ public class Grid
 
     public void TaoOGridHinhThoi(Vector3 goc, int banKinh)
     {
+        XoaTatCaGrid();
+        
+
         for (int dx = -banKinh; dx <= banKinh; dx++)
         {
             for (int dy = -banKinh; dy <= banKinh; dy++)
@@ -25,9 +30,16 @@ public class Grid
                     Vector3 viTriMoi = goc + new Vector3(dx * 100, dy * 100, 0);
 
                     if (dx == 0 && dy == 0)
-                        Object.Instantiate(gridChon, viTriMoi, Quaternion.identity);
+                    {
+                        GameObject grid = Object.Instantiate(gridChon, viTriMoi, Quaternion.identity);
+                        dsGrid.Add(grid);
+                    }
                     else
-                        Object.Instantiate(gridDiChuyen, viTriMoi, Quaternion.identity);
+                    {
+                        GameObject grid = Object.Instantiate(gridDiChuyen, viTriMoi, Quaternion.identity);
+                        dsGrid.Add(grid);
+                        viTriManager.ThemViTri(viTriMoi);
+                    }
                 }
             }
         }
@@ -35,10 +47,24 @@ public class Grid
 
     public void XoaTatCaGrid()
     {
-        GameObject[] grids = GameObject.FindGameObjectsWithTag("Grid");
-        foreach (GameObject grid in grids)
+        foreach (GameObject grid in dsGrid)
         {
-            Object.Destroy(grid);
+            if (grid != null)
+                Object.Destroy(grid);
         }
+
+        dsGrid.Clear();
+        viTriManager.XoaTatCa();
     }
+
+    public List<Vector3> LayDanhSachViTriGridDiChuyen()
+    {
+        return viTriManager.LayTatCa();
+    }
+
+    public int SoLuongOGridDiChuyen()
+    {
+        return viTriManager.DemSoLuong();
+    }
+    
 }

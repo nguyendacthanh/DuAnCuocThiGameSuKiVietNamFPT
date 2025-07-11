@@ -17,13 +17,13 @@ public class ChonDonVi
 
         foreach (GameObject army in armies)
         {
-            Vector2 pos = army.transform.position;
-            float dx = Mathf.Abs(pos.x - clickPos.x);
-            float dy = Mathf.Abs(pos.y - clickPos.y);
+            Vector2 DonViPositionNearest = army.transform.position;
+            float dx = Mathf.Abs(DonViPositionNearest.x - clickPos.x);
+            float dy = Mathf.Abs(DonViPositionNearest.y - clickPos.y);
 
             if (dx <= khoangCachGioiHan && dy <= khoangCachGioiHan)
             {
-                float dist = Vector2.Distance(clickPos, pos);
+                float dist = Vector2.Distance(clickPos, DonViPositionNearest);
                 if (dist < minDist)
                 {
                     minDist = dist;

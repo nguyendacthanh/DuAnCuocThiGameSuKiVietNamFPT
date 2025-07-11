@@ -1,21 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class QuanLySuKienChonDonVi : MonoBehaviour
 {
-    
     public float KhoangCachGioiHanXY = 50f;
-    //khi click trong khoảng 50f tọa độ xung quanh đơn vị thì đơn vị sẽ được chọn
-    
+    public float KhoangCachClickToiGrid = 30f;
+
     public GameObject GridDiChuyen, GridChon;
-    //hiệu ứng khi đơn vị được chọn:
-    //grid vàng biểu thị ô di chuyển được.
-    //grid trắng là hiệu ứng được chọn của đơn vị
-    
+
     private GameObject DonViDangChon = null;
-    // kiểm tra xem có đơn vị nào  đang được chọn không
-    
     private bool gridActive = false;
-    //kiểm tra xem grid có đang hiện không=> tránh lỗi không hiện grid khi lặp lại việc chọn đơn vị
 
     private ChonDonVi unitSelector;
     private Grid gridHandler;
@@ -35,6 +29,36 @@ public class QuanLySuKienChonDonVi : MonoBehaviour
 
             GameObject DonViDuocChon = unitSelector.TimDonViGanNhat(clickPos);
 
+            // 👉 Ưu tiên xử lý nếu bấm vào một ô GridDiChuyen
+            if (DonViDangChon != null && gridActive)
+            {
+                List<Vector3> viTriGrid = gridHandler.LayDanhSachViTriGridDiChuyen();
+                foreach (Vector3 viTri in viTriGrid)
+                {
+                    if (Vector2.Distance(clickPos, viTri) <= KhoangCachClickToiGrid)
+                    {
+                        classDonVi scriptDonVi = DonViDangChon.GetComponent<classDonVi>();
+                        scriptDonVi.DiChuyenDen(viTri);
+
+                        if (scriptDonVi.LuotDiChuyen <= 0)
+                        {
+                            gridHandler.XoaTatCaGrid();
+                            gridActive = false;
+                            Debug.Log("Hết lượt di chuyển.");
+                        }
+                        else
+                        {
+                            int tocDo = Mathf.RoundToInt(scriptDonVi.TocDo);
+                            gridHandler.XoaTatCaGrid();
+                            gridHandler.TaoOGridHinhThoi(DonViDangChon.transform.position, tocDo);
+                        }
+
+                        return; // ✅ Đã xử lý click rồi → thoát
+                    }
+                }
+            }
+
+            // 👉 Xử lý khi bấm chọn đơn vị
             if (DonViDuocChon == null)
             {
                 Debug.Log("Không có đơn vị nào trong phạm vi.");
@@ -44,7 +68,6 @@ public class QuanLySuKienChonDonVi : MonoBehaviour
                 return;
             }
 
-            // Nếu chọn đơn vị mới
             if (DonViDangChon == null || DonViDuocChon != DonViDangChon)
             {
                 DonViDangChon = DonViDuocChon;
@@ -57,7 +80,7 @@ public class QuanLySuKienChonDonVi : MonoBehaviour
             }
             else
             {
-                // Toggle grid nếu bấm lại cùng đơn vị
+                // Toggle grid nếu click lại đơn vị đang chọn
                 if (gridActive)
                 {
                     gridHandler.XoaTatCaGrid();
