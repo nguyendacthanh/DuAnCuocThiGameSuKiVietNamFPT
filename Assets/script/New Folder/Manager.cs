@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public class QuanLySuKienChonDonVi : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public GameObject gridChonPrefab;
     public GameObject gridDiChuyenPrefab;
@@ -13,7 +12,7 @@ public class QuanLySuKienChonDonVi : MonoBehaviour
     {
         float khoangCachChon = 100f;
         float clickToiGrid = 50f;
-        float banKinhTanCong = 100f;
+        float banKinhTanCong = 150f;
 
         ChonDonVi chonDonVi = new ChonDonVi(khoangCachChon);
         Grid grid = new Grid(gridChonPrefab, gridDiChuyenPrefab, gridAttackPrefab);

@@ -4,34 +4,27 @@ public class ChonDonVi
 {
     private float khoangCachGioiHan;
 
-    public ChonDonVi(float khoangCachGioiHan)
+    public ChonDonVi(float khoangCach)
     {
-        this.khoangCachGioiHan = khoangCachGioiHan;
+        this.khoangCachGioiHan = khoangCach;
     }
 
     public GameObject TimDonViGanNhat(Vector2 clickPos)
     {
-        GameObject[] armies = GameObject.FindGameObjectsWithTag("Army");
-        float minDist = Mathf.Infinity;
-        GameObject nearest = null;
+        GameObject[] donVis = GameObject.FindGameObjectsWithTag("Army"); // chỉ chọn đơn vị của người chơi
+        GameObject donViGanNhat = null;
+        float khoangCachNhoNhat = float.MaxValue;
 
-        foreach (GameObject army in armies)
+        foreach (GameObject donVi in donVis)
         {
-            Vector2 DonViPositionNearest = army.transform.position;
-            float dx = Mathf.Abs(DonViPositionNearest.x - clickPos.x);
-            float dy = Mathf.Abs(DonViPositionNearest.y - clickPos.y);
-
-            if (dx <= khoangCachGioiHan && dy <= khoangCachGioiHan)
+            float dist = Vector2.Distance(clickPos, donVi.transform.position);
+            if (dist <= khoangCachGioiHan && dist < khoangCachNhoNhat)
             {
-                float dist = Vector2.Distance(clickPos, DonViPositionNearest);
-                if (dist < minDist)
-                {
-                    minDist = dist;
-                    nearest = army;
-                }
+                khoangCachNhoNhat = dist;
+                donViGanNhat = donVi;
             }
         }
 
-        return nearest;
+        return donViGanNhat;
     }
 }

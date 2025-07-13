@@ -4,22 +4,59 @@ using UnityEngine;
 public class Grid
 {
     private List<GameObject> dsGrid = new List<GameObject>();
-
     private GameObject gridChon;
     private GameObject gridDiChuyen;
+    private GameObject gridAttack;
 
     private ViTriGridDiChuyen viTriManager = new ViTriGridDiChuyen();
 
-    public Grid(GameObject gridChon, GameObject gridDiChuyen)
+    public Grid(GameObject gridChon, GameObject gridDiChuyen, GameObject gridAttack)
     {
         this.gridChon = gridChon;
         this.gridDiChuyen = gridDiChuyen;
+        this.gridAttack = gridAttack;
     }
 
-    public void TaoOGridHinhThoi(Vector3 goc, int banKinh, List<Vector3> cacViTriKeDich)
+    public void XoaTatCaGrid()
     {
-        XoaTatCaGrid();
+        foreach (GameObject go in dsGrid)
+        {
+            if (go != null)
+                Object.Destroy(go);
+        }
 
+        dsGrid.Clear();
+        viTriManager.XoaTatCa();
+    }
+
+    public void HienThiGridChon(Vector3 viTri)
+    {
+        GameObject go = Object.Instantiate(gridChon, viTri, Quaternion.identity);
+        go.layer = 6;
+        dsGrid.Add(go); 
+    }
+
+    public void HienThiGridAttack(Vector3 viTriGoc, float banKinh)
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in enemies)
+        {
+            Vector3 viTriEnemy = enemy.transform.position;
+            float dist = Vector3.Distance(viTriEnemy, viTriGoc);
+
+            // Kiểm tra nếu trong khoảng 150 đơn vị
+            if (dist <= banKinh)
+            {
+                GameObject atk = Object.Instantiate(gridAttack, viTriEnemy, Quaternion.identity);
+                atk.layer = 6;
+                dsGrid.Add(atk);
+            }
+        }
+    }
+
+    public void TaoOGridHinhThoi(Vector3 goc, int banKinh)
+    {
         for (int dx = -banKinh; dx <= banKinh; dx++)
         {
             for (int dy = -banKinh; dy <= banKinh; dy++)
@@ -28,45 +65,20 @@ public class Grid
                 {
                     Vector3 viTriMoi = goc + new Vector3(dx * 100, dy * 100, 0);
 
-                    // Nếu là chính giữa
+                    // Vị trí chính giữa
                     if (dx == 0 && dy == 0)
                     {
-                        GameObject oChon = Object.Instantiate(gridChon, viTriMoi, Quaternion.identity);
-                        dsGrid.Add(oChon);
+                        HienThiGridChon(viTriMoi);
                         continue;
                     }
 
-                    // Nếu là vị trí enemy -> không tạo GridDiChuyen ở đây
-                    bool trungViTriEnemy = false;
-                    foreach (var viTriEnemy in cacViTriKeDich)
-                    {
-                        if (Vector3.Distance(viTriMoi, viTriEnemy) < 1f)
-                        {
-                            trungViTriEnemy = true;
-                            break;
-                        }
-                    }
-
-                    if (trungViTriEnemy) continue;
-
-                    GameObject oDiChuyen = Object.Instantiate(gridDiChuyen, viTriMoi, Quaternion.identity);
-                    dsGrid.Add(oDiChuyen);
+                    GameObject oMoi = Object.Instantiate(gridDiChuyen, viTriMoi, Quaternion.identity);
+                    oMoi.layer = 5;
+                    dsGrid.Add(oMoi);
                     viTriManager.ThemViTri(viTriMoi);
                 }
             }
         }
-    }
-
-    public void XoaTatCaGrid()
-    {
-        foreach (GameObject grid in dsGrid)
-        {
-            if (grid != null)
-                Object.Destroy(grid);
-        }
-
-        dsGrid.Clear();
-        viTriManager.XoaTatCa();
     }
 
     public List<Vector3> LayDanhSachViTriGridDiChuyen()
