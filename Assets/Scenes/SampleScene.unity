@@ -10839,7 +10839,7 @@ GameObject:
   - component: {fileID: 865106931}
   m_Layer: 0
   m_Name: DV_SpearMen_0 (1)
-  m_TagString: Army
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10954,7 +10954,7 @@ Transform:
   m_GameObject: {fileID: 865106927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -100, z: 0}
+  m_LocalPosition: {x: 0, y: -100, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11247,7 +11247,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 84e9fd3ad669da14fb942b36161f74a4, type: 2}
+  - {fileID: 2100000, guid: c255a6ca934002d47a703a09fb42d509, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20586,7 +20586,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1931138326}
-  - component: {fileID: 1931138325}
   - component: {fileID: 1931138327}
   m_Layer: 0
   m_Name: GameObject
@@ -20595,21 +20594,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1931138325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1931138324}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8286fe8cd982b0e45a722c41f7a4ecea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  KhoangCachGioiHanXY: 50
-  GridDiChuyen: {fileID: 4870159172558642894, guid: 491f3eeaad73ba74d94d89411599feb0, type: 3}
-  GridChon: {fileID: 17032937032497703, guid: 12c668cf36c621a4292a6d55947152ab, type: 3}
 --- !u!4 &1931138326
 Transform:
   m_ObjectHideFlags: 0
@@ -20638,8 +20622,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KhoangCachGioiHanXY: 50
+  KhoangCachClickToiGrid: 30
   GridDiChuyen: {fileID: 4870159172558642894, guid: 491f3eeaad73ba74d94d89411599feb0, type: 3}
   GridChon: {fileID: 17032937032497703, guid: 12c668cf36c621a4292a6d55947152ab, type: 3}
+  GridAttack: {fileID: 7751003380055160582, guid: 1e06f687d3396e7438b900325332f904, type: 3}
+  BanKinhTanCong: 200
 --- !u!1001 &7166434868684917113
 PrefabInstance:
   m_ObjectHideFlags: 0

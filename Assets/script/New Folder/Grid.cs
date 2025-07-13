@@ -16,10 +16,9 @@ public class Grid
         this.gridDiChuyen = gridDiChuyen;
     }
 
-    public void TaoOGridHinhThoi(Vector3 goc, int banKinh)
+    public void TaoOGridHinhThoi(Vector3 goc, int banKinh, List<Vector3> cacViTriKeDich)
     {
         XoaTatCaGrid();
-        
 
         for (int dx = -banKinh; dx <= banKinh; dx++)
         {
@@ -29,17 +28,30 @@ public class Grid
                 {
                     Vector3 viTriMoi = goc + new Vector3(dx * 100, dy * 100, 0);
 
+                    // Nếu là chính giữa
                     if (dx == 0 && dy == 0)
                     {
-                        GameObject grid = Object.Instantiate(gridChon, viTriMoi, Quaternion.identity);
-                        dsGrid.Add(grid);
+                        GameObject oChon = Object.Instantiate(gridChon, viTriMoi, Quaternion.identity);
+                        dsGrid.Add(oChon);
+                        continue;
                     }
-                    else
+
+                    // Nếu là vị trí enemy -> không tạo GridDiChuyen ở đây
+                    bool trungViTriEnemy = false;
+                    foreach (var viTriEnemy in cacViTriKeDich)
                     {
-                        GameObject grid = Object.Instantiate(gridDiChuyen, viTriMoi, Quaternion.identity);
-                        dsGrid.Add(grid);
-                        viTriManager.ThemViTri(viTriMoi);
+                        if (Vector3.Distance(viTriMoi, viTriEnemy) < 1f)
+                        {
+                            trungViTriEnemy = true;
+                            break;
+                        }
                     }
+
+                    if (trungViTriEnemy) continue;
+
+                    GameObject oDiChuyen = Object.Instantiate(gridDiChuyen, viTriMoi, Quaternion.identity);
+                    dsGrid.Add(oDiChuyen);
+                    viTriManager.ThemViTri(viTriMoi);
                 }
             }
         }
@@ -66,5 +78,4 @@ public class Grid
     {
         return viTriManager.DemSoLuong();
     }
-    
 }
