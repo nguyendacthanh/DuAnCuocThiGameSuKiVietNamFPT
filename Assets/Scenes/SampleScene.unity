@@ -11019,7 +11019,6 @@ MonoBehaviour:
   LuotTanCong: 1
   time: 0.3
   tamTanCong: 1
-  KhoangCachTimKeThu: 300
 --- !u!114 &865106932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11032,6 +11031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f8a951bddad724ea7b9047ae4fca2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KhoangCachTimKeThu: 300
 --- !u!61 &865106933
 BoxCollider2D:
   m_ObjectHideFlags: 0
