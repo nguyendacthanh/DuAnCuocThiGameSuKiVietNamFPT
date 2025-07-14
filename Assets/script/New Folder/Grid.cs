@@ -54,6 +54,8 @@ public class Grid
 
     public void TaoOGridHinhThoi(Vector3 goc, int banKinh)
     {
+        List<Vector3> viTriBiChan = LayTatCaViTriDonVi();
+
         for (int dx = -banKinh; dx <= banKinh; dx++)
         {
             for (int dy = -banKinh; dy <= banKinh; dy++)
@@ -61,6 +63,11 @@ public class Grid
                 if (Mathf.Abs(dx) + Mathf.Abs(dy) <= banKinh)
                 {
                     Vector3 viTriMoi = goc + new Vector3(dx * 100, dy * 100, 0);
+
+                    // ✅ Dùng đúng biến viTriBiChan
+                    if (viTriBiChan.Contains(viTriMoi))
+                        continue;
+
                     if (dx == 0 && dy == 0)
                     {
                         HienThiGridChon(viTriMoi);
@@ -74,6 +81,21 @@ public class Grid
                 }
             }
         }
+}
+
+private List<Vector3> LayTatCaViTriDonVi()
+{
+    List<Vector3> viTris = new List<Vector3>();
+    GameObject[] allUnits = GameObject.FindGameObjectsWithTag("Army");
+    GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+    foreach (GameObject unit in allUnits)
+        viTris.Add(unit.transform.position);
+
+    foreach (GameObject enemy in allEnemies)
+        viTris.Add(enemy.transform.position);
+
+    return viTris;
     }
 
     public List<Vector3> LayDanhSachViTriGridDiChuyen() => viTriManager.LayTatCa();

@@ -2,55 +2,46 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    private classDonVi enemy;
+    private classDonVi donVi;
+    public float KhoangCachTimKeThu = 300f;
 
     void Start()
     {
-        enemy = GetComponent<classDonVi>();
+        donVi = GetComponent<classDonVi>();
     }
 
     void Update()
     {
-        if (enemy.LuotDiChuyen > 0 || enemy.LuotTanCong > 0)
-        {
-            GameObject armyGanNhat = TimArmyGanNhat();
-            if (armyGanNhat != null)
-            {
-                float dist = Vector3.Distance(armyGanNhat.transform.position, transform.position);
-                classDonVi mucTieu = armyGanNhat.GetComponent<classDonVi>();
+        if (donVi.LuotDiChuyen <= 0 && donVi.LuotTanCong <= 0) return;
 
-                if (dist <= enemy.tamTanCong * 100)
-                {
-                    if (enemy.LuotTanCong > 0)
-                    {
-                        enemy.TanCong(mucTieu);
-                        enemy.LuotTanCong--;
-                    }
-                }
-                else if (enemy.LuotDiChuyen > 0)
-                {
-                    enemy.DiChuyenDen(armyGanNhat.transform.position);
-                }
-            }
-        }
-    }
-
-    GameObject TimArmyGanNhat()
-    {
-        GameObject[] armys = GameObject.FindGameObjectsWithTag("Army");
+        GameObject[] armies = GameObject.FindGameObjectsWithTag("Army");
+        classDonVi armyGanNhat = null;
         float minDist = float.MaxValue;
-        GameObject ganNhat = null;
 
-        foreach (GameObject army in armys)
+        foreach (GameObject go in armies)
         {
-            float dist = Vector3.Distance(army.transform.position, transform.position);
-            if (dist < minDist)
+            float dist = Vector3.Distance(go.transform.position, transform.position);
+            if (dist <= KhoangCachTimKeThu && dist < minDist)
             {
                 minDist = dist;
-                ganNhat = army;
+                armyGanNhat = go.GetComponent<classDonVi>();
             }
         }
 
-        return ganNhat;
+        if (armyGanNhat == null) return;
+
+        float distToArmy = Vector3.Distance(armyGanNhat.transform.position, transform.position);
+        float tamTanCong = donVi.tamTanCong * 100f;
+
+        if (distToArmy <= tamTanCong && donVi.LuotTanCong > 0)
+        {
+            donVi.TanCong(armyGanNhat);
+            donVi.LuotTanCong--;
+        }
+        else if (donVi.LuotDiChuyen > 0)
+        {
+            Vector3 viTriMucTieu = armyGanNhat.transform.position;
+            donVi.DiChuyenDen(viTriMucTieu); // tự động gọi coroutine trong classDonVi
+        }
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1250809127279092588}
   m_Layer: 0
   m_Name: GridAttack
-  m_TagString: Untagged
+  m_TagString: GridAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

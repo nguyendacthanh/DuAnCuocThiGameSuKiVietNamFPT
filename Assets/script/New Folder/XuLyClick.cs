@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 public class XuLyClick
 {
-    private ChonDonVi unitSelector;
+        private ChonDonVi unitSelector;
     private Grid gridHandler;
     private float khoangCachGioiHan, khoangCachClickToiGrid;
 
@@ -26,6 +26,37 @@ public class XuLyClick
 
         GameObject donViDuocChon = unitSelector.TimDonViGanNhat(clickPos);
 
+        // ✅ Tấn công nếu click vào grid attack
+        if (donViDangChon != null && gridActive)
+        {
+            Collider2D[] hits = Physics2D.OverlapCircleAll(clickPos, khoangCachClickToiGrid);
+            foreach (var hit in hits)
+            {
+                if (hit.gameObject.CompareTag("GridAttack"))
+                {
+                    classDonVi scriptDonVi = donViDangChon.GetComponent<classDonVi>();
+                    if (scriptDonVi.LuotTanCong > 0)
+                    {
+                        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                        foreach (GameObject enemy in enemies)
+                        {
+                            if (enemy.transform.position == hit.transform.position)
+                            {
+                                classDonVi enemyScript = enemy.GetComponent<classDonVi>();
+                                scriptDonVi.TanCong(enemyScript);
+                                scriptDonVi.LuotTanCong--;
+
+                                // Sau khi tấn công, kiểm tra có cần giữ gridAttack không
+                                CapNhatGridAttack(scriptDonVi);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // ✅ Di chuyển nếu click vào grid di chuyển
         if (donViDangChon != null && gridActive)
         {
             List<Vector3> viTriGrid = gridHandler.LayDanhSachViTriGridDiChuyen();
@@ -35,19 +66,18 @@ public class XuLyClick
                 {
                     classDonVi scriptDonVi = donViDangChon.GetComponent<classDonVi>();
                     scriptDonVi.DiChuyenDen(viTri);
+
                     gridHandler.XoaTatCaGrid();
                     gridActive = false;
 
-                    if (scriptDonVi.LuotDiChuyen <= 0 && scriptDonVi.LuotTanCong > 0)
-                    {
-                        gridHandler.HienThiGridAttack(donViDangChon.transform.position, scriptDonVi.tamTanCong);
-                    }
-
+                    // ✅ Kiểm tra có cần hiển thị lại gridAttack không
+                    CapNhatGridAttack(scriptDonVi);
                     return;
                 }
             }
         }
 
+        // ✅ Nếu bấm vào chỗ trống
         if (donViDuocChon == null)
         {
             gridHandler.XoaTatCaGrid();
@@ -56,6 +86,7 @@ public class XuLyClick
             return;
         }
 
+        // ✅ Chọn đơn vị mới
         if (donViDangChon == null || donViDuocChon != donViDangChon)
         {
             donViDangChon = donViDuocChon;
@@ -67,18 +98,18 @@ public class XuLyClick
             if (script.LuotDiChuyen <= 0)
             {
                 gridHandler.HienThiGridChon(donViDangChon.transform.position);
-                if (script.LuotTanCong > 0)
-                    gridHandler.HienThiGridAttack(donViDangChon.transform.position, script.tamTanCong);
             }
             else
             {
                 gridHandler.TaoOGridHinhThoi(donViDangChon.transform.position, Mathf.RoundToInt(script.TocDo));
-                if (script.LuotTanCong > 0)
-                    gridHandler.HienThiGridAttack(donViDangChon.transform.position, script.tamTanCong);
             }
+
+            // ✅ Hiện GridAttack nếu có lượt tấn công
+            CapNhatGridAttack(script);
         }
         else
         {
+            // ✅ Bấm lại đơn vị để bật/tắt grid
             if (gridActive)
             {
                 gridHandler.XoaTatCaGrid();
@@ -92,16 +123,46 @@ public class XuLyClick
                 if (script.LuotDiChuyen <= 0)
                 {
                     gridHandler.HienThiGridChon(donViDuocChon.transform.position);
-                    if (script.LuotTanCong > 0)
-                        gridHandler.HienThiGridAttack(donViDuocChon.transform.position, script.tamTanCong);
                 }
                 else
                 {
                     gridHandler.TaoOGridHinhThoi(donViDuocChon.transform.position, Mathf.RoundToInt(script.TocDo));
-                    if (script.LuotTanCong > 0)
-                        gridHandler.HienThiGridAttack(donViDuocChon.transform.position, script.tamTanCong);
                 }
+
+                CapNhatGridAttack(script);
             }
+        }
+    }
+
+    // ✅ Hàm cập nhật grid attack
+    private void CapNhatGridAttack(classDonVi script)
+    {
+        if (script.LuotTanCong <= 0)
+        {
+            gridHandler.XoaTatCaGrid();
+            return;
+        }
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        bool enemyTrongTam = false;
+
+        foreach (GameObject enemy in enemies)
+        {
+            float dist = Vector3.Distance(enemy.transform.position, script.transform.position);
+            if (dist <= script.tamTanCong * 100)
+            {
+                enemyTrongTam = true;
+                break;
+            }
+        }
+
+        if (enemyTrongTam)
+        {
+            gridHandler.HienThiGridAttack(script.transform.position, script.tamTanCong);
+        }
+        else
+        {
+            gridHandler.XoaTatCaGrid();
         }
     }
 }

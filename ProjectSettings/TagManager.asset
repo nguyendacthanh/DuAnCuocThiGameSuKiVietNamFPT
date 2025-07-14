@@ -8,6 +8,7 @@ TagManager:
   - Army
   - Grid
   - Enemy
+  - GridAttack
   layers:
   - Default
   - TransparentFX
