@@ -12,19 +12,15 @@ public class GameManager : MonoBehaviour
     {
         float khoangCachChon = 100f;
         float clickToiGrid = 50f;
-        float banKinhTanCong = 150f;
 
         ChonDonVi chonDonVi = new ChonDonVi(khoangCachChon);
         Grid grid = new Grid(gridChonPrefab, gridDiChuyenPrefab, gridAttackPrefab);
 
-        xuLyClick = new XuLyClick(
-            chonDonVi, grid,
-            khoangCachChon, clickToiGrid, banKinhTanCong
-        );
+        xuLyClick = new XuLyClick(chonDonVi, grid, khoangCachChon, clickToiGrid);
     }
 
     void Update()
     {
-        xuLyClick.XuLyClickNguoiChoi(); // gọi hàm xử lý click mỗi frame
+        xuLyClick.XuLyClickNguoiChoi();
     }
 }

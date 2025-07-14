@@ -10284,7 +10284,7 @@ GameObject:
   - component: {fileID: 341094378}
   m_Layer: 0
   m_Name: DV_SpearMen_0 (2)
-  m_TagString: Army
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10620,7 +10620,7 @@ GameObject:
   - component: {fileID: 520776001}
   m_Layer: 0
   m_Name: DV_SpearMen_0 (3)
-  m_TagString: Army
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11016,6 +11016,7 @@ MonoBehaviour:
   LuotDiChuyen: 1
   LuotTanCong: 1
   time: 0.3
+  tamTanCong: 1
 --- !u!1 &1057721400
 GameObject:
   m_ObjectHideFlags: 0

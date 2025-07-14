@@ -4,18 +4,17 @@ public class XuLyClick
 {
     private ChonDonVi unitSelector;
     private Grid gridHandler;
-    private float khoangCachGioiHan, khoangCachClickToiGrid, banKinhTanCong;
+    private float khoangCachGioiHan, khoangCachClickToiGrid;
 
     private GameObject donViDangChon = null;
     private bool gridActive = false;
 
-    public XuLyClick(ChonDonVi selector, Grid grid, float khoangCachGioiHan, float khoangCachClickToiGrid, float banKinhTanCong)
+    public XuLyClick(ChonDonVi selector, Grid grid, float khoangCachGioiHan, float khoangCachClickToiGrid)
     {
         this.unitSelector = selector;
         this.gridHandler = grid;
         this.khoangCachGioiHan = khoangCachGioiHan;
         this.khoangCachClickToiGrid = khoangCachClickToiGrid;
-        this.banKinhTanCong = banKinhTanCong;
     }
 
     public void XuLyClickNguoiChoi()
@@ -36,13 +35,12 @@ public class XuLyClick
                 {
                     classDonVi scriptDonVi = donViDangChon.GetComponent<classDonVi>();
                     scriptDonVi.DiChuyenDen(viTri);
-
                     gridHandler.XoaTatCaGrid();
                     gridActive = false;
 
                     if (scriptDonVi.LuotDiChuyen <= 0 && scriptDonVi.LuotTanCong > 0)
                     {
-                        gridHandler.HienThiGridAttack(donViDangChon.transform.position, banKinhTanCong);
+                        gridHandler.HienThiGridAttack(donViDangChon.transform.position, scriptDonVi.tamTanCong);
                     }
 
                     return;
@@ -69,20 +67,14 @@ public class XuLyClick
             if (script.LuotDiChuyen <= 0)
             {
                 gridHandler.HienThiGridChon(donViDangChon.transform.position);
-
                 if (script.LuotTanCong > 0)
-                {
-                    gridHandler.HienThiGridAttack(donViDangChon.transform.position, banKinhTanCong);
-                }
+                    gridHandler.HienThiGridAttack(donViDangChon.transform.position, script.tamTanCong);
             }
             else
             {
                 gridHandler.TaoOGridHinhThoi(donViDangChon.transform.position, Mathf.RoundToInt(script.TocDo));
-
                 if (script.LuotTanCong > 0)
-                {
-                    gridHandler.HienThiGridAttack(donViDangChon.transform.position, banKinhTanCong);
-                }
+                    gridHandler.HienThiGridAttack(donViDangChon.transform.position, script.tamTanCong);
             }
         }
         else
@@ -100,20 +92,14 @@ public class XuLyClick
                 if (script.LuotDiChuyen <= 0)
                 {
                     gridHandler.HienThiGridChon(donViDuocChon.transform.position);
-
                     if (script.LuotTanCong > 0)
-                    {
-                        gridHandler.HienThiGridAttack(donViDuocChon.transform.position, banKinhTanCong);
-                    }
+                        gridHandler.HienThiGridAttack(donViDuocChon.transform.position, script.tamTanCong);
                 }
                 else
                 {
                     gridHandler.TaoOGridHinhThoi(donViDuocChon.transform.position, Mathf.RoundToInt(script.TocDo));
-
                     if (script.LuotTanCong > 0)
-                    {
-                        gridHandler.HienThiGridAttack(donViDuocChon.transform.position, banKinhTanCong);
-                    }
+                        gridHandler.HienThiGridAttack(donViDuocChon.transform.position, script.tamTanCong);
                 }
             }
         }

@@ -7,13 +7,14 @@ public class classDonVi : MonoBehaviour
     public int SucCong, Mau, Giap, XungKich;
     public float TocDo, KhoiLuong;
     public int LuotDiChuyen, LuotTanCong;
-    public float time = 0.3f; // thời gian để thực hiện mỗi bước (di chuyển 100 đơn vị)
+    public float time = 0.3f;
+    public int tamTanCong = 1; // Tầm tấn công, đơn vị: 1 = 100, 2 = 200,...
 
     private Coroutine coroutineDiChuyen;
 
-    public virtual void TanCong(classDonVi mucTieu) { /* logic tấn công */ }
+    public virtual void TanCong(classDonVi mucTieu) { }
 
-    public virtual void PhanDon(classDonVi doiThu) { /* logic phản đòn */ }
+    public virtual void PhanDon(classDonVi doiThu) { }
 
     public virtual void DiChuyenDen(Vector3 viTriMoi)
     {
@@ -36,43 +37,24 @@ public class classDonVi : MonoBehaviour
     {
         Vector3 currentPos = start;
 
-        // Tính số bước cần đi
         int buocX = Mathf.RoundToInt((target.x - start.x) / 100f);
         int buocY = Mathf.RoundToInt((target.y - start.y) / 100f);
-
-        int absX = Mathf.Abs(buocX);
-        int absY = Mathf.Abs(buocY);
 
         int stepX = (int)Mathf.Sign(buocX);
         int stepY = (int)Mathf.Sign(buocY);
 
-        // Di chuyển theo từng bước: ưu tiên X, sau đó Y
-        for (int i = 0; i < absX; i++)
+        for (int i = 0; i < Mathf.Abs(buocX); i++)
         {
-            Vector3 next = currentPos + new Vector3(stepX * 100f, 0, 0);
-            yield return StartCoroutine(DiChuyen1Buoc(currentPos, next));
-            currentPos = next;
+            currentPos += new Vector3(stepX * 100f, 0, 0);
+            transform.position = currentPos;
+            yield return new WaitForSeconds(time);
         }
 
-        for (int i = 0; i < absY; i++)
+        for (int i = 0; i < Mathf.Abs(buocY); i++)
         {
-            Vector3 next = currentPos + new Vector3(0, stepY * 100f, 0);
-            yield return StartCoroutine(DiChuyen1Buoc(currentPos, next));
-            currentPos = next;
+            currentPos += new Vector3(0, stepY * 100f, 0);
+            transform.position = currentPos;
+            yield return new WaitForSeconds(time);
         }
-    }
-
-    private IEnumerator DiChuyen1Buoc(Vector3 start, Vector3 end)
-    {
-        float elapsed = 0f;
-
-        while (elapsed < time)
-        {
-            transform.position = Vector3.Lerp(start, end, elapsed / time);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = end;
     }
 }

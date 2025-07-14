@@ -7,7 +7,6 @@ public class Grid
     private GameObject gridChon;
     private GameObject gridDiChuyen;
     private GameObject gridAttack;
-
     private ViTriGridDiChuyen viTriManager = new ViTriGridDiChuyen();
 
     public Grid(GameObject gridChon, GameObject gridDiChuyen, GameObject gridAttack)
@@ -21,8 +20,7 @@ public class Grid
     {
         foreach (GameObject go in dsGrid)
         {
-            if (go != null)
-                Object.Destroy(go);
+            if (go != null) Object.Destroy(go);
         }
 
         dsGrid.Clear();
@@ -33,19 +31,18 @@ public class Grid
     {
         GameObject go = Object.Instantiate(gridChon, viTri, Quaternion.identity);
         go.layer = 6;
-        dsGrid.Add(go); 
+        dsGrid.Add(go);
     }
 
-    public void HienThiGridAttack(Vector3 viTriGoc, float banKinh)
+    public void HienThiGridAttack(Vector3 viTriGoc, int tamTanCong)
     {
+        float banKinh = tamTanCong * 100f;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach (GameObject enemy in enemies)
         {
             Vector3 viTriEnemy = enemy.transform.position;
             float dist = Vector3.Distance(viTriEnemy, viTriGoc);
-
-            // Kiểm tra nếu trong khoảng 150 đơn vị
             if (dist <= banKinh)
             {
                 GameObject atk = Object.Instantiate(gridAttack, viTriEnemy, Quaternion.identity);
@@ -64,8 +61,6 @@ public class Grid
                 if (Mathf.Abs(dx) + Mathf.Abs(dy) <= banKinh)
                 {
                     Vector3 viTriMoi = goc + new Vector3(dx * 100, dy * 100, 0);
-
-                    // Vị trí chính giữa
                     if (dx == 0 && dy == 0)
                     {
                         HienThiGridChon(viTriMoi);
@@ -81,13 +76,6 @@ public class Grid
         }
     }
 
-    public List<Vector3> LayDanhSachViTriGridDiChuyen()
-    {
-        return viTriManager.LayTatCa();
-    }
-
-    public int SoLuongOGridDiChuyen()
-    {
-        return viTriManager.DemSoLuong();
-    }
+    public List<Vector3> LayDanhSachViTriGridDiChuyen() => viTriManager.LayTatCa();
+    public int SoLuongOGridDiChuyen() => viTriManager.DemSoLuong();
 }
