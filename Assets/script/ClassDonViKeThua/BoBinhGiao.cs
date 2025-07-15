@@ -2,21 +2,9 @@ using UnityEngine;
 
 public class BoBinhGiao : classDonVi
 {
-    void Awake()
+    void Start()
     {
-        Init(
-            ten: "Đại Việt giáo binh",
-            loai: "infantry",
-            quan: "spear",
-            cong: 30,
-            hp: 400,
-            giap: 40,
-            xk: 5,
-            tocdo: 4,
-            kl: 5,
-            luotDi: 1,
-            luotAtk: 1,
-            tam: 1
-        );
+        Debug.Log("Start gọi: BoBinhGiao");
+        Init("Đại Việt giáo binh", "infantry", "spear", 30, 400, 40, 5, 4f, 5f, 1, 1, 1);
     }
 }

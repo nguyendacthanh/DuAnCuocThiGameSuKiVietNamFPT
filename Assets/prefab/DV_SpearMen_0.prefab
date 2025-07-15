@@ -332,7 +332,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 5
@@ -388,7 +388,8 @@ GameObject:
   - component: {fileID: 3761482744943936670}
   - component: {fileID: 5215873261471245019}
   - component: {fileID: 11885642071592066}
-  - component: {fileID: -2995327038832318470}
+  - component: {fileID: 3574464595826079047}
+  - component: {fileID: 1928850897996342276}
   m_Layer: 0
   m_Name: DV_SpearMen_0
   m_TagString: Army
@@ -497,7 +498,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -513,7 +514,34 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.5281538, y: 1.641592}
   m_EdgeRadius: 0
---- !u!114 &-2995327038832318470
+--- !u!50 &3574464595826079047
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7896938951444944003}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1928850897996342276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -522,17 +550,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 7896938951444944003}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3feb45e3441e0f74189e8561b1b6653a, type: 3}
+  m_Script: {fileID: 11500000, guid: b3a7e27c4241e2a4f8a7fce17e15efdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TenDonVi: "\u0110\u1EA1i Vi\u1EC7t gi\xE1o binh"
-  ChungQuan: infantry
-  TheLoai: spear
-  SucCong: 50
-  Mau: 250
-  Giap: 30
-  XungKich: 10
-  TocDo: 5
-  KhoiLuong: 3
-  LuotDiChuyen: 1
-  LuotTanCong: 1
+  TenDonVi: 
+  ChungQuan: 
+  TheLoai: 
+  SucCong: 0
+  Mau: 0
+  Giap: 0
+  XungKich: 0
+  TocDo: 0
+  KhoiLuong: 0
+  time: 0.3
+  tamTanCong: 1
+  maxLuotDiChuyen: 0
+  maxLuotTanCong: 0
+  LuotDiChuyen: 0
+  LuotTanCong: 0

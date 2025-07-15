@@ -3,17 +3,20 @@ using UnityEngine;
 
 public class classDonVi : MonoBehaviour
 {
-    // Thông số đơn vị
-    private string TenDonVi, ChungQuan, TheLoai;
-    private int SucCong, Mau, Giap, XungKich;
-    private float TocDo, KhoiLuong;
-    private int LuotDiChuyen, LuotTanCong;
-    private float time = 0.3f;
-    private int tamTanCong = 1; // mỗi tầm = 100 đơn vị
+        public string TenDonVi, ChungQuan, TheLoai;
+    public int SucCong, Mau, Giap, XungKich;
+    public float TocDo, KhoiLuong;
+    public float time = 0.3f;
+    public int tamTanCong = 1;
 
     private Coroutine coroutineDiChuyen;
 
-    // Hàm khởi tạo thông tin đơn vị
+    public int maxLuotDiChuyen;
+    public int maxLuotTanCong;
+    public int LuotDiChuyen;
+    public int LuotTanCong;
+
+    // Khởi tạo đơn vị
     public virtual void Init(string ten, string loai, string quan, int cong, int hp, int giap, int xk,
                              float tocdo, float kl, int luotDi, int luotAtk, int tam)
     {
@@ -26,12 +29,14 @@ public class classDonVi : MonoBehaviour
         XungKich = xk;
         TocDo = tocdo;
         KhoiLuong = kl;
-        LuotDiChuyen = luotDi;
-        LuotTanCong = luotAtk;
+        maxLuotDiChuyen = luotDi;
+        maxLuotTanCong = luotAtk;
+        LuotDiChuyen = maxLuotDiChuyen;
+        LuotTanCong = maxLuotTanCong;
         tamTanCong = tam;
+        Debug.Log($"[INIT] {ten} | LuotDi: {LuotDiChuyen}, LuotTanCong: {LuotTanCong}");
     }
 
-    // Di chuyển theo từng bước
     public virtual void DiChuyenDen(Vector3 viTriMoi)
     {
         if (LuotDiChuyen > 0)
@@ -48,11 +53,9 @@ public class classDonVi : MonoBehaviour
         }
     }
 
-    // Coroutine di chuyển
     private IEnumerator DiChuyenTuTu(Vector3 start, Vector3 target)
     {
         Vector3 currentPos = start;
-
         int buocX = Mathf.RoundToInt((target.x - start.x) / 100f);
         int buocY = Mathf.RoundToInt((target.y - start.y) / 100f);
         int stepX = (int)Mathf.Sign(buocX);
@@ -73,7 +76,6 @@ public class classDonVi : MonoBehaviour
         }
     }
 
-    // Tính dame xung kích
     public int TinhDameXungKich(Vector3 viTriBanDau, Vector3 viTriHienTai)
     {
         float dx = Mathf.Abs(viTriHienTai.x - viTriBanDau.x);
@@ -86,10 +88,9 @@ public class classDonVi : MonoBehaviour
         return Mathf.RoundToInt(tongDame);
     }
 
-    // Tấn công
     public virtual int TanCong(classDonVi mucTieu)
     {
-        Vector3 viTriBanDau = transform.position; // Giả sử đứng yên
+        Vector3 viTriBanDau = transform.position;
         int dameXK = TinhDameXungKich(viTriBanDau, transform.position);
         int tongDame = dameXK + SucCong;
 
@@ -110,18 +111,14 @@ public class classDonVi : MonoBehaviour
         return satThuong;
     }
 
-    // Phản đòn
     public virtual void PhanDon(classDonVi doiThu)
     {
         int dame = Mathf.RoundToInt(SucCong * 0.75f);
         doiThu.Mau -= dame;
-
         Debug.Log($"{TenDonVi} phản đòn {doiThu.TenDonVi}, gây {dame} sát thương. HP còn lại: {doiThu.Mau}");
-
         doiThu.KiemTraMau();
     }
 
-    // Kiểm tra máu
     public void KiemTraMau()
     {
         if (Mau <= 0)
@@ -129,5 +126,18 @@ public class classDonVi : MonoBehaviour
             Debug.Log($"{TenDonVi} đã bị tiêu diệt!");
             Destroy(gameObject);
         }
+    }
+
+    public void ResetLuot()
+    {
+        LuotDiChuyen = 0;
+        LuotTanCong = 0;
+    }
+
+    public void KhoiPhucLuot()
+    {
+        LuotDiChuyen = maxLuotDiChuyen;
+        LuotTanCong = maxLuotTanCong;
+        Debug.Log($"{TenDonVi} được khôi phục lượt: {LuotDiChuyen} đi, {LuotTanCong} đánh");
     }
 }
