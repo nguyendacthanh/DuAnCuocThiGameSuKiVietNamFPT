@@ -20444,16 +20444,6 @@ Tilemap:
   m_GameObject: {fileID: 1527471322}
   m_Enabled: 1
   m_Tiles:
-  - first: {x: -1, y: -4, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 14, y: 1, z: 0}
     second:
       serializedVersion: 2
@@ -20618,15 +20608,15 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 16
     m_Data: {fileID: 11400000, guid: 9fe4d24a2a0d78546b55d67f43b58caf, type: 2}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 356cf333be39ef04890a58a2f9695a6b, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 16
     m_Data: {fileID: 7071876222525385644, guid: 96d2085b8220b544284d60613460aa87, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 3763752930381237044, guid: efcaab4a608767d4e840a94dd420db98, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
-  - m_RefCount: 17
+  - m_RefCount: 16
     m_Data:
       e00: 1
       e01: 0
@@ -20645,7 +20635,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 17
+  - m_RefCount: 16
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -20671,6 +20661,52 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1527903576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1527903578}
+  - component: {fileID: 1527903579}
+  m_Layer: 0
+  m_Name: ManagerClickEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1527903578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527903576}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -51.02569, y: 19.854979, z: -0.4248203}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1527903579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527903576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0c7918b287a044c97b94c8e24a8b9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabGridChon: {fileID: 17032937032497703, guid: 12c668cf36c621a4292a6d55947152ab, type: 3}
+  prefabGridEnemy: {fileID: 6742851819220315115, guid: 803a920190cc9904eb83b186c78decbe, type: 3}
 --- !u!1001 &1528539443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20730,6 +20766,10 @@ PrefabInstance:
     - target: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
       propertyPath: m_Name
       value: DV_SpearMen_0 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1928850897996342276, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
@@ -21156,3 +21196,4 @@ SceneRoots:
   - {fileID: 520776003}
   - {fileID: 1922668758}
   - {fileID: 1528539443}
+  - {fileID: 1527903578}

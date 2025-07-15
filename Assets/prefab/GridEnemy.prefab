@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4870159172558642894
+--- !u!1 &6742851819220315115
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7205174490919444104}
-  - component: {fileID: 3039309586390933970}
+  - component: {fileID: 5286001337604187742}
+  - component: {fileID: 907097640063741045}
   m_Layer: 0
-  m_Name: GridDiChuyen
-  m_TagString: GridMove
+  m_Name: GridEnemy
+  m_TagString: GridEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7205174490919444104
+--- !u!4 &5286001337604187742
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4870159172558642894}
+  m_GameObject: {fileID: 6742851819220315115}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 273.35284, y: -65.70421, z: 0}
+  m_LocalPosition: {x: 385.15677, y: -51.28107, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3039309586390933970
+--- !u!212 &907097640063741045
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4870159172558642894}
+  m_GameObject: {fileID: 6742851819220315115}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
-  m_Sprite: {fileID: -6888756438569675735, guid: 21dc73cdf30175a4bba5c53b2982a5ac, type: 3}
+  m_SortingOrder: 6
+  m_Sprite: {fileID: -1603291472181913768, guid: ad2e1a057580db34685d84f61603f41e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

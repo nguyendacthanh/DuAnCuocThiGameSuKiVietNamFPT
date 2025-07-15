@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class classDonVi : MonoBehaviour
 {
+        
         public string TenDonVi, ChungQuan, TheLoai;
     public int SucCong, Mau, Giap, XungKich;
     public float TocDo, KhoiLuong;
