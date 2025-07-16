@@ -6,6 +6,9 @@ public class CheckChonEvent
     public List<Vector2> ToaDoArmy { get; private set; }
     public List<Vector2> ToaDoEnemy { get; private set; }
 
+    public List<GameObject> armies { get; private set; } = new List<GameObject>();
+    public List<GameObject> enemies { get; private set; } = new List<GameObject>();
+
     public bool EnemyChosen { get; private set; } = false;
     public bool ArmyChosen { get; private set; } = false;
 
@@ -13,18 +16,22 @@ public class CheckChonEvent
     {
         ToaDoArmy = new List<Vector2>();
         ToaDoEnemy = new List<Vector2>();
+        armies = new List<GameObject>();
+        enemies = new List<GameObject>();
 
-        GameObject[] armies = GameObject.FindGameObjectsWithTag("Army");
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] armyObjs = GameObject.FindGameObjectsWithTag("Army");
+        GameObject[] enemyObjs = GameObject.FindGameObjectsWithTag("Enemy");
 
-        foreach (GameObject a in armies)
+        foreach (GameObject a in armyObjs)
         {
             ToaDoArmy.Add((Vector2)a.transform.position);
+            armies.Add(a);
         }
 
-        foreach (GameObject e in enemies)
+        foreach (GameObject e in enemyObjs)
         {
             ToaDoEnemy.Add((Vector2)e.transform.position);
+            enemies.Add(e);
         }
     }
 

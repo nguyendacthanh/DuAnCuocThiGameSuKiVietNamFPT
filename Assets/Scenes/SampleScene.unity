@@ -20705,8 +20705,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0c7918b287a044c97b94c8e24a8b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabGridChon: {fileID: 17032937032497703, guid: 12c668cf36c621a4292a6d55947152ab, type: 3}
   prefabGridEnemy: {fileID: 6742851819220315115, guid: 803a920190cc9904eb83b186c78decbe, type: 3}
+  prefabGridChon: {fileID: 17032937032497703, guid: 12c668cf36c621a4292a6d55947152ab, type: 3}
+  prefabGridDiChuyen: {fileID: 4870159172558642894, guid: 491f3eeaad73ba74d94d89411599feb0, type: 3}
 --- !u!1001 &1528539443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21100,6 +21101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ba8fc36c3dce947bc92a5063c6d992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chon: 0
   TenDonVi: 
   ChungQuan: 
   TheLoai: 

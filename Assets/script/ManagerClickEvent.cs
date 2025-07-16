@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ManagerClickEvent : MonoBehaviour
 {
     public GameObject prefabGridEnemy;
     public GameObject prefabGridChon;
+    public GameObject prefabGridDiChuyen;
 
     private CheckChonEvent checker;
     private Grid grid;
@@ -15,6 +17,11 @@ public class ManagerClickEvent : MonoBehaviour
     {
         checker = new CheckChonEvent();
         grid = new Grid();
+
+        if (prefabGridChon == null || prefabGridDiChuyen == null || prefabGridEnemy == null)
+        {
+            Debug.LogError("❌ Một hoặc nhiều prefab chưa được gán trong Inspector!");
+        }
     }
 
     void Update()
@@ -48,9 +55,57 @@ public class ManagerClickEvent : MonoBehaviour
                     viTriGridChon = null;
                 }
             }
+            else if (isArmy)
+            {
+                foreach (GameObject go in checker.armies)
+                {
+                    if ((Vector2)go.transform.position == toaDoClick)
+                    {
+                        classDonVi donVi = go.GetComponent<classDonVi>();
+                        if (!donVi.chon)
+                        {
+                            donVi.chon = true;
+                            Debug.Log("✅ Army được chọn: " + donVi.name);
+
+                            // Spawn GridChon
+                            XoaGridTheoTag("Grid");
+                            grid.HienThiGridChon(toaDoClick, prefabGridChon);
+                            viTriGridChon = toaDoClick;
+
+                            // Spawn GridDiChuyen nếu còn lượt
+                            if (donVi.LuotDiChuyen > 0)
+                            {
+                                List<Vector2> diemDiChuyen = ToaDoHinhThoi.TinhToaDo(toaDoClick, Mathf.RoundToInt(donVi.TocDo));
+                                foreach (Vector2 diem in diemDiChuyen)
+                                {
+                                    bool trungDonVi = checker.ToaDoEnemy.Contains(diem) || checker.ToaDoArmy.Contains(diem);
+                                    if (!trungDonVi)
+                                    {
+                                        grid.HienThiGridDiChuyen(diem, prefabGridDiChuyen);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            // Bỏ chọn
+                            donVi.chon = false;
+                            Debug.Log("❌ Bỏ chọn Army: " + donVi.name);
+                            XoaGridTheoTag("Grid");
+                            XoaGridTheoTag("GridMove");
+                            viTriGridChon = null;
+                        }
+                        break;
+                    }
+                }
+
+                // Luôn xóa GridEnemy nếu click vào army
+                XoaGridTheoTag("GridEnemy");
+                viTriGridEnemy = null;
+            }
             else
             {
-                // Toggle GridChon
+                // Toggle GridChon theo vị trí click
                 if (viTriGridChon != null && viTriGridChon == toaDoClick)
                 {
                     XoaGridTheoTag("Grid");
@@ -65,12 +120,6 @@ public class ManagerClickEvent : MonoBehaviour
                     // Xóa GridEnemy nếu có
                     XoaGridTheoTag("GridEnemy");
                     viTriGridEnemy = null;
-
-                    if (isArmy)
-                    {
-                        Debug.Log("Click vào Army: chuẩn bị xử lý thêm (VD: spawn GridDiChuyen nếu chon == true)");
-                        // TODO: xử lý chọn đơn vị, kiểm tra LuotDiChuyen, gọi hàm hiển thị GridDiChuyen nếu cần
-                    }
                 }
             }
         }
