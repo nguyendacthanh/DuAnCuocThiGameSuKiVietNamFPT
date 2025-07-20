@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class classDonVi : MonoBehaviour
 {
-    public bool chon = false;
+    public bool isSelected = false;
         public string TenDonVi, ChungQuan, TheLoai;
     public int SucCong, Mau, Giap, XungKich;
-    public float TocDo, KhoiLuong;
+    public int TocDo, KhoiLuong;
     public float time = 0.3f;
     public int tamTanCong = 1;
 
@@ -19,7 +19,7 @@ public class classDonVi : MonoBehaviour
 
     // Khởi tạo đơn vị
     public virtual void Init(string ten, string loai, string quan, int cong, int hp, int giap, int xk,
-                             float tocdo, float kl, int luotDi, int luotAtk, int tam)
+                             int tocdo, int kl, int luotDi, int luotAtk, int tam)
     {
         TenDonVi = ten;
         TheLoai = loai;

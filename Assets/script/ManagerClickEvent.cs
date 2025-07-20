@@ -3,109 +3,117 @@ using UnityEngine;
 
 public class ManagerClickEvent : MonoBehaviour
 {
-    public GameObject prefabGridEnemy;
-    public GameObject prefabGridChon;
-    public GameObject prefabGridDiChuyen;
+    // Prefab các loại grid
+    public GameObject prefabGridEnemy, prefabGridChon, prefabGridDiChuyen, prefabGridAttack;
 
     private CheckChonEvent checker;
     private Grid grid;
 
-    private Vector2? viTriGridEnemy = null;
-    private Vector2? viTriGridChon = null;
+    // Lưu vị trí các grid hiện tại
+    private Vector2? viTriGridEnemy = null, viTriGridChon = null, viTriGridDiChuyen = null;
 
     void Start()
     {
         checker = new CheckChonEvent();
         grid = new Grid();
-
-        if (prefabGridChon == null || prefabGridDiChuyen == null || prefabGridEnemy == null)
-        {
-            Debug.LogError("❌ Một hoặc nhiều prefab chưa được gán trong Inspector!");
-        }
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            // Lấy tọa độ click trong thế giới
             Vector2 clickWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 toaDoClick = click.ToaDoClick(clickWorld);
+            Vector2 toaDoClick = click.ToaDoClick(clickWorld); // Tọa độ lưới
 
-            checker.CapNhatToaDo();
+            checker.CapNhatToaDo(); // Cập nhật danh sách đơn vị
 
-            bool isEnemy = checker.TimToaDoEnemy(toaDoClick);
-            bool isArmy = checker.TimToaDoArmy(toaDoClick);
+            GameObject enemyObj = checker.TimEnemy(toaDoClick);
+            GameObject armyObj = checker.TimArmy(toaDoClick);
 
-            if (isEnemy)
+            // ======== CLICK ENEMY ============
+            if (enemyObj != null)
             {
-                // Toggle GridEnemy
                 if (viTriGridEnemy != null && viTriGridEnemy == toaDoClick)
                 {
+                    // Nếu click lại cùng vị trí => tắt grid enemy
                     XoaGridTheoTag("GridEnemy");
                     viTriGridEnemy = null;
                 }
                 else
                 {
+                    // Hiển thị grid enemy mới
                     XoaGridTheoTag("GridEnemy");
                     grid.HienThiGridEnemy(toaDoClick, prefabGridEnemy);
                     viTriGridEnemy = toaDoClick;
 
-                    // Xóa GridChon nếu có
+                    // Tắt các grid khác
                     XoaGridTheoTag("Grid");
+                    XoaGridTheoTag("GridMove");
                     viTriGridChon = null;
+                    viTriGridDiChuyen = null;
                 }
+
+                // Bỏ chọn tất cả army
+                foreach (GameObject army in checker.armies)
+                    army.GetComponent<classDonVi>().isSelected = false;
             }
-            else if (isArmy)
+
+            // ======== CLICK ARMY ============
+            else if (armyObj != null)
             {
-                foreach (GameObject go in checker.armies)
+                classDonVi donVi = armyObj.GetComponent<classDonVi>();
+
+                // Nếu đơn vị đang được chọn => bỏ chọn
+                if (donVi.isSelected)
                 {
-                    if ((Vector2)go.transform.position == toaDoClick)
+                    donVi.isSelected = false;
+                    XoaGridTheoTag("GridMove");
+                    XoaGridTheoTag("Grid");
+                    viTriGridDiChuyen = null;
+                }
+                else
+                {
+                    // Bỏ chọn tất cả army khác
+                    foreach (GameObject army in checker.armies)
+                        army.GetComponent<classDonVi>().isSelected = false;
+
+                    donVi.isSelected = true;
+
+                    // Xóa grid di chuyển cũ
+                    XoaGridTheoTag("GridMove");
+                    XoaGridTheoTag("Grid");
+                    grid.HienThiGridChon(toaDoClick, prefabGridChon);
+                    if (donVi.LuotDiChuyen > 0)
                     {
-                        classDonVi donVi = go.GetComponent<classDonVi>();
-                        if (!donVi.chon)
+                        // Tính danh sách tọa độ di chuyển hình thoi
+                        List<Vector2> danhSachToaDo = ToaDoHinhThoi.TinhToaDo(donVi.transform.position, donVi.TocDo);
+
+                        foreach (Vector2 pos in danhSachToaDo)
                         {
-                            donVi.chon = true;
-                            Debug.Log("✅ Army được chọn: " + donVi.name);
-
-                            // Spawn GridChon
-                            XoaGridTheoTag("Grid");
-                            grid.HienThiGridChon(toaDoClick, prefabGridChon);
-                            viTriGridChon = toaDoClick;
-
-                            // Spawn GridDiChuyen nếu còn lượt
-                            if (donVi.LuotDiChuyen > 0)
+                            // Chỉ hiển thị grid nếu vị trí đó không có army hoặc enemy
+                            if (checker.TimArmy(pos) == null && checker.TimEnemy(pos) == null)
                             {
-                                List<Vector2> diemDiChuyen = ToaDoHinhThoi.TinhToaDo(toaDoClick, Mathf.RoundToInt(donVi.TocDo));
-                                foreach (Vector2 diem in diemDiChuyen)
-                                {
-                                    bool trungDonVi = checker.ToaDoEnemy.Contains(diem) || checker.ToaDoArmy.Contains(diem);
-                                    if (!trungDonVi)
-                                    {
-                                        grid.HienThiGridDiChuyen(diem, prefabGridDiChuyen);
-                                    }
-                                }
+                                grid.HienThiGridDiChuyen(pos, prefabGridDiChuyen);
                             }
                         }
-                        else
-                        {
-                            // Bỏ chọn
-                            donVi.chon = false;
-                            Debug.Log("❌ Bỏ chọn Army: " + donVi.name);
-                            XoaGridTheoTag("Grid");
-                            XoaGridTheoTag("GridMove");
-                            viTriGridChon = null;
-                        }
-                        break;
-                    }
-                }
 
-                // Luôn xóa GridEnemy nếu click vào army
-                XoaGridTheoTag("GridEnemy");
-                viTriGridEnemy = null;
+                        viTriGridDiChuyen = donVi.transform.position;
+                    }
+
+                    // Xóa các grid không cần thiết
+                    XoaGridTheoTag("Grid");
+                    XoaGridTheoTag("GridEnemy");
+                    
+                    grid.HienThiGridChon(toaDoClick, prefabGridChon);
+                    viTriGridChon = null;
+                    viTriGridEnemy = null;
+                }
             }
+
+            // ======== CLICK Ô TRỐNG ============
             else
             {
-                // Toggle GridChon theo vị trí click
                 if (viTriGridChon != null && viTriGridChon == toaDoClick)
                 {
                     XoaGridTheoTag("Grid");
@@ -116,21 +124,28 @@ public class ManagerClickEvent : MonoBehaviour
                     XoaGridTheoTag("Grid");
                     grid.HienThiGridChon(toaDoClick, prefabGridChon);
                     viTriGridChon = toaDoClick;
-
-                    // Xóa GridEnemy nếu có
-                    XoaGridTheoTag("GridEnemy");
-                    viTriGridEnemy = null;
                 }
+
+                // Xóa các grid khác
+                XoaGridTheoTag("GridEnemy");
+                XoaGridTheoTag("GridMove");
+                viTriGridEnemy = null;
+                viTriGridDiChuyen = null;
+
+                // Bỏ chọn tất cả army
+                foreach (GameObject army in checker.armies)
+                    army.GetComponent<classDonVi>().isSelected = false;
             }
         }
     }
 
+    // Hàm xóa toàn bộ grid theo tag
     void XoaGridTheoTag(string tag)
     {
         GameObject[] grids = GameObject.FindGameObjectsWithTag(tag);
         foreach (GameObject g in grids)
         {
-            GameObject.Destroy(g);
+            Destroy(g);
         }
     }
 }

@@ -5,6 +5,6 @@ public class BoBinhGiao : classDonVi
     void Start()
     {
         Debug.Log("Start gọi: BoBinhGiao");
-        Init("Đại Việt giáo binh", "infantry", "spear", 30, 400, 40, 5, 4f, 5f, 1, 1, 1);
+        Init("Đại Việt giáo binh", "infantry", "spear", 30, 400, 40, 5, 4, 5, 1, 1, 1);
     }
 }

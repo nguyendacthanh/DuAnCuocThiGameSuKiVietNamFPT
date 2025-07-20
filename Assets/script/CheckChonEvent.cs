@@ -3,65 +3,67 @@ using UnityEngine;
 
 public class CheckChonEvent
 {
-    public List<Vector2> ToaDoArmy { get; private set; }
-    public List<Vector2> ToaDoEnemy { get; private set; }
-
     public List<GameObject> armies { get; private set; } = new List<GameObject>();
     public List<GameObject> enemies { get; private set; } = new List<GameObject>();
 
-    public bool EnemyChosen { get; private set; } = false;
-    public bool ArmyChosen { get; private set; } = false;
-
     public void CapNhatToaDo()
     {
-        ToaDoArmy = new List<Vector2>();
-        ToaDoEnemy = new List<Vector2>();
-        armies = new List<GameObject>();
-        enemies = new List<GameObject>();
+        armies.Clear();
+        enemies.Clear();
 
-        GameObject[] armyObjs = GameObject.FindGameObjectsWithTag("Army");
-        GameObject[] enemyObjs = GameObject.FindGameObjectsWithTag("Enemy");
-
-        foreach (GameObject a in armyObjs)
-        {
-            ToaDoArmy.Add((Vector2)a.transform.position);
-            armies.Add(a);
-        }
-
-        foreach (GameObject e in enemyObjs)
-        {
-            ToaDoEnemy.Add((Vector2)e.transform.position);
-            enemies.Add(e);
-        }
+        armies.AddRange(GameObject.FindGameObjectsWithTag("Army"));
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
     }
 
-    public bool TimToaDoEnemy(Vector2 clickPos)
+    // Hàm kiểm tra có đơn vị tại vị trí không, trả về GameObject nếu có
+    private GameObject TimTheoViTri(Vector2 clickPos, List<GameObject> list)
     {
-        foreach (Vector2 pos in ToaDoEnemy)
+        foreach (var obj in list)
         {
-            if (pos == clickPos)
+            if ((Vector2)obj.transform.position == clickPos)
             {
-                EnemyChosen = true;
-                return true;
+                return obj;
+            }
+        }
+        return null;
+    }
+
+    // Trả về GameObject Enemy nếu trúng, ngược lại trả về null
+    public GameObject TimEnemy(Vector2 clickPos)
+    {
+        return TimTheoViTri(clickPos, enemies);
+    }
+
+    // Trả về GameObject Army nếu trúng, ngược lại trả về null
+    public GameObject TimArmy(Vector2 clickPos)
+    {
+        return TimTheoViTri(clickPos, armies);
+    }
+    
+    public List<GameObject> TimEnemyXungQuanh(GameObject Army)
+    {
+        List<GameObject> ketQua = new List<GameObject>();
+
+        if (Army == null) return ketQua;
+
+        Vector2 viTri = Army.transform.position;
+        Vector2[] viTriCanKiemTra = new Vector2[]
+        {
+            viTri + new Vector2(100, 0), // phải
+            viTri + new Vector2(-100, 0), // trái
+            viTri + new Vector2(0, 100), // trên
+            viTri + new Vector2(0, -100), // dưới
+        };
+
+        foreach (var viTriXungQuanh in viTriCanKiemTra)
+        {
+            GameObject enemy = TimEnemy(viTriXungQuanh);
+            if (enemy != null)
+            {
+                ketQua.Add(enemy);
             }
         }
 
-        EnemyChosen = false;
-        return false;
-    }
-
-    public bool TimToaDoArmy(Vector2 clickPos)
-    {
-        foreach (Vector2 pos in ToaDoArmy)
-        {
-            if (pos == clickPos)
-            {
-                ArmyChosen = true;
-                return true;
-            }
-        }
-
-        ArmyChosen = false;
-        return false;
+        return ketQua;
     }
 }
