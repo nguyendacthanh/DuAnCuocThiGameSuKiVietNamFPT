@@ -50,6 +50,7 @@ public class ManagerClickEvent : MonoBehaviour
                     // Tắt các grid khác
                     XoaGridTheoTag("Grid");
                     XoaGridTheoTag("GridMove");
+                    XoaGridTheoTag("GridAttack");
                     viTriGridChon = null;
                     viTriGridDiChuyen = null;
                 }
@@ -70,6 +71,7 @@ public class ManagerClickEvent : MonoBehaviour
                     donVi.isSelected = false;
                     XoaGridTheoTag("GridMove");
                     XoaGridTheoTag("Grid");
+                    XoaGridTheoTag("GridAttack");
                     viTriGridDiChuyen = null;
                 }
                 else
@@ -79,10 +81,19 @@ public class ManagerClickEvent : MonoBehaviour
                         army.GetComponent<classDonVi>().isSelected = false;
 
                     donVi.isSelected = true;
-
+                    XoaGridTheoTag("GridAttack");
+                    if (donVi.LuotTanCong > 0)
+                    {
+                        List<GameObject> enemiesXungQuanh = checker.TimEnemyXungQuanh(donVi.gameObject);
+                        foreach (GameObject enemy in enemiesXungQuanh)
+                        {
+                            grid.HienThiGridAttack(enemy.transform.position, prefabGridAttack);
+                        }
+                    }
                     // Xóa grid di chuyển cũ
                     XoaGridTheoTag("GridMove");
                     XoaGridTheoTag("Grid");
+                    
                     grid.HienThiGridChon(toaDoClick, prefabGridChon);
                     if (donVi.LuotDiChuyen > 0)
                     {
@@ -129,6 +140,7 @@ public class ManagerClickEvent : MonoBehaviour
                 // Xóa các grid khác
                 XoaGridTheoTag("GridEnemy");
                 XoaGridTheoTag("GridMove");
+                XoaGridTheoTag("GridAttack");
                 viTriGridEnemy = null;
                 viTriGridDiChuyen = null;
 
