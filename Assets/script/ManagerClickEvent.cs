@@ -20,6 +20,9 @@ public class ManagerClickEvent : MonoBehaviour
 
     void Update()
     {
+        
+        
+        
         if (Input.GetMouseButtonDown(0))
         {
             // Lấy tọa độ click trong thế giới
@@ -30,7 +33,24 @@ public class ManagerClickEvent : MonoBehaviour
 
             GameObject enemyObj = checker.TimEnemy(toaDoClick);
             GameObject armyObj = checker.TimArmy(toaDoClick);
-
+            
+            
+            if (CoGridMoveTaiViTri(toaDoClick))
+            {
+                foreach (GameObject army in checker.armies)
+                {
+                    classDonVi donVi = army.GetComponent<classDonVi>();
+                    if (donVi.isSelected && donVi.LuotDiChuyen > 0)
+                    {
+                        donVi.DiChuyenDen(toaDoClick);
+                        XoaGridTheoTag("GridMove");
+                        XoaGridTheoTag("GridAttack"); // cũng nên xóa grid tấn công cũ (nếu có)
+                        return; // ⚠️ Quan trọng: dừng xử lý Update để không chạy xuống phần else
+                    }
+                }
+            }
+            
+            
             // ======== CLICK ENEMY ============
             if (enemyObj != null)
             {
@@ -121,7 +141,6 @@ public class ManagerClickEvent : MonoBehaviour
                     viTriGridEnemy = null;
                 }
             }
-
             // ======== CLICK Ô TRỐNG ============
             else
             {
@@ -148,9 +167,13 @@ public class ManagerClickEvent : MonoBehaviour
                 foreach (GameObject army in checker.armies)
                     army.GetComponent<classDonVi>().isSelected = false;
             }
+            
         }
+        
     }
 
+    
+    // ======== Các hàm phụ ============
     // Hàm xóa toàn bộ grid theo tag
     void XoaGridTheoTag(string tag)
     {
@@ -159,5 +182,15 @@ public class ManagerClickEvent : MonoBehaviour
         {
             Destroy(g);
         }
+    }
+    private bool CoGridMoveTaiViTri(Vector2 viTri)
+    {
+        Collider2D[] hits = Physics2D.OverlapPointAll(viTri);
+        foreach (var hit in hits)
+        {
+            if (hit.CompareTag("GridMove"))
+                return true;
+        }
+        return false;
     }
 }
