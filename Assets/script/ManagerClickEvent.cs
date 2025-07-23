@@ -8,6 +8,7 @@ public class ManagerClickEvent : MonoBehaviour
 
     private CheckChonEvent checker;
     private Grid grid;
+    public GameObject satThuongPrefab;
 
     // Lưu vị trí các grid hiện tại
     private Vector2? viTriGridEnemy = null, viTriGridChon = null, viTriGridDiChuyen = null;
@@ -46,6 +47,33 @@ public class ManagerClickEvent : MonoBehaviour
                         XoaGridTheoTag("GridMove");
                         XoaGridTheoTag("GridAttack"); // cũng nên xóa grid tấn công cũ (nếu có)
                         return; // ⚠️ Quan trọng: dừng xử lý Update để không chạy xuống phần else
+                    }
+                }
+            }
+            // ======== THỰC HIỆN TẤN CÔNG =========
+            if (CoGridAttackTaiViTri(toaDoClick))
+            {
+                GameObject enemyTargetObj = checker.TimEnemy(toaDoClick);
+                if (enemyTargetObj != null)
+                {
+                    foreach (GameObject army in checker.armies)
+                    {
+                        classDonVi donVi = army.GetComponent<classDonVi>();
+                        if (donVi.isSelected && donVi.LuotTanCong > 0)
+                        {
+                            donVi.TanCong();
+
+                            GameObject satThuongObj = Instantiate(satThuongPrefab, enemyTargetObj.transform.position, Quaternion.identity);
+                            SatThuong satThuongScript = satThuongObj.GetComponent<SatThuong>();
+                            if (satThuongScript != null)
+                            {
+                                satThuongScript.KhoiTao(donVi); // Gửi dữ liệu từ đơn vị tấn công
+                            }
+
+                            XoaGridTheoTag("GridAttack");
+                            XoaGridTheoTag("GridMove");
+                            return;
+                        }
                     }
                 }
             }
@@ -189,6 +217,16 @@ public class ManagerClickEvent : MonoBehaviour
         foreach (var hit in hits)
         {
             if (hit.CompareTag("GridMove"))
+                return true;
+        }
+        return false;
+    }
+    private bool CoGridAttackTaiViTri(Vector2 viTri)
+    {
+        Collider2D[] hits = Physics2D.OverlapPointAll(viTri);
+        foreach (var hit in hits)
+        {
+            if (hit.CompareTag("GridAttack"))
                 return true;
         }
         return false;

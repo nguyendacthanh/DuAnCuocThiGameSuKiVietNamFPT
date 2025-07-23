@@ -10434,6 +10434,7 @@ MonoBehaviour:
   maxLuotTanCong: 0
   LuotDiChuyen: 0
   LuotTanCong: 0
+  soOdiChuyen: 0
 --- !u!1 &514579084
 GameObject:
   m_ObjectHideFlags: 0
@@ -10799,6 +10800,7 @@ MonoBehaviour:
   maxLuotTanCong: 0
   LuotDiChuyen: 0
   LuotTanCong: 0
+  soOdiChuyen: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -20767,6 +20769,7 @@ MonoBehaviour:
   prefabGridChon: {fileID: 17032937032497703, guid: 12c668cf36c621a4292a6d55947152ab, type: 3}
   prefabGridDiChuyen: {fileID: 4870159172558642894, guid: 491f3eeaad73ba74d94d89411599feb0, type: 3}
   prefabGridAttack: {fileID: 7751003380055160582, guid: 1e06f687d3396e7438b900325332f904, type: 3}
+  satThuongPrefab: {fileID: 8810678775236680771, guid: 5108b4a9b6576444083436b735cc7a6f, type: 3}
 --- !u!1001 &1528539443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21176,6 +21179,7 @@ MonoBehaviour:
   maxLuotTanCong: 0
   LuotDiChuyen: 0
   LuotTanCong: 0
+  soOdiChuyen: 0
 --- !u!1001 &7166434868684917113
 PrefabInstance:
   m_ObjectHideFlags: 0

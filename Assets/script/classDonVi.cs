@@ -16,6 +16,7 @@ public class classDonVi : MonoBehaviour
     public int maxLuotTanCong;
     public int LuotDiChuyen;
     public int LuotTanCong;
+    public int soOdiChuyen=0;
 
     // Khởi tạo đơn vị
     public virtual void Init(string ten, string loai, string quan, int cong, int hp, int giap, int xk,
@@ -40,12 +41,17 @@ public class classDonVi : MonoBehaviour
 
     public virtual void DiChuyenDen(Vector3 viTriMoi)
     {
-        if (LuotDiChuyen > 0)
+        if (LuotDiChuyen > 0 )
         {
             if (coroutineDiChuyen != null)
                 StopCoroutine(coroutineDiChuyen);
 
-            coroutineDiChuyen = StartCoroutine(DiChuyenTuTu(transform.position, viTriMoi));
+            Vector3 startSnap = new Vector3(
+                Mathf.Round(transform.position.x / 100f) * 100f,
+                Mathf.Round(transform.position.y / 100f) * 100f,
+                transform.position.z
+            );
+            coroutineDiChuyen = StartCoroutine(MoveRule(startSnap, viTriMoi));
             LuotDiChuyen--;
         }
         else
@@ -54,7 +60,7 @@ public class classDonVi : MonoBehaviour
         }
     }
 
-    private IEnumerator DiChuyenTuTu(Vector3 start, Vector3 target)
+    private IEnumerator MoveRule(Vector3 start, Vector3 target)
     {
         Vector3 currentPos = start;
         int buocX = Mathf.RoundToInt((target.x - start.x) / 100f);
@@ -67,6 +73,7 @@ public class classDonVi : MonoBehaviour
             currentPos += new Vector3(stepX * 100f, 0, 0);
             transform.position = currentPos;
             yield return new WaitForSeconds(time);
+            soOdiChuyen++;
         }
 
         for (int i = 0; i < Mathf.Abs(buocY); i++)
@@ -74,52 +81,34 @@ public class classDonVi : MonoBehaviour
             currentPos += new Vector3(0, stepY * 100f, 0);
             transform.position = currentPos;
             yield return new WaitForSeconds(time);
+            soOdiChuyen++;
         }
     }
 
-    public int TinhDameXungKich(Vector3 viTriBanDau, Vector3 viTriHienTai)
+    public int TinhDameXungKich(int soOdiChuyen)
     {
-        float dx = Mathf.Abs(viTriHienTai.x - viTriBanDau.x);
-        float dy = Mathf.Abs(viTriHienTai.y - viTriBanDau.y);
-        float soODiChuyen = (dx + dy) / 100f;
-
-        float tongDame = soODiChuyen * (XungKich + KhoiLuong) + SucCong;
+        float tongDame = soOdiChuyen * (XungKich + KhoiLuong) + SucCong;
         if (tongDame < 10) tongDame = 10;
 
         return Mathf.RoundToInt(tongDame);
-    }
+    } 
 
-    public virtual int TanCong(classDonVi mucTieu)
+    public virtual void TanCong()
     {
-        Vector3 viTriBanDau = transform.position;
-        int dameXK = TinhDameXungKich(viTriBanDau, transform.position);
-        int tongDame = dameXK + SucCong;
-
-        float giam = (float)mucTieu.Giap / (mucTieu.Giap + 100);
-        float gayRa = tongDame * (1 - giam);
-        int satThuong = Mathf.RoundToInt(gayRa);
-
-        mucTieu.Mau -= satThuong;
-        Debug.Log($"{TenDonVi} tấn công {mucTieu.TenDonVi}, gây {satThuong} sát thương. HP còn lại: {mucTieu.Mau}");
-
-        mucTieu.KiemTraMau();
-
-        if (mucTieu.Mau > 0)
+        if (LuotTanCong > 0)
         {
-            mucTieu.PhanDon(this);
+            LuotTanCong--;
         }
-
-        return satThuong;
     }
-
-    public virtual void PhanDon(classDonVi doiThu)
-    {
-        int dame = Mathf.RoundToInt(SucCong * 0.75f);
-        doiThu.Mau -= dame;
-        Debug.Log($"{TenDonVi} phản đòn {doiThu.TenDonVi}, gây {dame} sát thương. HP còn lại: {doiThu.Mau}");
-        doiThu.KiemTraMau();
-    }
-
+    //
+    // public virtual void PhanDon(classDonVi doiThu)
+    // {
+    //     int dame = Mathf.RoundToInt(SucCong * 0.75f);
+    //     doiThu.Mau -= dame;
+    //     Debug.Log($"{TenDonVi} phản đòn {doiThu.TenDonVi}, gây {dame} sát thương. HP còn lại: {doiThu.Mau}");
+    //     doiThu.KiemTraMau();
+    // }
+    //
     public void KiemTraMau()
     {
         if (Mau <= 0)
