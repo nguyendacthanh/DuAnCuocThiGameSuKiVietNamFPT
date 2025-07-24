@@ -7,12 +7,27 @@ public class GameTurnManager : MonoBehaviour
     public enum Turn { Player, Enemy }
     public Turn currentTurn = Turn.Player;
 
-    public Button nutKetThucLuot; // Gán trong Inspector
+    public Button nutKetThucLuot; // Gán trong Inspector (hoặc tìm runtime)
     private int soLuot = 1;
+
+    private EnemyManager enemyManager;
 
     private void Start()
     {
-        nutKetThucLuot.onClick.AddListener(ChuyenLuot);
+        enemyManager = FindAnyObjectByType<EnemyManager>();
+
+        if (nutKetThucLuot == null)
+        {
+            GameObject buttonObj = GameObject.Find("ButtonKetThucLuot");
+            if (buttonObj != null)
+                nutKetThucLuot = buttonObj.GetComponent<Button>();
+        }
+
+        if (nutKetThucLuot != null)
+            nutKetThucLuot.onClick.AddListener(ChuyenLuot);
+        else
+            Debug.LogWarning("Chưa gán Button Kết Thúc Lượt");
+
         CapNhatLuatChoTatCaDonVi();
     }
 
@@ -21,24 +36,26 @@ public class GameTurnManager : MonoBehaviour
         if (currentTurn == Turn.Player)
         {
             currentTurn = Turn.Enemy;
+            CapNhatLuatChoTatCaDonVi();
+
+            if (enemyManager != null)
+                enemyManager.BatDauLuotEnemy();  
         }
         else
         {
             currentTurn = Turn.Player;
             soLuot++;
+            CapNhatLuatChoTatCaDonVi();
         }
 
         Debug.Log("Lượt hiện tại: " + currentTurn + " | Số lượt: " + soLuot);
-        CapNhatLuatChoTatCaDonVi();
     }
 
     private void CapNhatLuatChoTatCaDonVi()
     {
-        // Tìm tất cả đơn vị có tag Army và Enemy
         GameObject[] armies = GameObject.FindGameObjectsWithTag("Army");
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        // Áp dụng cho Army
         foreach (GameObject go in armies)
         {
             classDonVi dv = go.GetComponent<classDonVi>();
@@ -51,7 +68,6 @@ public class GameTurnManager : MonoBehaviour
             }
         }
 
-        // Áp dụng cho Enemy
         foreach (GameObject go in enemies)
         {
             classDonVi dv = go.GetComponent<classDonVi>();
@@ -63,5 +79,13 @@ public class GameTurnManager : MonoBehaviour
                     dv.ResetLuot();
             }
         }
+    }
+
+    public void ChuyenSangLuotNguoiChoi()
+    {
+        currentTurn = Turn.Player;
+        soLuot++;
+        Debug.Log("Lượt hiện tại: " + currentTurn + " | Số lượt: " + soLuot);
+        CapNhatLuatChoTatCaDonVi();
     }
 }

@@ -122,6 +122,7 @@ public class classDonVi : MonoBehaviour
     {
         LuotDiChuyen = 0;
         LuotTanCong = 0;
+        soOdiChuyen = 0;
     }
 
     public void KhoiPhucLuot()
