@@ -4,12 +4,24 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    // TODO: Viết các hành động cho từng enemy như di chuyển, tấn công...
-    
+    private classDonVi enemy;
+
+    private void Awake()
+    {
+        enemy = GetComponent<classDonVi>();
+    }
+
     public void ThucHienHanhDong()
     {
-        // Hành động của enemy sẽ được viết ở đây
-        Destroy(gameObject);
+        DiChuyen();
     }
-    
+
+    public void DiChuyen()
+    {
+        Vector3 mucTieu = AiMove.FindNearestArmy(enemy.gameObject);
+        if (mucTieu == null) return;
+
+        Vector3 viTriDen = AiMove.MovePosition(enemy.gameObject, mucTieu);
+        AiMove.EnemyMove(enemy.gameObject, viTriDen);
+    }
 }

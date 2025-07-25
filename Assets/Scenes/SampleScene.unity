@@ -10898,6 +10898,7 @@ GameObject:
   - component: {fileID: 865106928}
   - component: {fileID: 865106933}
   - component: {fileID: 865106934}
+  - component: {fileID: 865106935}
   m_Layer: 0
   m_Name: DV_SpearMen_0 (1)
   m_TagString: Enemy
@@ -11079,6 +11080,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &865106935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865106927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ba8fc36c3dce947bc92a5063c6d992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  TenDonVi: 
+  ChungQuan: 
+  TheLoai: 
+  SucCong: 0
+  Mau: 0
+  Giap: 0
+  XungKich: 0
+  TocDo: 0
+  KhoiLuong: 0
+  time: 0.3
+  tamTanCong: 1
+  maxLuotDiChuyen: 0
+  maxLuotTanCong: 0
+  LuotDiChuyen: 0
+  LuotTanCong: 0
+  soOdiChuyen: 0
 --- !u!1 &1057721400
 GameObject:
   m_ObjectHideFlags: 0
@@ -20855,6 +20885,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2001064288}
+    - targetCorrespondingSourceObject: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2001064293}
   m_SourcePrefab: {fileID: 100100000, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
 --- !u!1 &1911283831
 GameObject:
@@ -21238,6 +21271,18 @@ MonoBehaviour:
   LuotDiChuyen: 0
   LuotTanCong: 0
   soOdiChuyen: 0
+--- !u!114 &2001064293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001064287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7166434868684917113
 PrefabInstance:
   m_ObjectHideFlags: 0
