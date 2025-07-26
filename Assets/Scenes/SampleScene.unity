@@ -10283,9 +10283,10 @@ GameObject:
   - component: {fileID: 341094379}
   - component: {fileID: 341094378}
   - component: {fileID: 341094381}
+  - component: {fileID: 341094382}
   m_Layer: 0
   m_Name: DV_SpearMen_0 (2)
-  m_TagString: Army
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10400,7 +10401,7 @@ Transform:
   m_GameObject: {fileID: 341094377}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: -100, z: 0}
+  m_LocalPosition: {x: 500, y: -100, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10435,6 +10436,18 @@ MonoBehaviour:
   LuotDiChuyen: 0
   LuotTanCong: 0
   soOdiChuyen: 0
+--- !u!114 &341094382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341094377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &514579084
 GameObject:
   m_ObjectHideFlags: 0
@@ -10766,7 +10779,7 @@ Transform:
   m_GameObject: {fileID: 520776000}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100, y: -100, z: 0}
+  m_LocalPosition: {x: -200, y: -400, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
