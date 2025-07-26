@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    public GameObject prefabSatThuong; // Gán prefab từ Inspector
     private classDonVi enemy;
 
     private void Awake()
@@ -14,6 +15,7 @@ public class EnemyAI : MonoBehaviour
     public void ThucHienHanhDong()
     {
         DiChuyen();
+        TanCong();
     }
 
     public void DiChuyen()
@@ -23,5 +25,10 @@ public class EnemyAI : MonoBehaviour
 
         Vector3 viTriDen = AiMove.MovePosition(enemy.gameObject, mucTieu);
         AiMove.EnemyMove(enemy.gameObject, viTriDen);
+    }
+
+    public void TanCong()
+    {
+        AiAttack.TanCong(enemy.gameObject, prefabSatThuong); // Truyền prefab từ Inspector
     }
 }

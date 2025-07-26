@@ -11,6 +11,7 @@ TagManager:
   - GridAttack
   - GridMove
   - GridEnemy
+  - Wall
   layers:
   - Default
   - TransparentFX
