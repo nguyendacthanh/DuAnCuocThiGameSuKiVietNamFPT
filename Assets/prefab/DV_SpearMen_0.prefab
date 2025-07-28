@@ -553,6 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a7e27c4241e2a4f8a7fce17e15efdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSelected: 0
   TenDonVi: 
   ChungQuan: 
   TheLoai: 
@@ -568,3 +569,4 @@ MonoBehaviour:
   maxLuotTanCong: 0
   LuotDiChuyen: 0
   LuotTanCong: 0
+  soOdiChuyen: 0

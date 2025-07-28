@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 192142880}
   - component: {fileID: 192142879}
   m_Layer: 5
-  m_Name: Accout
+  m_Name: General
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1322,7 +1322,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "T\xE0i Kho\u1EA3n"
+  m_text: "T\u01B0\u1EDBng"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b56bbf85640f674e8bf80877826a478, type: 2}
   m_sharedMaterial: {fileID: -9113759272425908653, guid: 4b56bbf85640f674e8bf80877826a478, type: 2}
@@ -1805,7 +1805,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "T\xE0i Kho\u1EA3n"
+  m_text: "x\u1EBFp h\u1EA1ng"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b56bbf85640f674e8bf80877826a478, type: 2}
   m_sharedMaterial: {fileID: -9113759272425908653, guid: 4b56bbf85640f674e8bf80877826a478, type: 2}
@@ -2326,7 +2326,7 @@ GameObject:
   - component: {fileID: 1769888533}
   - component: {fileID: 1769888532}
   m_Layer: 5
-  m_Name: Accout (1)
+  m_Name: Guild
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2569,7 +2569,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "T\xE0i Kho\u1EA3n"
+  m_text: "c\xE0i \u0111\u1EB7t"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b56bbf85640f674e8bf80877826a478, type: 2}
   m_sharedMaterial: {fileID: -9113759272425908653, guid: 4b56bbf85640f674e8bf80877826a478, type: 2}

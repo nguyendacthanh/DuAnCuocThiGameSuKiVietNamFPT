@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
 
-    public float delayGiuaCacEnemy = 5f;
+    public float delayGiuaCacEnemy = 1f;
 
     private GameTurnManager gameTurnManager;
 
