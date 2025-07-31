@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ManagerClickEvent : MonoBehaviour
 {
@@ -12,7 +13,9 @@ public class ManagerClickEvent : MonoBehaviour
 
     // Lưu vị trí các grid hiện tại
     private Vector2? viTriGridEnemy = null, viTriGridChon = null, viTriGridDiChuyen = null;
-
+    
+        
+    
     void Start()
     {
         checker = new CheckChonEvent();
@@ -22,9 +25,16 @@ public class ManagerClickEvent : MonoBehaviour
     void Update()
     {
         
-        
-        
         if (Input.GetMouseButtonDown(0))
+        {
+            // ✅ Nếu đang click vào UI (ví dụ button), thì bỏ qua hoàn toàn
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
+            // ✅ Nếu không click vào UI, mới xử lý logic click của ClickManager
+            if (Input.GetMouseButtonDown(0))
         {
             // Lấy tọa độ click trong thế giới
             Vector2 clickWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -197,6 +207,9 @@ public class ManagerClickEvent : MonoBehaviour
             }
             
         }
+        }
+        
+        
         
     }
 
