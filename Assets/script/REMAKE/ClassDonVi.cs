@@ -15,6 +15,7 @@ public class ClassDonVi : MonoBehaviour
     // thời gian giữa mỗi lần di chuyển
     public float Time=0.3f;
     
+    //constructor
     private Coroutine CoroutineMove;
     public ClassDonVi( string nameArmy, string typeArmy, string branchArmy, int atk, int def, int hp, 
         int charge, int speed, int maxTurnSpeed, int maxTurnAtk, int rangeAtk)
@@ -38,6 +39,9 @@ public class ClassDonVi : MonoBehaviour
     {
         
     }
+    
+    
+    //Di chuyen
     public virtual void Move(Vector3 targetPosition)
     {
         if (CurrentSpeed > 0 )
@@ -83,4 +87,6 @@ public class ClassDonVi : MonoBehaviour
             
         }
     }
+    
+    
 }
