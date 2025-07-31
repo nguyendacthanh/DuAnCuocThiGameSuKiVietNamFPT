@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 876772198904651158, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       propertyPath: m_Name
       value: DV_SpearMen_0 (5)
@@ -179,7 +183,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8052123214420894521, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+    - {fileID: 876772198904651158, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10588,6 +10594,40 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!1 &557893518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
+  m_PrefabInstance: {fileID: 7166434868684917113}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &557893524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557893518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  NameArmy: 
+  TypeArmy: 
+  BranchArmy: 
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  NumberBlock: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  CurrentSpeed: 0
+  MaxTurnAtk: 0
+  CurrentAtk: 0
+  Time: 0.3
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -10680,6 +10720,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 876772198904651158, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       propertyPath: m_Name
       value: DV_SpearMen_0 (6)
@@ -10732,11 +10776,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 876772198904651158, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+    - {fileID: 8052123214420894521, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1029119087}
   m_SourcePrefab: {fileID: 100100000, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+--- !u!1 &1029119080 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+  m_PrefabInstance: {fileID: 751859439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1029119087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029119080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  NameArmy: 
+  TypeArmy: 
+  BranchArmy: 
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  NumberBlock: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  CurrentSpeed: 0
+  MaxTurnAtk: 0
+  CurrentAtk: 0
+  Time: 0.3
 --- !u!1 &1057721400
 GameObject:
   m_ObjectHideFlags: 0
@@ -17463,56 +17546,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1165018201}
   m_CullTransparentMesh: 1
---- !u!1 &1205824190
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1205824192}
-  - component: {fileID: 1205824191}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1205824191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1205824190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 935d277a246427b43b81b3b315b5d65f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  zoomSpeed: 5
-  minZoom: 5
-  maxZoom: 20
-  minPosition: {x: -500, y: -500}
-  maxPosition: {x: 2000, y: 1000}
---- !u!4 &1205824192
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1205824190}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 165.89333, y: 53.300667, z: 5.984721}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1299579067
 GameObject:
   m_ObjectHideFlags: 0
@@ -20093,7 +20126,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 1205824192}
+    TrackingTarget: {fileID: 0}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -20452,6 +20485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1527903578}
   - component: {fileID: 1527903579}
+  - component: {fileID: 1527903580}
   m_Layer: 0
   m_Name: ManagerClickEvent
   m_TagString: Untagged
@@ -20481,9 +20515,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527903576}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed0c7918b287a044c97b94c8e24a8b9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1527903580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527903576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c642e9c7eddc740bb353a644738878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefabGridEnemy: {fileID: 6742851819220315115, guid: 803a920190cc9904eb83b186c78decbe, type: 3}
@@ -20515,7 +20561,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911283831}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f55c3c9b49b5134b8cf95aeab31e146, type: 3}
   m_Name: 
@@ -20855,6 +20901,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1928850897996342276, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3761482744943936670, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -200
@@ -20899,10 +20949,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: DV_SpearMen_0
       objectReference: {fileID: 0}
+    - target: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 557893524}
   m_SourcePrefab: {fileID: 100100000, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
 --- !u!1001 &7405265172829357428
 PrefabInstance:
@@ -20985,6 +21042,5 @@ SceneRoots:
   - {fileID: 1527903578}
   - {fileID: 1911283833}
   - {fileID: 330673205}
-  - {fileID: 1205824192}
   - {fileID: 121019916}
   - {fileID: 751859439}

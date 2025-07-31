@@ -10,6 +10,7 @@ public class SpearMan : ClassDonVi
         Atk = 25;
         Def = 20;
         Hp = 250;
+        Mass = 3;
         RangeAtk = 1;
         Charge = 3;
         Speed = 3;

@@ -7,12 +7,12 @@ public class SatThuong : MonoBehaviour
     private int tongDame;
 
     // Nhận dữ liệu từ đơn vị tấn công
-    public void KhoiTao(classDonVi nguon)
+    public void KhoiTao(ClassDonVi nguon)
     {
-        sucCong = nguon.SucCong;
-        xungKich = nguon.XungKich;
-        khoiLuong = nguon.KhoiLuong;
-        int soODiChuyen = nguon.soOdiChuyen;
+        sucCong = nguon.Atk;
+        xungKich = nguon.Charge;
+        khoiLuong = nguon.Mass;
+        int soODiChuyen = nguon.NumberBlock;
 
         // Tính sát thương xung kích
         tongDame = soODiChuyen * (xungKich + khoiLuong) + sucCong;

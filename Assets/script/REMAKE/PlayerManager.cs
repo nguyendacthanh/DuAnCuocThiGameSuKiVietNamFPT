@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
 
             // ✅ Nếu không click vào UI, mới xử lý logic click của ClickManager
             HandleClick();
+            action.ClickEvent(satThuongPrefab,prefabGridEnemy, prefabGridDiChuyen,prefabGridAttack,prefabGridChon);
         }
     }
 

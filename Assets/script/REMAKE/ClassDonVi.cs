@@ -9,7 +9,7 @@ public class ClassDonVi : MonoBehaviour
     //chú thích: tên đơn vị/spear,sword,.../infantry,cavalry,archer,...
     public string NameArmy, TypeArmy, BranchArmy;
     //thông số 
-    public int Atk, Def, Hp, Charge, Speed, NumberBlock, RangeAtk;
+    public int Atk, Def, Hp, Charge, Speed, NumberBlock, RangeAtk, Mass;
     // action turn/ turn
     public int MaxTurnSpeed, CurrentSpeed, MaxTurnAtk, CurrentAtk;
     // thời gian giữa mỗi lần di chuyển
@@ -18,7 +18,7 @@ public class ClassDonVi : MonoBehaviour
     //constructor
     private Coroutine CoroutineMove;
     public ClassDonVi( string nameArmy, string typeArmy, string branchArmy, int atk, int def, int hp, 
-        int charge, int speed, int maxTurnSpeed, int maxTurnAtk, int rangeAtk)
+        int charge, int speed, int maxTurnSpeed, int maxTurnAtk, int rangeAtk, int mass)
     {
         NameArmy = nameArmy;
         TypeArmy = typeArmy;
@@ -26,6 +26,7 @@ public class ClassDonVi : MonoBehaviour
         Atk = atk;
         Def = def;
         Hp = hp;
+        Mass = mass;
         RangeAtk = rangeAtk;
         Charge = charge;
         Speed = speed;
@@ -87,6 +88,12 @@ public class ClassDonVi : MonoBehaviour
             
         }
     }
-    
+    public virtual void Attack()
+    {
+        if (CurrentAtk > 0)
+        {
+            CurrentAtk--;
+        }
+    }
     
 }

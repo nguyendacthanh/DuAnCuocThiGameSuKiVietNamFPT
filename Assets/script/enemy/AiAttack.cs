@@ -5,8 +5,8 @@
     {
         public static void TanCong(GameObject enemy, GameObject prefabSatThuong)
         {
-            classDonVi enemyDonVi = enemy.GetComponent<classDonVi>();
-            if (enemyDonVi.LuotTanCong <= 0) return;
+            ClassDonVi enemyDonVi = enemy.GetComponent<ClassDonVi>();
+            if (enemyDonVi.CurrentAtk <= 0) return;
 
             GameObject[] armies = GameObject.FindGameObjectsWithTag("Army");
             List<GameObject> mucTieuTrongTam = new List<GameObject>();
@@ -14,7 +14,7 @@
             foreach (GameObject army in armies)
             {
                 float dist = Vector3.Distance(enemy.transform.position, army.transform.position);
-                if (dist <= enemyDonVi.tamTanCong * 100f)
+                if (dist <= enemyDonVi.RangeAtk * 100f)
                 {
                     mucTieuTrongTam.Add(army);
                 }
@@ -35,6 +35,6 @@
             SatThuong st = hitEffect.GetComponent<SatThuong>();
             st.KhoiTao(enemyDonVi);
 
-            enemyDonVi.LuotTanCong = Mathf.Max(0, enemyDonVi.LuotTanCong - 1);
+            enemyDonVi.CurrentAtk = Mathf.Max(0, enemyDonVi.CurrentAtk - 1);
         }
     }
