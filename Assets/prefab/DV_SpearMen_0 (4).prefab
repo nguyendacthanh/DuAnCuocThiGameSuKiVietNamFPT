@@ -114,8 +114,6 @@ GameObject:
   - component: {fileID: 2366199020106789346}
   - component: {fileID: 2163919761452787687}
   - component: {fileID: 5546584023075200020}
-  - component: {fileID: 876772198904651158}
-  - component: {fileID: 8052123214420894521}
   m_Layer: 0
   m_Name: DV_SpearMen_0 (4)
   m_TagString: Enemy
@@ -267,48 +265,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &876772198904651158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422950724477486116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28ba8fc36c3dce947bc92a5063c6d992, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  TenDonVi: 
-  ChungQuan: 
-  TheLoai: 
-  SucCong: 0
-  Mau: 0
-  Giap: 0
-  XungKich: 0
-  TocDo: 0
-  KhoiLuong: 0
-  time: 0.3
-  tamTanCong: 1
-  maxLuotDiChuyen: 0
-  maxLuotTanCong: 0
-  LuotDiChuyen: 0
-  LuotTanCong: 0
-  soOdiChuyen: 0
---- !u!114 &8052123214420894521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422950724477486116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabSatThuong: {fileID: 8810678775236680771, guid: 5108b4a9b6576444083436b735cc7a6f, type: 3}
 --- !u!1 &2188919925448583419
 GameObject:
   m_ObjectHideFlags: 0

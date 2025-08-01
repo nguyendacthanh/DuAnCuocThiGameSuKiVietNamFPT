@@ -183,13 +183,64 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8052123214420894521, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
-    - {fileID: 876772198904651158, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 121019918}
+    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 121019923}
   m_SourcePrefab: {fileID: 100100000, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+--- !u!1 &121019917 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+  m_PrefabInstance: {fileID: 121019916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &121019918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121019917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  NameArmy: 
+  TypeArmy: 
+  BranchArmy: 
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  NumberBlock: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  CurrentSpeed: 0
+  MaxTurnAtk: 0
+  CurrentAtk: 0
+  Time: 0.3
+--- !u!114 &121019923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121019917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabSatThuong: {fileID: 8810678775236680771, guid: 5108b4a9b6576444083436b735cc7a6f, type: 3}
 --- !u!1 &136833684
 GameObject:
   m_ObjectHideFlags: 0
@@ -10785,6 +10836,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1029119087}
+    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1029119088}
+    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1029119093}
   m_SourcePrefab: {fileID: 100100000, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
 --- !u!1 &1029119080 stripped
 GameObject:
@@ -10820,6 +10877,48 @@ MonoBehaviour:
   MaxTurnAtk: 0
   CurrentAtk: 0
   Time: 0.3
+--- !u!114 &1029119088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029119080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  NameArmy: 
+  TypeArmy: 
+  BranchArmy: 
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  NumberBlock: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  CurrentSpeed: 0
+  MaxTurnAtk: 0
+  CurrentAtk: 0
+  Time: 0.3
+--- !u!114 &1029119093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029119080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabSatThuong: {fileID: 8810678775236680771, guid: 5108b4a9b6576444083436b735cc7a6f, type: 3}
 --- !u!1 &1057721400
 GameObject:
   m_ObjectHideFlags: 0
@@ -20484,7 +20583,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1527903578}
-  - component: {fileID: 1527903579}
   - component: {fileID: 1527903580}
   m_Layer: 0
   m_Name: ManagerClickEvent
@@ -20508,18 +20606,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1527903579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1527903576}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0c7918b287a044c97b94c8e24a8b9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1527903580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20561,7 +20647,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911283831}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f55c3c9b49b5134b8cf95aeab31e146, type: 3}
   m_Name: 
@@ -21024,8 +21110,61 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7405265172829357430}
+    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7405265172829357435}
   m_SourcePrefab: {fileID: 100100000, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+--- !u!1 &7405265172829357429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+  m_PrefabInstance: {fileID: 7405265172829357428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7405265172829357430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405265172829357429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  NameArmy: 
+  TypeArmy: 
+  BranchArmy: 
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  NumberBlock: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  CurrentSpeed: 0
+  MaxTurnAtk: 0
+  CurrentAtk: 0
+  Time: 0.3
+--- !u!114 &7405265172829357435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405265172829357429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabSatThuong: {fileID: 8810678775236680771, guid: 5108b4a9b6576444083436b735cc7a6f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

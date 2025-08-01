@@ -7,7 +7,7 @@ public class AiMove
     // Trả về vị trí của Army gần nhất
     public static Vector3 FindNearestArmy(GameObject enemy)
     {
-        GameObject[] armies = GameObject.FindGameObjectsWithTag("Army");
+        GameObject[] armies = GameObject.FindGameObjectsWithTag("Player");
         Vector3 viTriEnemy = enemy.transform.position;
         float minDistance = float.MaxValue;
         Vector3 nearestArmyPos = viTriEnemy;
@@ -28,21 +28,21 @@ public class AiMove
     // Tìm vị trí hợp lệ gần hơn mục tiêu trong phạm vi tốc độ
     public static Vector3 MovePosition(GameObject enemy, Vector3 mucTieu)
     { 
-    classDonVi enemyDonVi = enemy.GetComponent<classDonVi>();
+    ClassDonVi enemyDonVi = enemy.GetComponent<ClassDonVi>();
     Vector3 startPos = enemy.transform.position;
-    int tocDo = enemyDonVi.TocDo;
+    int tocDo = enemyDonVi.Speed;
 
     // Nếu mục tiêu đã nằm trong tầm tấn công thì không di chuyển
     float khoangCach = Vector3.Distance(startPos, mucTieu);
-    if (khoangCach <= enemyDonVi.tamTanCong * 100f)
+    if (khoangCach <= enemyDonVi.RangeAtk * 100f)
     {
-        enemyDonVi.LuotDiChuyen = Mathf.Max(0, enemyDonVi.LuotDiChuyen - 1);
+        enemyDonVi.CurrentSpeed = Mathf.Max(0, enemyDonVi.CurrentSpeed - 1);
         return startPos;
     }
 
     // Lấy tất cả vị trí các Army và Enemy hiện có
     HashSet<Vector3> viTriBiChan = new HashSet<Vector3>();
-    GameObject[] armies = GameObject.FindGameObjectsWithTag("Army");
+    GameObject[] armies = GameObject.FindGameObjectsWithTag("Player");
     GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
     foreach (GameObject a in armies)
@@ -94,7 +94,7 @@ public class AiMove
     // Không có vị trí hợp lệ → đứng yên và trừ lượt
     if (viTriCoTheDiChuyen.Count == 0)
     {
-        enemyDonVi.LuotDiChuyen = Mathf.Max(0, enemyDonVi.LuotDiChuyen - 1);
+        enemyDonVi.CurrentSpeed = Mathf.Max(0, enemyDonVi.CurrentSpeed - 1);
         return startPos;
     }
 
@@ -118,7 +118,7 @@ public class AiMove
     public static void EnemyMove(GameObject enemy, Vector3 mucTieu)
     {
         Vector3 viTriMoi = MovePosition(enemy, mucTieu);
-        classDonVi enemyDonVi = enemy.GetComponent<classDonVi>();
-        enemyDonVi.DiChuyenDen(viTriMoi);
+        ClassDonVi enemyDonVi = enemy.GetComponent<ClassDonVi>();
+        enemyDonVi.Move(viTriMoi);
     }
 }

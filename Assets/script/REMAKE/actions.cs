@@ -171,9 +171,8 @@ public class actions
             {
                 donVi.Attack();
 
-                GameObject satThuongObj =
-                    GameObject.Instantiate(satThuongPrefab, enemy.transform.position, Quaternion.identity);
-                var script = satThuongObj.GetComponent<SatThuong>();
+                GameObject satThuongObj = GameObject.Instantiate(satThuongPrefab, enemy.transform.position, Quaternion.identity);
+                var script = satThuongObj.GetComponent<PrefabSatThuong>();
                 script?.KhoiTao(donVi);
 
                 XoaGridTheoTag("GridAttack");
@@ -299,7 +298,7 @@ public class actions
         viTriGridDiChuyen = null;
 
         foreach (GameObject army in Player)
-            army.GetComponent<classDonVi>().isSelected = false;
+            army.GetComponent<ClassDonVi>().isSelected = false;
     }
 
 

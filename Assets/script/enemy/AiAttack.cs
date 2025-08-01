@@ -8,7 +8,7 @@
             ClassDonVi enemyDonVi = enemy.GetComponent<ClassDonVi>();
             if (enemyDonVi.CurrentAtk <= 0) return;
 
-            GameObject[] armies = GameObject.FindGameObjectsWithTag("Army");
+            GameObject[] armies = GameObject.FindGameObjectsWithTag("Player");
             List<GameObject> mucTieuTrongTam = new List<GameObject>();
 
             foreach (GameObject army in armies)
@@ -32,7 +32,7 @@
             }
 
             GameObject hitEffect = Object.Instantiate(prefabSatThuong, mucTieu.transform.position, Quaternion.identity);
-            SatThuong st = hitEffect.GetComponent<SatThuong>();
+            PrefabSatThuong st = hitEffect.GetComponent<PrefabSatThuong>();
             st.KhoiTao(enemyDonVi);
 
             enemyDonVi.CurrentAtk = Mathf.Max(0, enemyDonVi.CurrentAtk - 1);

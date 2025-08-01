@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 739932685159639288}
   - component: {fileID: 916599930227970903}
   - component: {fileID: 2877913003982972734}
+  - component: {fileID: 795937361152260994}
   m_Layer: 0
   m_Name: SatThuong
   m_TagString: Untagged
@@ -91,3 +92,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &795937361152260994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8810678775236680771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d202e6d953ec64b958bab2a738ca39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
