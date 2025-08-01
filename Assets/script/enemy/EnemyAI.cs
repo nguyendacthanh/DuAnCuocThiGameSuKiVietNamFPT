@@ -5,11 +5,11 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     public GameObject prefabSatThuong; // Gán prefab từ Inspector
-    private classDonVi enemy;
+    private ClassDonVi enemy;
 
     private void Awake()
     {
-        enemy = GetComponent<classDonVi>();
+        enemy = GetComponent<ClassDonVi>();
     }
 
     public void ThucHienHanhDong()
