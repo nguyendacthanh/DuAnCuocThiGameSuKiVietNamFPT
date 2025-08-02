@@ -165,14 +165,14 @@ public class actions
         if (!CoGridAttackTaiViTri(clickPos)) return false;
 
         GameObject enemy = TimEnemy(clickPos);
-        if (enemy == null) return false;
+        if (enemy == null)return false;
 
         foreach (GameObject army in Player)
         {
             var donVi = army.GetComponent<ClassDonVi>();
             if (donVi.isSelected && donVi.CurrentAtk > 0)
             {
-                donVi.Attack();
+                donVi.Attack(enemy);
 
                 GameObject satThuongObj = GameObject.Instantiate(satThuongPrefab, enemy.transform.position, Quaternion.identity);
                 var script = satThuongObj.GetComponent<PrefabSatThuong>();

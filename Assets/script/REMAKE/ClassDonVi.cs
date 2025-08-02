@@ -88,12 +88,24 @@ public class ClassDonVi : MonoBehaviour
             
         }
     }
-    public virtual void Attack()
+    public virtual void Attack(GameObject army)
     {
+        ClassDonVi armyNhanSatThuong = army.GetComponent<ClassDonVi>();
+        int tongDame = Atk +ChargeDame();
+        if (tongDame < 10) tongDame = 10;
+
+        int satThuongThuc = Mathf.RoundToInt(tongDame);
+        armyNhanSatThuong.NhanSatThuong(satThuongThuc);
         if (CurrentAtk > 0)
         {
             CurrentAtk--;
         }
+    }
+
+    public int ChargeDame()
+    {
+        int DameCharge = Mathf.RoundToInt(Charge+Mass)*NumberBlock;
+        return DameCharge;
     }
     
     public void ResetLuot()
@@ -117,12 +129,9 @@ public class ClassDonVi : MonoBehaviour
         int satThuongThuc = Mathf.RoundToInt(tongDame);
         return satThuongThuc;
     }
-    public virtual void NhanSatThuong(int satThuong, ClassDonVi nguon)
+    public virtual void NhanSatThuong(int satThuong)
     {
         Hp -= satThuong;
-    
-        Debug.Log($"{name} bị {nguon.name} gây {satThuong} sát thương. HP còn: {Hp}");
-    
         if (Hp <= 0)
         {
             Destroy(gameObject);
