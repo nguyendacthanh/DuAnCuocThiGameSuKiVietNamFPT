@@ -108,4 +108,20 @@ public class ClassDonVi : MonoBehaviour
         CurrentSpeed = MaxTurnSpeed;
         CurrentAtk = MaxTurnAtk;
     }
+    
+    
+    public virtual int TinhSatThuong(ClassDonVi mucTieu)
+    {
+        // Tính sát thương xung kích
+        int tongDame = NumberBlock * (Charge + Mass) + Atk;
+        if (tongDame < 10) tongDame = 10;
+
+        // Giảm sát thương theo giáp của mục tiêu
+        int satThuongThuc = Mathf.RoundToInt(tongDame * (1 - mucTieu.Def / (float)(mucTieu.Def + 100)));
+
+        return satThuongThuc;
+    }
+
+
+
 }
