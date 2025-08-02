@@ -96,4 +96,16 @@ public class ClassDonVi : MonoBehaviour
         }
     }
     
+    public void ResetLuot()
+    {
+        CurrentSpeed = 0;
+        CurrentAtk = 0;
+        NumberBlock = 0;
+    }
+
+    public void KhoiPhucLuot()
+    {
+        CurrentSpeed = MaxTurnSpeed;
+        CurrentAtk = MaxTurnAtk;
+    }
 }

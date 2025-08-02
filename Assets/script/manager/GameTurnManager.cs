@@ -53,12 +53,12 @@ public class GameTurnManager : MonoBehaviour
 
     private void CapNhatLuatChoTatCaDonVi()
     {
-        GameObject[] armies = GameObject.FindGameObjectsWithTag("Army");
+        GameObject[] armies = GameObject.FindGameObjectsWithTag("Player");
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach (GameObject go in armies)
         {
-            classDonVi dv = go.GetComponent<classDonVi>();
+            ClassDonVi dv = go.GetComponent<ClassDonVi>();
             if (dv != null)
             {
                 if (currentTurn == Turn.Player)
@@ -70,7 +70,7 @@ public class GameTurnManager : MonoBehaviour
 
         foreach (GameObject go in enemies)
         {
-            classDonVi dv = go.GetComponent<classDonVi>();
+            ClassDonVi dv = go.GetComponent<ClassDonVi>();
             if (dv != null)
             {
                 if (currentTurn == Turn.Enemy)
@@ -85,7 +85,7 @@ public class GameTurnManager : MonoBehaviour
     {
         currentTurn = Turn.Player;
         soLuot++;
-        Debug.Log("Lượt hiện tại: " + currentTurn + " | Số lượt: " + soLuot);
+        
         CapNhatLuatChoTatCaDonVi();
     }
 }

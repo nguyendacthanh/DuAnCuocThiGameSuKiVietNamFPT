@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     public GameObject prefabGridEnemy, prefabGridChon, prefabGridDiChuyen, prefabGridAttack,satThuongPrefab;
     private actions action;
+    public GameObject buttonInformation;
 
     private void Start()
     {
@@ -24,7 +25,7 @@ public class PlayerManager : MonoBehaviour
 
             // ✅ Nếu không click vào UI, mới xử lý logic click của ClickManager
             HandleClick();
-            action.ClickEvent(satThuongPrefab,prefabGridEnemy, prefabGridDiChuyen,prefabGridAttack,prefabGridChon);
+            action.ClickEvent(satThuongPrefab,prefabGridEnemy, prefabGridDiChuyen,prefabGridAttack,prefabGridChon,buttonInformation);
         }
     }
 
