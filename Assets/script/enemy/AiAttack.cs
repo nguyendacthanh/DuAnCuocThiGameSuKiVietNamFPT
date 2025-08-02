@@ -31,8 +31,8 @@
             }
 
             GameObject hitEffect = Object.Instantiate(prefabSatThuong, mucTieu.transform.position, Quaternion.identity);
-            PrefabSatThuong st = hitEffect.GetComponent<PrefabSatThuong>();
-            st.Dame(enemyDonVi);
+            // PrefabSatThuong st = hitEffect.GetComponent<PrefabSatThuong>();
+            // st.Dame(enemyDonVi);
 
             enemyDonVi.CurrentAtk = Mathf.Max(0, enemyDonVi.CurrentAtk - 1);
         }

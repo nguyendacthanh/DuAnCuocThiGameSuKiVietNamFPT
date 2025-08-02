@@ -1,23 +1,29 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ClassDonVi : MonoBehaviour
 {
     //kiểm tra đơn vị có đang được chọn để thực hiện các hành động khác.
     public bool isSelected = false;
+
     //chú thích: tên đơn vị/spear,sword,.../infantry,cavalry,archer,...
     public string NameArmy, TypeArmy, BranchArmy;
+
     //thông số 
     public int Atk, Def, Hp, Charge, Speed, NumberBlock, RangeAtk, Mass;
+
     // action turn/ turn
     public int MaxTurnSpeed, CurrentSpeed, MaxTurnAtk, CurrentAtk;
+
     // thời gian giữa mỗi lần di chuyển
-    public float Time=0.3f;
-    
+    public float Time = 0.3f;
+
     //constructor
     private Coroutine CoroutineMove;
-    public ClassDonVi( string nameArmy, string typeArmy, string branchArmy, int atk, int def, int hp, 
+
+    public ClassDonVi(string nameArmy, string typeArmy, string branchArmy, int atk, int def, int hp,
         int charge, int speed, int maxTurnSpeed, int maxTurnAtk, int rangeAtk, int mass)
     {
         NameArmy = nameArmy;
@@ -38,14 +44,13 @@ public class ClassDonVi : MonoBehaviour
 
     public ClassDonVi()
     {
-        
     }
-    
-    
+
+
     //Di chuyen
     public virtual void Move(Vector3 targetPosition)
     {
-        if (CurrentSpeed > 0 )
+        if (CurrentSpeed > 0)
         {
             if (CoroutineMove != null)
                 StopCoroutine(CoroutineMove);
@@ -59,6 +64,7 @@ public class ClassDonVi : MonoBehaviour
             CurrentSpeed--;
         }
     }
+
     private IEnumerator MoveRule(Vector3 StartPosition, Vector3 target)
     {
         Vector3 currentPos = StartPosition;
@@ -85,29 +91,47 @@ public class ClassDonVi : MonoBehaviour
 
         if (NumberBlock < Speed)
         {
-            
         }
     }
-    public virtual void Attack(GameObject army)
-    {
-        ClassDonVi armyNhanSatThuong = army.GetComponent<ClassDonVi>();
-        int tongDame = Atk +ChargeDame();
-        if (tongDame < 10) tongDame = 10;
 
-        int satThuongThuc = Mathf.RoundToInt(tongDame);
-        armyNhanSatThuong.NhanSatThuong(satThuongThuc);
+    public virtual void Attack(GameObject armyAttacked, GameObject armyAttacker)
+    {
+        ClassDonVi armyTakenDame = armyAttacked.GetComponent<ClassDonVi>();
+        ClassDonVi armyDealerDame = armyAttacker.GetComponent<ClassDonVi>();
+        int totalDame = Mathf.RoundToInt(Atk + ChargeDame());
+        if (totalDame < 10) totalDame = 10;
+        armyTakenDame.NhanSatThuong(totalDame);
+        armyTakenDame.PhanDon(armyAttacker);
         if (CurrentAtk > 0)
         {
             CurrentAtk--;
         }
     }
 
+    public virtual void NhanSatThuong(int satThuong)
+    {
+        int DameReduce = Mathf.RoundToInt(satThuong * DefenseRate());
+        int totalDameDeal = satThuong - DameReduce;
+        Hp -= totalDameDeal;
+        if (totalDameDeal < 10) totalDameDeal = 10;
+        if (Hp <= 0)
+        {
+            Destroy(gameObject, 2.5f);
+        }
+    }
+
+    public float DefenseRate()
+    {
+        float DefenseRate = Def / (Def + 100);
+        return DefenseRate;
+    }
+
     public int ChargeDame()
     {
-        int DameCharge = Mathf.RoundToInt(Charge+Mass)*NumberBlock;
+        int DameCharge = Mathf.RoundToInt(Charge + Mass) * NumberBlock;
         return DameCharge;
     }
-    
+
     public void ResetLuot()
     {
         CurrentSpeed = 0;
@@ -120,39 +144,25 @@ public class ClassDonVi : MonoBehaviour
         CurrentSpeed = MaxTurnSpeed;
         CurrentAtk = MaxTurnAtk;
     }
+
 // Hàm tính sát thương đã có:
-    public virtual int TotalDame()
-    {
-        int tongDame = NumberBlock * (Charge + Mass) + Atk;
-        if (tongDame < 10) tongDame = 10;
-
-        int satThuongThuc = Mathf.RoundToInt(tongDame);
-        return satThuongThuc;
-    }
-    public virtual void NhanSatThuong(int satThuong)
-    {
-        Hp -= satThuong;
-        if (Hp <= 0)
-        {
-            Destroy(gameObject);
-        }
-        
-    }
-    
-    // private void OnTriggerEnter2D(Collider2D other)
+    // public virtual int TotalDame()
     // {
-    //     if (other.CompareTag("Enemy") || other.CompareTag("Player"))
-    //     {
-    //         
-    //         ClassDonVi mucTieu = other.GetComponent<ClassDonVi>();
-    //         if (mucTieu != null)
-    //         {
-    //             int satThuongThuc = nguon.TinhSatThuong(mucTieu);
-    //             mucTieu.NhanSatThuong(satThuongThuc, nguon);
-    //             Destroy(gameObject);
-    //         }
-    //     }
+    //     int tongDame = NumberBlock * (Charge + Mass) + Atk;
+    //     if (tongDame < 10) tongDame = 10;
+    //
+    //     int satThuongThuc = Mathf.RoundToInt(tongDame);
+    //     return satThuongThuc;
     // }
+    public virtual void PhanDon( GameObject armyGaySatThuong)
+    {
+        ClassDonVi armyDealerDame = armyGaySatThuong.GetComponent<ClassDonVi>();
+        armyDealerDame.NhanSatThuong(DamePhanDon());
+    }
 
-    //1 - mucTieu.Def / (float)(mucTieu.Def + 100
+    public int DamePhanDon()
+    {
+        int counterAttackDame = Mathf.RoundToInt(Atk * 0.5f);
+        return counterAttackDame;
+    }
 }

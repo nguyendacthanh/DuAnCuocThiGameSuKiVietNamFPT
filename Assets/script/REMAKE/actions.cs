@@ -120,7 +120,8 @@ public class actions
     }
 
     public void ClickEvent(GameObject satThuongPrefab, GameObject prefabGridEnemy,
-        GameObject prefabGridDiChuyen, GameObject prefabGridAttack, GameObject prefabGridChon,GameObject ButtonInformation)
+        GameObject prefabGridDiChuyen, GameObject prefabGridAttack, GameObject prefabGridChon,
+        GameObject ButtonInformation)
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -130,13 +131,26 @@ public class actions
             GameObject enemyObj = TimEnemy(toaDoClick);
             GameObject armyObj = TimPlayer(toaDoClick);
             if (DiChuyen(toaDoClick)) return;
-            if (TanCong(toaDoClick, satThuongPrefab)){CapNhatButtonInformation(ButtonInformation); return;}
-            if (ClickEnemy(toaDoClick, enemyObj, prefabGridEnemy)){CapNhatButtonInformation(ButtonInformation); return;}
+            if (TanCong(toaDoClick, satThuongPrefab))
+            {
+                CapNhatButtonInformation(ButtonInformation);
+                return;
+            }
+
+            if (ClickEnemy(toaDoClick, enemyObj, prefabGridEnemy))
+            {
+                CapNhatButtonInformation(ButtonInformation);
+                return;
+            }
+
             if (ClickPlayer(toaDoClick, armyObj, prefabGridAttack, prefabGridChon, prefabGridDiChuyen))
-            {CapNhatButtonInformation(ButtonInformation); return;}
+            {
+                CapNhatButtonInformation(ButtonInformation);
+                return;
+            }
+
             ClickTerrain(toaDoClick, prefabGridChon);
             CapNhatButtonInformation(ButtonInformation);
-
         }
     }
 
@@ -165,18 +179,19 @@ public class actions
         if (!CoGridAttackTaiViTri(clickPos)) return false;
 
         GameObject enemy = TimEnemy(clickPos);
-        if (enemy == null)return false;
+        if (enemy == null) return false;
 
         foreach (GameObject army in Player)
         {
             var donVi = army.GetComponent<ClassDonVi>();
             if (donVi.isSelected && donVi.CurrentAtk > 0)
             {
-                donVi.Attack(enemy);
+                donVi.Attack(enemy,army);
 
-                GameObject satThuongObj = GameObject.Instantiate(satThuongPrefab, enemy.transform.position, Quaternion.identity);
-                var script = satThuongObj.GetComponent<PrefabSatThuong>();
-                script?.Dame(donVi);
+                // GameObject satThuongObj =
+                //     GameObject.Instantiate(satThuongPrefab, enemy.transform.position, Quaternion.identity);
+                // var script = satThuongObj.GetComponent<PrefabSatThuong>();
+                // script?.Dame(donVi);
 
                 XoaGridTheoTag("GridAttack");
                 XoaGridTheoTag("GridMove");
@@ -290,6 +305,7 @@ public class actions
 
         return true;
     }
+
     private void ClickTerrain(Vector2 clickPos, GameObject prefabGridChon)
     {
         if (viTriGridChon != null && viTriGridChon == clickPos)
@@ -315,7 +331,6 @@ public class actions
         foreach (GameObject army in Enemy)
             army.GetComponent<ClassDonVi>().isSelected = false;
     }
-
 
 
     //xóa grid theo tag
@@ -353,7 +368,7 @@ public class actions
         return false;
     }
 
-    
+
     private void CapNhatButtonInformation(GameObject buttonInformation)
     {
         foreach (GameObject player in Player)
@@ -376,5 +391,4 @@ public class actions
 
         buttonInformation.SetActive(false);
     }
-
 }
