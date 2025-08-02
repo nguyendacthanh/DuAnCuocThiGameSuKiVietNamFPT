@@ -108,20 +108,42 @@ public class ClassDonVi : MonoBehaviour
         CurrentSpeed = MaxTurnSpeed;
         CurrentAtk = MaxTurnAtk;
     }
-    
-    
-    public virtual int TinhSatThuong(ClassDonVi mucTieu)
+// Hàm tính sát thương đã có:
+    public virtual int TotalDame()
     {
-        // Tính sát thương xung kích
         int tongDame = NumberBlock * (Charge + Mass) + Atk;
         if (tongDame < 10) tongDame = 10;
 
-        // Giảm sát thương theo giáp của mục tiêu
-        int satThuongThuc = Mathf.RoundToInt(tongDame * (1 - mucTieu.Def / (float)(mucTieu.Def + 100)));
-
+        int satThuongThuc = Mathf.RoundToInt(tongDame);
         return satThuongThuc;
     }
+    public virtual void NhanSatThuong(int satThuong, ClassDonVi nguon)
+    {
+        Hp -= satThuong;
+    
+        Debug.Log($"{name} bị {nguon.name} gây {satThuong} sát thương. HP còn: {Hp}");
+    
+        if (Hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+        
+    }
+    
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.CompareTag("Enemy") || other.CompareTag("Player"))
+    //     {
+    //         
+    //         ClassDonVi mucTieu = other.GetComponent<ClassDonVi>();
+    //         if (mucTieu != null)
+    //         {
+    //             int satThuongThuc = nguon.TinhSatThuong(mucTieu);
+    //             mucTieu.NhanSatThuong(satThuongThuc, nguon);
+    //             Destroy(gameObject);
+    //         }
+    //     }
+    // }
 
-
-
+    //1 - mucTieu.Def / (float)(mucTieu.Def + 100
 }

@@ -1,29 +1,41 @@
 using UnityEngine;
 
+
 public class PrefabSatThuong : MonoBehaviour
 {
-    private ClassDonVi nguon;
-
-    public void KhoiTao(ClassDonVi nguon)
+    public int dame;
+    public ClassDonVi nguon; // đơn vị nguồn gây sát thương
+    public GameObject prefabTextMesh;
+    
+    
+    // Lấy dame từ class đơn vị và đơn vị đã tấn công
+    public void Dame(ClassDonVi _nguon)
     {
-        this.nguon = nguon;
+        nguon = _nguon;
+        dame = nguon.TotalDame();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") || other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
-            ClassDonVi mucTieu = other.GetComponent<ClassDonVi>();
-            if (mucTieu != null && nguon != null)
+            var mucTieu = other.GetComponent<ClassDonVi>();
+            if (mucTieu != null)
             {
-                int satThuongThuc = nguon.TinhSatThuong(mucTieu);
-                mucTieu.Hp -= satThuongThuc;
-                if (mucTieu.Hp <= 0)
+                mucTieu.NhanSatThuong(dame, nguon);
+                if (prefabTextMesh != null)
                 {
-                    Destroy(mucTieu.gameObject);
+                    
+                    GameObject go = Instantiate(prefabTextMesh, other.transform.position, Quaternion.identity);
+                    var textScript = go.GetComponent<UIHienThiSatThuong>();
+                    if (textScript != null)
+                    {
+                        textScript.KhoiTao(dame);
+                    }
                 }
-                Destroy(gameObject,1f);
+                Destroy(gameObject);
             }
         }
     }
 }
+

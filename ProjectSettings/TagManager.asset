@@ -12,6 +12,7 @@ TagManager:
   - GridMove
   - GridEnemy
   - Wall
+  - Dame
   layers:
   - Default
   - TransparentFX

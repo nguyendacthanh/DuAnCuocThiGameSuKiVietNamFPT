@@ -27,13 +27,12 @@
             // Kiểm tra null trước khi Instantiate
             if (prefabSatThuong == null)
             {
-                Debug.LogError("Prefab sát thương chưa được gán!");
                 return;
             }
 
             GameObject hitEffect = Object.Instantiate(prefabSatThuong, mucTieu.transform.position, Quaternion.identity);
             PrefabSatThuong st = hitEffect.GetComponent<PrefabSatThuong>();
-            st.KhoiTao(enemyDonVi);
+            st.Dame(enemyDonVi);
 
             enemyDonVi.CurrentAtk = Mathf.Max(0, enemyDonVi.CurrentAtk - 1);
         }

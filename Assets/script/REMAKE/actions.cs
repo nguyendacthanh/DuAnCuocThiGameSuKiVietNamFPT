@@ -35,7 +35,7 @@ public class actions
     }
 
     //tam di chuyen cua player
-    public static List<Vector2> TamDiChuyen(Vector2 GameObjectPosition, int banKinh)
+    public static List<Vector2> TamDiChuyen(Vector2 gameObjectPosition, int banKinh)
     {
         List<Vector2> ketQua = new List<Vector2>();
 
@@ -45,7 +45,7 @@ public class actions
             {
                 if (Mathf.Abs(dx) + Mathf.Abs(dy) <= banKinh)
                 {
-                    Vector2 diem = GameObjectPosition + new Vector2(dx * 100, dy * 100);
+                    Vector2 diem = gameObjectPosition + new Vector2(dx * 100, dy * 100);
                     ketQua.Add(diem);
                 }
             }
@@ -176,7 +176,7 @@ public class actions
 
                 GameObject satThuongObj = GameObject.Instantiate(satThuongPrefab, enemy.transform.position, Quaternion.identity);
                 var script = satThuongObj.GetComponent<PrefabSatThuong>();
-                script?.KhoiTao(donVi);
+                script?.Dame(donVi);
 
                 XoaGridTheoTag("GridAttack");
                 XoaGridTheoTag("GridMove");
@@ -354,13 +354,13 @@ public class actions
     }
 
     
-    private void CapNhatButtonInformation(GameObject ButtonInformation)
+    private void CapNhatButtonInformation(GameObject buttonInformation)
     {
         foreach (GameObject player in Player)
         {
             if (player.GetComponent<ClassDonVi>().isSelected)
             {
-                ButtonInformation.SetActive(true);
+                buttonInformation.SetActive(true);
                 return;
             }
         }
@@ -369,12 +369,12 @@ public class actions
         {
             if (enemy.GetComponent<ClassDonVi>().isSelected)
             {
-                ButtonInformation.SetActive(true);
+                buttonInformation.SetActive(true);
                 return;
             }
         }
 
-        ButtonInformation.SetActive(false);
+        buttonInformation.SetActive(false);
     }
 
 }

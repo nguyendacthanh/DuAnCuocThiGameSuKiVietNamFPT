@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabSatThuong: {fileID: 8810678775236680771, guid: 5108b4a9b6576444083436b735cc7a6f, type: 3}
+  prefabSatThuong: {fileID: 3862684550384171225, guid: 5108b4a9b6576444083436b735cc7a6f, type: 3}
 --- !u!1 &136833684
 GameObject:
   m_ObjectHideFlags: 0
@@ -10837,9 +10837,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1029119087}
-    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1029119088}
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
@@ -10986,35 +10983,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
   m_PrefabInstance: {fileID: 751859439}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1029119087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029119080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  NameArmy: 
-  TypeArmy: 
-  BranchArmy: 
-  Atk: 0
-  Def: 0
-  Hp: 0
-  Charge: 0
-  Speed: 0
-  NumberBlock: 0
-  RangeAtk: 0
-  Mass: 0
-  MaxTurnSpeed: 0
-  CurrentSpeed: 0
-  MaxTurnAtk: 0
-  CurrentAtk: 0
-  Time: 0.3
 --- !u!114 &1029119088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11056,7 +11024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabSatThuong: {fileID: 8810678775236680771, guid: 5108b4a9b6576444083436b735cc7a6f, type: 3}
+  prefabSatThuong: {fileID: 3862684550384171225, guid: 5108b4a9b6576444083436b735cc7a6f, type: 3}
 --- !u!1 &1057721400
 GameObject:
   m_ObjectHideFlags: 0
@@ -20862,7 +20830,7 @@ MonoBehaviour:
   prefabGridChon: {fileID: 17032937032497703, guid: 12c668cf36c621a4292a6d55947152ab, type: 3}
   prefabGridDiChuyen: {fileID: 4870159172558642894, guid: 491f3eeaad73ba74d94d89411599feb0, type: 3}
   prefabGridAttack: {fileID: 7751003380055160582, guid: 1e06f687d3396e7438b900325332f904, type: 3}
-  satThuongPrefab: {fileID: 8810678775236680771, guid: 5108b4a9b6576444083436b735cc7a6f, type: 3}
+  satThuongPrefab: {fileID: 3862684550384171225, guid: 5108b4a9b6576444083436b735cc7a6f, type: 3}
   buttonInformation: {fileID: 1844214432}
 --- !u!1 &1844214432
 GameObject:
@@ -20898,9 +20866,9 @@ RectTransform:
   - {fileID: 1008018375}
   m_Father: {fileID: 1156000894}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50, y: -240}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -50, y: 35}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1844214434
@@ -21528,7 +21496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabSatThuong: {fileID: 8810678775236680771, guid: 5108b4a9b6576444083436b735cc7a6f, type: 3}
+  prefabSatThuong: {fileID: 3862684550384171225, guid: 5108b4a9b6576444083436b735cc7a6f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
