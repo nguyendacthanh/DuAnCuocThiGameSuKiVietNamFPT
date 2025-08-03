@@ -334,12 +334,25 @@ public class actions
 
 
     //xóa grid theo tag
-    void XoaGridTheoTag(string tag)
+    static void XoaGridTheoTag(string tag)
     {
         GameObject[] grids = GameObject.FindGameObjectsWithTag(tag);
         foreach (GameObject g in grids)
         {
             GameObject.Destroy(g);
+        }
+    }
+
+     public static void XoaTatCaGridVaUi()
+    {
+        XoaGridTheoTag("GridEnemy");
+        XoaGridTheoTag("GridMove");
+        XoaGridTheoTag("GridAttack");
+        XoaGridTheoTag("Grid");
+        GameObject[] army = GameObject.FindGameObjectsWithTag("Player");
+        foreach (var a in army)
+        {
+            a.GetComponent<ClassDonVi>().isSelected = false;
         }
     }
 

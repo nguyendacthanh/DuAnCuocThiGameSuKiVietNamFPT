@@ -10,11 +10,13 @@ public class GameTurnManager : MonoBehaviour
     public Button nutKetThucLuot; // Gán trong Inspector (hoặc tìm runtime)
     private int soLuot = 1;
 
-    private EnemyManager enemyManager;
+    // private EnemyManager enemyManager;
+    private PlayerManager playerManager;
+    actions actions;
 
     private void Start()
     {
-        enemyManager = FindAnyObjectByType<EnemyManager>();
+        playerManager = FindAnyObjectByType<PlayerManager>();
 
         if (nutKetThucLuot == null)
         {
@@ -25,21 +27,21 @@ public class GameTurnManager : MonoBehaviour
 
         if (nutKetThucLuot != null)
             nutKetThucLuot.onClick.AddListener(ChuyenLuot);
-        else
-            Debug.LogWarning("Chưa gán Button Kết Thúc Lượt");
+
 
         CapNhatLuatChoTatCaDonVi();
     }
 
     private void ChuyenLuot()
     {
+        actions.XoaTatCaGridVaUi();
         if (currentTurn == Turn.Player)
         {
             currentTurn = Turn.Enemy;
             CapNhatLuatChoTatCaDonVi();
 
-            if (enemyManager != null)
-                enemyManager.BatDauLuotEnemy();  
+            if (playerManager != null)
+                playerManager.BatDauLuotEnemy();  
         }
         else
         {
@@ -85,7 +87,6 @@ public class GameTurnManager : MonoBehaviour
     {
         currentTurn = Turn.Player;
         soLuot++;
-        
         CapNhatLuatChoTatCaDonVi();
     }
 }

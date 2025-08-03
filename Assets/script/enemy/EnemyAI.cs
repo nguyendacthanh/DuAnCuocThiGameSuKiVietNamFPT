@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public GameObject prefabSatThuong; // Gán prefab từ Inspector
+
     private ClassDonVi armyEnemy;
     private ClassDonVi armyPlayer;
+    private float time = 1f;
 
     private void Awake()
     {
@@ -14,23 +15,23 @@ public class EnemyAI : MonoBehaviour
         armyPlayer = GetComponent<ClassDonVi>();
     }
 
-    public void ThucHienHanhDong()
+    // public void ThucHienHanhDong()
+    // {
+    //     DiChuyen();
+    // }
+    public IEnumerator ThucHienHanhDong()
     {
         DiChuyen();
-        TanCong();
+        yield return new WaitForSeconds(time);
     }
-
     public void DiChuyen()
     {
-        Vector3 mucTieu = AiMove.FindNearestArmy(armyEnemy.gameObject);
-        if (mucTieu == null) return;
-
-        Vector3 viTriDen = AiMove.MovePosition(armyEnemy.gameObject, mucTieu);
-        AiMove.EnemyMove(armyEnemy.gameObject, viTriDen);
+            AIAction.EnemyMove(armyEnemy.gameObject);
     }
-
-    public void TanCong()
+    private IEnumerator ChayLuotEnemy()
     {
-        AiAttack.TanCong(armyEnemy.gameObject, prefabSatThuong); // Truyền prefab từ Inspector
+        yield return new WaitForSeconds(time);
     }
+
+
 }
