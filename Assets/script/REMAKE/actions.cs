@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 public class actions
@@ -108,7 +108,7 @@ public class actions
                     Vector2 viTriCanKiemTra = viTriGoc + new Vector2(dx * 100, dy * 100);
 
                     GameObject enemy = TimEnemy(viTriCanKiemTra);
-                    if (enemy != null && !ketQua.Contains(enemy))
+                    if(enemy != null && !ketQua.Contains(enemy))
                     {
                         ketQua.Add(enemy);
                     }
@@ -188,10 +188,10 @@ public class actions
             {
                 donVi.Attack(enemy,army);
 
-                // GameObject satThuongObj =
-                //     GameObject.Instantiate(satThuongPrefab, enemy.transform.position, Quaternion.identity);
-                // var script = satThuongObj.GetComponent<PrefabSatThuong>();
-                // script?.Dame(donVi);
+                //GameObject satThuongObj =
+                //GameObject.Instantiate(satThuongPrefab, enemy.transform.position, Quaternion.identity);
+                //var script = satThuongObj.GetComponent<PrefabSatThuong>();
+                //script?.Dame(donVi);
 
                 XoaGridTheoTag("GridAttack");
                 XoaGridTheoTag("GridMove");
@@ -248,7 +248,7 @@ public class actions
         if (armyObj == null) return false;
 
         var donViPlayer = armyObj.GetComponent<ClassDonVi>();
-        // var donViEnemy = enemyObj.GetComponent<ClassDonVi>();
+        //var donViEnemy = enemyObj.GetComponent<ClassDonVi>();
 
 
         if (donViPlayer.isSelected)
@@ -404,4 +404,10 @@ public class actions
 
         buttonInformation.SetActive(false);
     }
+
+    // private void PassiveSkillList()
+    // {
+    //     List<PassiveSkill> passiveSkills = new List<PassiveSkill>();
+    // }
+    
 }

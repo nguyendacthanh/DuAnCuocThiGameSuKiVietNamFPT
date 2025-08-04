@@ -236,6 +236,7 @@ MonoBehaviour:
   MaxTurnAtk: 0
   CurrentAtk: 0
   Time: 0.3
+  totalDame: 0
 --- !u!1001 &121019916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -345,6 +346,7 @@ MonoBehaviour:
   MaxTurnAtk: 0
   CurrentAtk: 0
   Time: 0.3
+  totalDame: 0
 --- !u!114 &121019923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10944,6 +10946,19 @@ MonoBehaviour:
   MaxTurnAtk: 0
   CurrentAtk: 0
   Time: 0.3
+  totalDame: 0
+--- !u!114 &557893529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557893518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dabf091dad5375346b930156d4feda5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -11062,6 +11077,7 @@ MonoBehaviour:
   MaxTurnAtk: 0
   CurrentAtk: 0
   Time: 0.3
+  totalDame: 0
 --- !u!1001 &751859439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11309,6 +11325,7 @@ MonoBehaviour:
   MaxTurnAtk: 0
   CurrentAtk: 0
   Time: 0.3
+  totalDame: 0
 --- !u!114 &1029119093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18195,6 +18212,7 @@ MonoBehaviour:
   MaxTurnAtk: 0
   CurrentAtk: 0
   Time: 0.3
+  totalDame: 0
 --- !u!1 &1299579067
 GameObject:
   m_ObjectHideFlags: 0
@@ -20859,6 +20877,7 @@ MonoBehaviour:
   MaxTurnAtk: 0
   CurrentAtk: 0
   Time: 0.3
+  totalDame: 0
 --- !u!1 &1527471322
 GameObject:
   m_ObjectHideFlags: 0
@@ -21459,6 +21478,7 @@ MonoBehaviour:
   MaxTurnAtk: 0
   CurrentAtk: 0
   Time: 0.3
+  totalDame: 0
 --- !u!1 &1922668754
 GameObject:
   m_ObjectHideFlags: 0
@@ -21910,6 +21930,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 557893524}
+    - targetCorrespondingSourceObject: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 557893529}
   m_SourcePrefab: {fileID: 100100000, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
 --- !u!1001 &7405265172829357428
 PrefabInstance:
@@ -22016,6 +22039,7 @@ MonoBehaviour:
   MaxTurnAtk: 0
   CurrentAtk: 0
   Time: 0.3
+  totalDame: 0
 --- !u!114 &7405265172829357435
 MonoBehaviour:
   m_ObjectHideFlags: 0

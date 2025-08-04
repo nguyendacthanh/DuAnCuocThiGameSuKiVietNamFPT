@@ -22,6 +22,14 @@ public class ClassDonVi : MonoBehaviour
 
     //constructor
     private Coroutine CoroutineMove;
+    public int totalDame;
+
+    public virtual void TinhSatThuong()
+    {
+        totalDame = Mathf.RoundToInt(Atk + ChargeDame());
+    }
+
+    
 
     public ClassDonVi(string nameArmy, string typeArmy, string branchArmy, int atk, int def, int hp,
         int charge, int speed, int maxTurnSpeed, int maxTurnAtk, int rangeAtk, int mass)
@@ -98,15 +106,21 @@ public class ClassDonVi : MonoBehaviour
     {
         ClassDonVi armyTakenDame = armyAttacked.GetComponent<ClassDonVi>();
         ClassDonVi armyDealerDame = armyAttacker.GetComponent<ClassDonVi>();
-        int totalDame = Mathf.RoundToInt(Atk + ChargeDame());
-        if (totalDame < 10) totalDame = 10;
-        armyTakenDame.NhanSatThuong(totalDame);
+        armyDealerDame.TinhSatThuong();
+        foreach (var skill in armyDealerDame.GetComponents<ClassSkill>())
+        {
+            skill.TriggerEffect(armyAttacker, armyAttacked);
+        }
+        // int totalDame = Mathf.RoundToInt(Atk + ChargeDame());
+        armyTakenDame.NhanSatThuong(armyDealerDame.totalDame);
         armyTakenDame.PhanDon(armyAttacker);
         if (CurrentAtk > 0)
         {
             CurrentAtk--;
         }
     }
+
+    
 
     public virtual void NhanSatThuong(int satThuong)
     {
