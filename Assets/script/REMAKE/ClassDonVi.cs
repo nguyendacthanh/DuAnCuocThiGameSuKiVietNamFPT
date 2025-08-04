@@ -171,12 +171,16 @@ public class ClassDonVi : MonoBehaviour
     public virtual void PhanDon( GameObject armyGaySatThuong)
     {
         ClassDonVi armyDealerDame = armyGaySatThuong.GetComponent<ClassDonVi>();
+        foreach (var skill in armyDealerDame.GetComponents<ClassSkill>())
+        {
+            skill.TriggerEffect(armyGaySatThuong, this.gameObject);
+        }
         armyDealerDame.NhanSatThuong(DamePhanDon());
     }
 
     public int DamePhanDon()
     {
-        int counterAttackDame = Mathf.RoundToInt(Atk * 0.5f);
+        int counterAttackDame = Mathf.RoundToInt(Atk * 0.5f+ Mass);
         return counterAttackDame;
     }
 }

@@ -1,20 +1,22 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class AntiInfantry : ClassSkill
+public class AntiCharge : ClassSkill
+    
 {
     protected override void Start()
     {
-        skillName = "AntiInfantry";
+        skillName = "AntiCharge";
         skillType = "passive";
     }
     public override void TriggerEffect(GameObject thisArmy, GameObject target)
     {
         var armyAttacker = thisArmy.GetComponent<ClassDonVi>();
         var armyAttacked = target.GetComponent<ClassDonVi>();
-        if (armyAttacked != null && armyAttacked.BranchArmy == "Infantry")
+        if (armyAttacker != null && armyAttacker.BranchArmy == "Calvary")
         {
-            armyAttacker.totalDame += 100;
+            armyAttacked.Mass += (armyAttacker.Charge*armyAttacker.NumberBlock)/2;
+            armyAttacker.Charge = 0;
+            
         }
         
     }

@@ -4,7 +4,7 @@ public class SpearMan : ClassDonVi
 {
     void Start()
     {
-        NameArmy = "Đại Việt: Bộ Binh Giáo";
+        NameArmy = "Đại Việt_Bộ Binh Giáo";
         TypeArmy = "Spearman";
         BranchArmy = "Infantry";
         Atk = 25;

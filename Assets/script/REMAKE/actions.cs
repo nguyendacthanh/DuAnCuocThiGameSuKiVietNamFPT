@@ -187,12 +187,6 @@ public class actions
             if (donVi.isSelected && donVi.CurrentAtk > 0)
             {
                 donVi.Attack(enemy,army);
-
-                //GameObject satThuongObj =
-                //GameObject.Instantiate(satThuongPrefab, enemy.transform.position, Quaternion.identity);
-                //var script = satThuongObj.GetComponent<PrefabSatThuong>();
-                //script?.Dame(donVi);
-
                 XoaGridTheoTag("GridAttack");
                 XoaGridTheoTag("GridMove");
                 return true;
