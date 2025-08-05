@@ -11243,7 +11243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &451916613
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11710,7 +11710,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557893518}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
   m_Name: 
@@ -11747,6 +11747,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dabf091dad5375346b930156d4feda5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillName: 
+  skillType: 
+--- !u!114 &557893530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557893518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042c6bb7887e20d488ab88a0bff008a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitData: {fileID: 11400000, guid: 1414560186c72f04494ed82bebf63e23, type: 2}
+  CurrentHp: 0
+  CurrentSpeed: 0
+  CurrentAtk: 0
+  NumberBlock: 0
+  isSelected: 0
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  MaxTurnAtk: 0
+  totalDame: 0
 --- !u!1 &583053842
 GameObject:
   m_ObjectHideFlags: 0
@@ -26579,6 +26609,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 557893529}
+    - targetCorrespondingSourceObject: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 557893530}
   m_SourcePrefab: {fileID: 100100000, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
 --- !u!1001 &7405265172829357428
 PrefabInstance:
