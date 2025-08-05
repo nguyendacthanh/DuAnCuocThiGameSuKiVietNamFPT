@@ -89,4 +89,9 @@ public class GameTurnManager : MonoBehaviour
         soLuot++;
         CapNhatLuatChoTatCaDonVi();
     }
+
+    public int CurrenTurn()
+    {
+        return soLuot;
+    }
 }
