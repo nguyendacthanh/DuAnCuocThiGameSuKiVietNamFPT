@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class PlayerManager : MonoBehaviour
 {
-    public GameObject prefabGridEnemy, prefabGridChon, prefabGridDiChuyen, prefabGridAttack,satThuongPrefab;
+    public GameObject prefabGridEnemy, prefabGridChon, prefabGridDiChuyen, prefabGridAttack;
     private actions action;
     public GameObject buttonInformation;
 
@@ -24,7 +24,7 @@ public class PlayerManager : MonoBehaviour
             {
                 return;
             }
-            action.ClickEvent(satThuongPrefab,prefabGridEnemy, prefabGridDiChuyen,prefabGridAttack,prefabGridChon,buttonInformation);
+            action.ClickEvent(prefabGridEnemy, prefabGridDiChuyen,prefabGridAttack,prefabGridChon,buttonInformation);
         }
     }
     

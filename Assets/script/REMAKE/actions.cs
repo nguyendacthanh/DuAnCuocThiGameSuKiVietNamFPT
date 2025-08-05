@@ -119,7 +119,7 @@ public class actions
         return ketQua;
     }
 
-    public void ClickEvent(GameObject satThuongPrefab, GameObject prefabGridEnemy,
+    public void ClickEvent( GameObject prefabGridEnemy,
         GameObject prefabGridDiChuyen, GameObject prefabGridAttack, GameObject prefabGridChon,
         GameObject ButtonInformation)
     {
@@ -131,7 +131,7 @@ public class actions
             GameObject enemyObj = TimEnemy(toaDoClick);
             GameObject armyObj = TimPlayer(toaDoClick);
             if (DiChuyen(toaDoClick)) return;
-            if (TanCong(toaDoClick, satThuongPrefab))
+            if (TanCong(toaDoClick))
             {
                 CapNhatButtonInformation(ButtonInformation);
                 return;
@@ -174,7 +174,7 @@ public class actions
         return false;
     }
 
-    private bool TanCong(Vector2 clickPos, GameObject satThuongPrefab)
+    private bool TanCong(Vector2 clickPos)
     {
         if (!CoGridAttackTaiViTri(clickPos)) return false;
 

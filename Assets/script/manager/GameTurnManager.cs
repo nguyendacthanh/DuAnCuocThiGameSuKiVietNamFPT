@@ -12,7 +12,7 @@ public class GameTurnManager : MonoBehaviour
 
     // private EnemyManager enemyManager;
     private PlayerManager playerManager;
-    actions actions;
+
 
     private void Start()
     {
@@ -34,14 +34,15 @@ public class GameTurnManager : MonoBehaviour
 
     private void ChuyenLuot()
     {
-        actions.XoaTatCaGridVaUi();
         if (currentTurn == Turn.Player)
         {
             currentTurn = Turn.Enemy;
             CapNhatLuatChoTatCaDonVi();
 
             if (playerManager != null)
-                playerManager.BatDauLuotEnemy();  
+            {
+                // playerManager.BatDauLuotEnemy();  
+            }
         }
         else
         {
