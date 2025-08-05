@@ -8,6 +8,7 @@ public class ClassDonVi : MonoBehaviour
     //kiểm tra đơn vị có đang được chọn để thực hiện các hành động khác.
     public bool isSelected = false;
 
+    public int Cost,Population;
     //chú thích: tên đơn vị/spear,sword,.../infantry,cavalry,archer,...
     public string NameArmy, TypeArmy, BranchArmy;
 
@@ -31,9 +32,11 @@ public class ClassDonVi : MonoBehaviour
 
     
 
-    public ClassDonVi(string nameArmy, string typeArmy, string branchArmy, int atk, int def, int hp,
+    public ClassDonVi(int cost, int population, string nameArmy, string typeArmy, string branchArmy, int atk, int def, int hp,
         int charge, int speed, int maxTurnSpeed, int maxTurnAtk, int rangeAtk, int mass)
     {
+        Cost = cost;
+        Population = population;
         NameArmy = nameArmy;
         TypeArmy = typeArmy;
         BranchArmy = branchArmy;
