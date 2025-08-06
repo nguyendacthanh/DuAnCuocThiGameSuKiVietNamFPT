@@ -4,10 +4,15 @@ using UnityEngine.UI;
 
 public class ButtonSetActive : MonoBehaviour
 {
-    public GameObject targetObject;
-    public void BatTattargetObject()
+    public GameObject targetTrue;
+    // public GameObject targetFalse;
+    public void setActiveTrue()
     {
-        bool currentState = targetObject.activeSelf;
-        targetObject.SetActive(!currentState);
+        targetTrue.SetActive(true);
     }
+    // public void BatTattargetObject()
+    // {
+    //     bool currentState = targetTogger.activeSelf;
+    //     targetTogger.SetActive(!currentState);
+    // }
 }

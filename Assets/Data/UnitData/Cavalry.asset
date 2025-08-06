@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d5eee266ac203b498f3011461004a53, type: 3}
-  m_Name: SpearShieldInfantry
+  m_Name: Cavalry
   m_EditorClassIdentifier: 
-  NameArmy: "\u0110\u1EA1i Vi\u1EC7t_B\u1ED9 binh gi\xE1o khi\xEAn"
-  TypeArmy: SpearShield
-  BranchArmy: Infantry
-  Cost: 100
+  NameArmy: "\u0110\u1EA1i Vi\u1EC7t_K\u1EF5 binh ki\u1EBFm"
+  TypeArmy: Calvary
+  BranchArmy: Calvary
+  Cost: 150
   Population: 1
-  Atk: 30
-  Def: 40
-  Hp: 300
-  Charge: 2
-  Speed: 3
+  Atk: 25
+  Def: 25
+  Hp: 200
+  Charge: 50
+  Speed: 6
   RangeAtk: 1
-  Mass: 10
+  Mass: 15
   MaxTurnSpeed: 1
   MaxTurnAtk: 1

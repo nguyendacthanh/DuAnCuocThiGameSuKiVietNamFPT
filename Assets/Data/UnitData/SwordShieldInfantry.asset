@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d5eee266ac203b498f3011461004a53, type: 3}
   m_Name: SwordShieldInfantry
   m_EditorClassIdentifier: 
-  NameArmy: "\u0110\u1EA1i vi\u1EC7t_B\u1ED9 binh ki\u1EBFm"
+  NameArmy: "\u0110\u1EA1i vi\u1EC7t_B\u1ED9 binh ki\u1EBFm khi\xEAn"
   TypeArmy: SwordShield
   BranchArmy: Infrantry
   Cost: 150

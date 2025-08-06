@@ -13,7 +13,7 @@ public class ClassUnit : MonoBehaviour
     public int CurrentAtk;
     public int NumberBlock;
     public bool isSelected;
-
+    public string BranchUnit,NameUnit,TypeUnit;
     // Biến gốc (nếu bạn cần giữ)
     public int Atk, Def, Hp, Charge, Speed, RangeAtk, Mass, MaxTurnSpeed, MaxTurnAtk, totalDame=0;
     private void Start()
@@ -21,6 +21,7 @@ public class ClassUnit : MonoBehaviour
         if (unitData != null)
         {
             // Gán các chỉ số gốc
+            NameUnit = unitData.NameArmy;
             Atk = unitData.Atk;
             Def = unitData.Def;
             Hp = unitData.Hp;
@@ -28,9 +29,11 @@ public class ClassUnit : MonoBehaviour
             Speed = unitData.Speed;
             RangeAtk = unitData.RangeAtk;
             Mass = unitData.Mass;
+            BranchUnit = unitData.BranchArmy;
+            TypeUnit = unitData.TypeArmy;
             MaxTurnSpeed = unitData.MaxTurnSpeed;
             MaxTurnAtk = unitData.MaxTurnAtk;
-
+            
             // Gán chỉ số hiện tại (dùng khi chơi game)
             CurrentHp = Hp;
             CurrentSpeed = MaxTurnSpeed;

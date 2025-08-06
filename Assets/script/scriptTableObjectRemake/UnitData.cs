@@ -18,4 +18,5 @@ public class UnitData : ScriptableObject
     public int Mass;
     public int MaxTurnSpeed;
     public int MaxTurnAtk;
+    
 }

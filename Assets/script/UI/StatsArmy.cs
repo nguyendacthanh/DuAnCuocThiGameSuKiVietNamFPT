@@ -9,7 +9,7 @@ public class StatsArmy : MonoBehaviour
 
     void Update()
     {
-        ClassDonVi selectedUnit = FindSelectedUnit();
+        ClassUnit selectedUnit = FindSelectedUnit();
         if (selectedUnit != null)
         {
             string objectName = gameObject.name;
@@ -21,7 +21,7 @@ public class StatsArmy : MonoBehaviour
             else if (objectName == "Range")
                 text.text = "Range: " + selectedUnit.RangeAtk.ToString();
             else if (objectName == "Type")
-                text.text = "Type: " + selectedUnit.TypeArmy;
+                text.text = "Type: " + selectedUnit.TypeUnit;
             else if (objectName == "Hp")
                 text.text = "HP: " + selectedUnit.Hp.ToString();
             else if (objectName == "Defense")
@@ -31,9 +31,9 @@ public class StatsArmy : MonoBehaviour
             else if (objectName == "Mass")
                 text.text = "Mass: " + selectedUnit.Mass.ToString();
             else if (objectName == "Brand")
-                text.text = "Branch: " + selectedUnit.BranchArmy;
+                text.text = "Branch: " + selectedUnit.BranchUnit;
             else if (objectName == "NameArmy")
-                text.text = "tên đơn vị: " + selectedUnit.NameArmy;
+                text.text = "tên đơn vị: " + selectedUnit.NameUnit;
             else
                 text.text = ""; // Không rõ tên thì để trống
         }
@@ -43,9 +43,9 @@ public class StatsArmy : MonoBehaviour
         }
     }
 
-    ClassDonVi FindSelectedUnit()
+    ClassUnit FindSelectedUnit()
     {
-        ClassDonVi[] units = FindObjectsOfType<ClassDonVi>();
+        ClassUnit[] units = FindObjectsOfType<ClassUnit>();
         foreach (var unit in units)
         {
             if (unit.isSelected)

@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d5eee266ac203b498f3011461004a53, type: 3}
-  m_Name: SpearShieldInfantry
+  m_Name: SwordInfantry
   m_EditorClassIdentifier: 
-  NameArmy: "\u0110\u1EA1i Vi\u1EC7t_B\u1ED9 binh gi\xE1o khi\xEAn"
-  TypeArmy: SpearShield
+  NameArmy: "\u0110\u1EA1i Vi\u1EC7t_B\u1ED9 binh ki\u1EBFm"
+  TypeArmy: Sword
   BranchArmy: Infantry
-  Cost: 100
+  Cost: 80
   Population: 1
-  Atk: 30
-  Def: 40
+  Atk: 40
+  Def: 25
   Hp: 300
-  Charge: 2
-  Speed: 3
+  Charge: 10
+  Speed: 5
   RangeAtk: 1
-  Mass: 10
+  Mass: 7
   MaxTurnSpeed: 1
   MaxTurnAtk: 1

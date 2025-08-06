@@ -1,6 +1,7 @@
+using System;
 using System.Collections.Generic;
-
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class actions
 {
@@ -8,6 +9,8 @@ public class actions
     // private GameObject ButtonInformation;
     private List<GameObject> Player = new List<GameObject>();
     private List<GameObject> Enemy = new List<GameObject>();
+    private List<GameObject> City = new List<GameObject>();
+
     public static Vector2 ToaDoClick(Vector2 clickPos)
     {
         float x = Mathf.Round(clickPos.x / 100f) * 100f;
@@ -40,7 +43,6 @@ public class actions
     public static List<Vector2> TamDiChuyen(Vector2 gameObjectPosition, int banKinh)
     {
         List<Vector2> ketQua = new List<Vector2>();
-
         for (int dx = -banKinh; dx <= banKinh; dx++)
         {
             for (int dy = -banKinh; dy <= banKinh; dy++)
@@ -52,22 +54,24 @@ public class actions
                 }
             }
         }
-
         return ketQua;
     }
 
     //
-    
+
 
     // cập nhật lại danh sách của army và enemy mỗi khi có hành động xảy ra
     public void CapNhatToaDo()
     {
         Player.Clear();
         Enemy.Clear();
+        City.Clear();
         Player.AddRange(GameObject.FindGameObjectsWithTag("Player"));
         Enemy.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        City.AddRange(GameObject.FindGameObjectsWithTag("City"));
     }
 
+    
     private GameObject TimTheoViTri(Vector2 ClickPossition, List<GameObject> list)
     {
         foreach (var obj in list)
@@ -77,10 +81,10 @@ public class actions
                 return obj;
             }
         }
-
         return null;
     }
 
+    
     public GameObject TimEnemy(Vector2 clickPosition)
     {
         return TimTheoViTri(clickPosition, Enemy);
@@ -89,6 +93,11 @@ public class actions
     public GameObject TimPlayer(Vector2 clickPosition)
     {
         return TimTheoViTri(clickPosition, Player);
+    }
+
+    public GameObject TimCity(Vector2 clickPosition)
+    {
+        return TimTheoViTri(clickPosition, City);
     }
 
     public List<GameObject> TimEnemyTrongTamDanh(GameObject player, int RangeAtk)
@@ -109,7 +118,7 @@ public class actions
                     Vector2 viTriCanKiemTra = viTriGoc + new Vector2(dx * 100, dy * 100);
 
                     GameObject enemy = TimEnemy(viTriCanKiemTra);
-                    if(enemy != null && !ketQua.Contains(enemy))
+                    if (enemy != null && !ketQua.Contains(enemy))
                     {
                         ketQua.Add(enemy);
                     }
@@ -120,7 +129,7 @@ public class actions
         return ketQua;
     }
 
-    public void ClickEvent( GameObject prefabGridEnemy,
+    public void ClickEvent(GameObject prefabGridEnemy,
         GameObject prefabGridDiChuyen, GameObject prefabGridAttack, GameObject prefabGridChon,
         GameObject ButtonInformation)
     {
@@ -131,6 +140,7 @@ public class actions
             CapNhatToaDo(); // Cập nhật danh sách đơn vị
             GameObject enemyObj = TimEnemy(toaDoClick);
             GameObject armyObj = TimPlayer(toaDoClick);
+            GameObject cityObj = TimCity(toaDoClick);
             if (DiChuyen(toaDoClick)) return;
             if (TanCong(toaDoClick))
             {
@@ -147,6 +157,11 @@ public class actions
             if (ClickPlayer(toaDoClick, armyObj, prefabGridAttack, prefabGridChon, prefabGridDiChuyen))
             {
                 CapNhatButtonInformation(ButtonInformation);
+                return;
+            }
+
+            if (ClickCity(toaDoClick, cityObj, prefabGridChon, prefabGridEnemy))
+            {
                 return;
             }
 
@@ -181,7 +196,7 @@ public class actions
 
         GameObject enemy = TimEnemy(clickPos);
         if (enemy == null) return false;
-        
+
         foreach (GameObject army in Player)
         {
             var donVi = army.GetComponent<ClassUnit>();
@@ -328,13 +343,19 @@ public class actions
             if (army.GetComponent<ClassUnit>().isSelected == true)
             {
                 army.GetComponent<ClassUnit>().isSelected = false;
-
             }
+
         foreach (GameObject army in Enemy)
             if (army.GetComponent<ClassUnit>().isSelected == true)
             {
                 army.GetComponent<ClassUnit>().isSelected = false;
             }
+
+        foreach (var city in City)
+            if (city.GetComponent<ClassCity>().isSelected == true)
+        {
+            city.GetComponent<ClassCity>().isSelected = false;
+        }
     }
 
 
@@ -348,7 +369,7 @@ public class actions
         }
     }
 
-     public static void XoaTatCaGridVaUi()
+    public static void XoaTatCaGridVaUi()
     {
         XoaGridTheoTag("GridEnemy");
         XoaGridTheoTag("GridMove");
@@ -358,6 +379,11 @@ public class actions
         foreach (var a in army)
         {
             a.GetComponent<ClassUnit>().isSelected = false;
+        }
+        GameObject[] city = GameObject.FindGameObjectsWithTag("City");
+        foreach (var a in city)
+        {
+            a.GetComponent<ClassCity>().isSelected = false;
         }
     }
 
@@ -410,9 +436,53 @@ public class actions
         buttonInformation.SetActive(false);
     }
 
-    // private void PassiveSkillList()
-    // {
-    //     List<PassiveSkill> passiveSkills = new List<PassiveSkill>();
-    // }
-    
+    //City and building
+    private Vector2? viTriGridCity = null; // thêm biến quản lý vị trí city được chọn
+
+    private bool ClickCity(Vector2 clickPos, GameObject cityObj, GameObject prefabGrid, GameObject prefabGridEnemy)
+    {
+        if (cityObj == null) return false;
+        var classCity = cityObj.GetComponent<ClassCity>();
+        bool isPlayerCity = classCity.isPlayerCity;
+        if (viTriGridCity != null && viTriGridCity == clickPos)
+        {
+            classCity.isSelected = false;
+            XoaGridTheoTag(isPlayerCity ? "Grid" : "GridEnemy");
+            viTriGridCity = null;
+            return false;
+        }
+        else
+        {
+            foreach (var c in City)
+            {
+                c.GetComponent<ClassCity>().isSelected = false;
+            }
+            classCity.isSelected = true;
+            XoaGridTheoTag("GridMove");
+            XoaGridTheoTag("GridAttack");
+            XoaGridTheoTag("GridEnemy");
+            XoaGridTheoTag("Grid");
+            if (isPlayerCity && classCity.isSelected)
+            {
+
+                viTriGridCity = clickPos;
+                HienThiGridChon(clickPos, prefabGrid);
+                viTriGridEnemy = null;
+            }
+            else if (!isPlayerCity && classCity.isSelected)
+            {
+                viTriGridCity = clickPos;
+                HienThiGridEnemy(clickPos, prefabGridEnemy);
+                viTriGridChon = null;
+            }
+
+            viTriGridDiChuyen = null;
+            foreach (GameObject army in Player)
+                army.GetComponent<ClassUnit>().isSelected = false;
+
+            foreach (GameObject enemy in Enemy)
+                enemy.GetComponent<ClassUnit>().isSelected = false;
+            return true;
+        }
+    }
 }
