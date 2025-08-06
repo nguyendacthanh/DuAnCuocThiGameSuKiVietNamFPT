@@ -26,11 +26,11 @@ public class AIAction
     //không thì enemy sẽ di chuyển
     public static bool isArmyPlayerInRange(GameObject armyEnemy, GameObject armyPlayer)
     {
-        ClassDonVi enemyDonVi = armyEnemy.GetComponent<ClassDonVi>();// biến enemyDonVi sẽ chứa toàn bộ đặc điểm của enemy
+        ClassDonVi enemyUnit = armyEnemy.GetComponent<ClassDonVi>();// biến enemyDonVi sẽ chứa toàn bộ đặc điểm của enemy
                                                                      // truyền vào và sẽ lấy tầm đánh làm bán kính để check
         Vector3 armyPlayerPos = armyPlayer.transform.position;
         Vector3 armyEnemyPos = armyEnemy.transform.position;
-        if (Mathf.Abs(armyPlayerPos.x - armyEnemyPos.x) + Mathf.Abs(armyPlayerPos.y - armyEnemyPos.y) <= enemyDonVi.RangeAtk * 100f)
+        if (Mathf.Abs(armyPlayerPos.x - armyEnemyPos.x) + Mathf.Abs(armyPlayerPos.y - armyEnemyPos.y) <= enemyUnit.RangeAtk * 100f)
         {
             return true;
         }
@@ -127,8 +127,8 @@ public class AIAction
     {
         GameObject armyNearest = FindNearestArmy(enemy);
         Vector3 viTriMoi = MovePosition(enemy, armyNearest);
-        ClassDonVi enemyDonVi = enemy.GetComponent<ClassDonVi>();
-        enemyDonVi.Move(viTriMoi);
+        ClassDonVi enemyUnit = enemy.GetComponent<ClassDonVi>();
+        enemyUnit.Move(viTriMoi);
     }
 
     public static List<Vector3> TamDiChuyen(Vector3 gameObjectPosition, int banKinh)

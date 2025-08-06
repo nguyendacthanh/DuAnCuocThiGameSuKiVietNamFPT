@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class ClassUnit : MonoBehaviour
 {
+    private ClassSkill skill;
     public UnitData unitData;
+    
 
     // Biến trạng thái
     public int CurrentHp;
@@ -13,7 +15,6 @@ public class ClassUnit : MonoBehaviour
 
     // Biến gốc (nếu bạn cần giữ)
     public int Atk, Def, Hp, Charge, Speed, RangeAtk, Mass, MaxTurnSpeed, MaxTurnAtk, totalDame;
-
     private void Start()
     {
         if (unitData != null)
@@ -46,14 +47,17 @@ public class ClassUnit : MonoBehaviour
         }
     }
 
-    public void Attack(ClassUnit target)
+    public void Attack(GameObject target)
     {
+        var unitTarget = target.GetComponent<ClassUnit>();
         if (CurrentAtk > 0)
         {
-            target.TakeDamage(TotalDame());
-            if (target.CurrentHp > 0)
+            var skills = gameObject.GetComponent<ClassSkill>();
+            skills.TriggerEffect(gameObject, target);
+            unitTarget.TakeDamage(TotalDame());
+            if (unitTarget.CurrentHp > 0)
             {
-                target.CounterAtk(this);
+                unitTarget.CounterAtk(this.gameObject);
             }
 
             CurrentAtk--;
@@ -72,9 +76,12 @@ public class ClassUnit : MonoBehaviour
         }
     }
 
-    public void CounterAtk(ClassUnit target)
+    public void CounterAtk(GameObject target)
     {
-        target.TakeDamage(CounterDame());
+        ClassUnit unitTarget = target.GetComponent<ClassUnit>();
+        var skills = target.GetComponent<ClassSkill>();
+        skills.TriggerEffect(target, gameObject);
+        unitTarget.TakeDamage(CounterDame());
     }
 
     public void ResetTurn()
@@ -87,7 +94,8 @@ public class ClassUnit : MonoBehaviour
     //=============================Tính Đame====================//
     public int TotalDame()
     {
-        return totalDame = Atk + ChargeDame();
+        totalDame += Atk + ChargeDame();
+        return totalDame;
     }
 
     public float DefenseRate()

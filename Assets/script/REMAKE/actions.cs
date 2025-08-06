@@ -6,6 +6,8 @@ public class actions
 {
     //lay toa do click
     // private GameObject ButtonInformation;
+    private List<GameObject> Player = new List<GameObject>();
+    private List<GameObject> Enemy = new List<GameObject>();
     public static Vector2 ToaDoClick(Vector2 clickPos)
     {
         float x = Mathf.Round(clickPos.x / 100f) * 100f;
@@ -55,8 +57,7 @@ public class actions
     }
 
     //
-    private List<GameObject> Player = new List<GameObject>();
-    private List<GameObject> Enemy = new List<GameObject>();
+    
 
     // cập nhật lại danh sách của army và enemy mỗi khi có hành động xảy ra
     public void CapNhatToaDo()
@@ -161,7 +162,7 @@ public class actions
 
         foreach (GameObject player in Player)
         {
-            var donVi = player.GetComponent<ClassDonVi>();
+            var donVi = player.GetComponent<ClassUnit>();
             if (donVi.isSelected && donVi.CurrentSpeed > 0)
             {
                 donVi.Move(clickPos);
@@ -180,13 +181,13 @@ public class actions
 
         GameObject enemy = TimEnemy(clickPos);
         if (enemy == null) return false;
-
+        
         foreach (GameObject army in Player)
         {
-            var donVi = army.GetComponent<ClassDonVi>();
+            var donVi = army.GetComponent<ClassUnit>();
             if (donVi.isSelected && donVi.CurrentAtk > 0)
             {
-                donVi.Attack(enemy,army);
+                donVi.Attack(enemy);
                 XoaGridTheoTag("GridAttack");
                 XoaGridTheoTag("GridMove");
                 return true;
@@ -203,8 +204,8 @@ public class actions
     private bool ClickEnemy(Vector2 clickPos, GameObject enemyObj, GameObject prefabGridEnemy)
     {
         if (enemyObj == null) return false;
-        var donViEnemy = enemyObj.GetComponent<ClassDonVi>();
-        // var donViPlayer = armyObj.GetComponent<ClassDonVi>();
+        var donViEnemy = enemyObj.GetComponent<ClassUnit>();
+        // var donViPlayer = armyObj.GetComponent<ClassUnit>();
 
 
         if (viTriGridEnemy != null && viTriGridEnemy == clickPos)
@@ -217,7 +218,7 @@ public class actions
         {
             donViEnemy.isSelected = true;
             // donViPlayer.isSelected = false;
-            enemyObj.GetComponent<ClassDonVi>().isSelected = true;
+            enemyObj.GetComponent<ClassUnit>().isSelected = true;
             XoaGridTheoTag("GridEnemy");
             HienThiGridEnemy(clickPos, prefabGridEnemy);
             viTriGridEnemy = clickPos;
@@ -230,7 +231,7 @@ public class actions
         }
 
         foreach (GameObject army in Player)
-            army.GetComponent<ClassDonVi>().isSelected = false;
+            army.GetComponent<ClassUnit>().isSelected = false;
 
         return true;
     }
@@ -241,8 +242,8 @@ public class actions
     {
         if (armyObj == null) return false;
 
-        var donViPlayer = armyObj.GetComponent<ClassDonVi>();
-        //var donViEnemy = enemyObj.GetComponent<ClassDonVi>();
+        var donViPlayer = armyObj.GetComponent<ClassUnit>();
+        //var donViEnemy = enemyObj.GetComponent<ClassUnit>();
 
 
         if (donViPlayer.isSelected)
@@ -257,7 +258,10 @@ public class actions
         {
             // donViEnemy.isSelected = false;
             foreach (GameObject army in Player)
-                army.GetComponent<ClassDonVi>().isSelected = false;
+                if (army.GetComponent<ClassUnit>().isSelected == true)
+                {
+                    army.GetComponent<ClassUnit>().isSelected = false;
+                }
 
             donViPlayer.isSelected = true;
 
@@ -321,9 +325,16 @@ public class actions
         viTriGridDiChuyen = null;
 
         foreach (GameObject army in Player)
-            army.GetComponent<ClassDonVi>().isSelected = false;
+            if (army.GetComponent<ClassUnit>().isSelected == true)
+            {
+                army.GetComponent<ClassUnit>().isSelected = false;
+
+            }
         foreach (GameObject army in Enemy)
-            army.GetComponent<ClassDonVi>().isSelected = false;
+            if (army.GetComponent<ClassUnit>().isSelected == true)
+            {
+                army.GetComponent<ClassUnit>().isSelected = false;
+            }
     }
 
 
@@ -346,7 +357,7 @@ public class actions
         GameObject[] army = GameObject.FindGameObjectsWithTag("Player");
         foreach (var a in army)
         {
-            a.GetComponent<ClassDonVi>().isSelected = false;
+            a.GetComponent<ClassUnit>().isSelected = false;
         }
     }
 
@@ -380,7 +391,7 @@ public class actions
     {
         foreach (GameObject player in Player)
         {
-            if (player.GetComponent<ClassDonVi>().isSelected)
+            if (player.GetComponent<ClassUnit>().isSelected)
             {
                 buttonInformation.SetActive(true);
                 return;
@@ -389,7 +400,7 @@ public class actions
 
         foreach (GameObject enemy in Enemy)
         {
-            if (enemy.GetComponent<ClassDonVi>().isSelected)
+            if (enemy.GetComponent<ClassUnit>().isSelected)
             {
                 buttonInformation.SetActive(true);
                 return;

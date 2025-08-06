@@ -32,7 +32,7 @@ public class ClassSkill : MonoBehaviour
 
         if (UnitAttacked != null && UnitAttacked.unitData.BranchArmy == "Infantry")
         {
-            UnitAttacker.totalDame += 100;
+            UnitAttacker.Atk += 100;
         }
     }
 
@@ -54,7 +54,7 @@ public class ClassSkill : MonoBehaviour
 
         if (UnitAttacker != null && UnitAttacker.unitData.BranchArmy == "Cavalry")
         {
-            UnitAttacked.Mass += UnitAttacker.totalDame;
+            UnitAttacked.Mass += UnitAttacker.Charge*=UnitAttacker.NumberBlock;
         }
     }
 }

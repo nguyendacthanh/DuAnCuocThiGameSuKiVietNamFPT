@@ -23,6 +23,6 @@ MonoBehaviour:
   Charge: 2
   Speed: 3
   RangeAtk: 1
-  Mass: 15
+  Mass: 10
   MaxTurnSpeed: 1
   MaxTurnAtk: 1

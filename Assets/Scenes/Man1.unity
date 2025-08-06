@@ -189,6 +189,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 42216604}
+    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 42216610}
   m_SourcePrefab: {fileID: 100100000, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
 --- !u!1 &42216603 stripped
 GameObject:
@@ -238,6 +241,34 @@ MonoBehaviour:
   MaxTurnAtk: 0
   CurrentAtk: 0
   Time: 0.3
+  totalDame: 0
+--- !u!114 &42216610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42216603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042c6bb7887e20d488ab88a0bff008a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitData: {fileID: 11400000, guid: 1414560186c72f04494ed82bebf63e23, type: 2}
+  CurrentHp: 0
+  CurrentSpeed: 0
+  CurrentAtk: 0
+  NumberBlock: 0
+  isSelected: 0
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  MaxTurnAtk: 0
   totalDame: 0
 --- !u!1001 &121019916
 PrefabInstance:
@@ -313,6 +344,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 121019923}
+    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 121019928}
   m_SourcePrefab: {fileID: 100100000, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
 --- !u!1 &121019917 stripped
 GameObject:
@@ -363,6 +397,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &121019928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121019917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042c6bb7887e20d488ab88a0bff008a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitData: {fileID: 11400000, guid: 1414560186c72f04494ed82bebf63e23, type: 2}
+  CurrentHp: 0
+  CurrentSpeed: 0
+  CurrentAtk: 0
+  NumberBlock: 0
+  isSelected: 0
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  MaxTurnAtk: 0
+  totalDame: 0
 --- !u!1 &136833684
 GameObject:
   m_ObjectHideFlags: 0
@@ -11103,6 +11165,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1384776721}
+    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1384776727}
   m_SourcePrefab: {fileID: 100100000, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
 --- !u!1 &446858154
 GameObject:
@@ -11697,6 +11762,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 622180556}
+    - targetCorrespondingSourceObject: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 622180561}
   m_SourcePrefab: {fileID: 100100000, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
 --- !u!1 &557893518 stripped
 GameObject:
@@ -11735,18 +11803,6 @@ MonoBehaviour:
   CurrentAtk: 0
   Time: 0.3
   totalDame: 0
---- !u!114 &557893529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557893518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dabf091dad5375346b930156d4feda5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &557893530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11775,6 +11831,19 @@ MonoBehaviour:
   MaxTurnSpeed: 0
   MaxTurnAtk: 0
   totalDame: 0
+--- !u!114 &557893535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557893518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80de7b9a482fb4d44823b30b48ee9b06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillData: {fileID: 11400000, guid: 4ce1c912af40ac44dae2b1718a595e22, type: 2}
 --- !u!1 &583053842
 GameObject:
   m_ObjectHideFlags: 0
@@ -11986,6 +12055,34 @@ MonoBehaviour:
   CurrentAtk: 0
   Time: 0.3
   totalDame: 0
+--- !u!114 &622180561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622180555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042c6bb7887e20d488ab88a0bff008a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitData: {fileID: 11400000, guid: 1414560186c72f04494ed82bebf63e23, type: 2}
+  CurrentHp: 0
+  CurrentSpeed: 0
+  CurrentAtk: 0
+  NumberBlock: 0
+  isSelected: 0
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  MaxTurnAtk: 0
+  totalDame: 0
 --- !u!1 &685488879
 GameObject:
   m_ObjectHideFlags: 0
@@ -12152,6 +12249,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1029119093}
+    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1029119098}
   m_SourcePrefab: {fileID: 100100000, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
 --- !u!1 &843274403
 GameObject:
@@ -13297,6 +13397,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1029119098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029119080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042c6bb7887e20d488ab88a0bff008a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitData: {fileID: 11400000, guid: 1414560186c72f04494ed82bebf63e23, type: 2}
+  CurrentHp: 0
+  CurrentSpeed: 0
+  CurrentAtk: 0
+  NumberBlock: 0
+  isSelected: 0
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  MaxTurnAtk: 0
+  totalDame: 0
 --- !u!1 &1057721400
 GameObject:
   m_ObjectHideFlags: 0
@@ -20346,6 +20474,34 @@ MonoBehaviour:
   CurrentAtk: 0
   Time: 0.3
   totalDame: 0
+--- !u!114 &1265711428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265711421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042c6bb7887e20d488ab88a0bff008a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitData: {fileID: 11400000, guid: 1414560186c72f04494ed82bebf63e23, type: 2}
+  CurrentHp: 0
+  CurrentSpeed: 0
+  CurrentAtk: 0
+  NumberBlock: 0
+  isSelected: 0
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  MaxTurnAtk: 0
+  totalDame: 0
 --- !u!1 &1299579067
 GameObject:
   m_ObjectHideFlags: 0
@@ -23229,6 +23385,34 @@ MonoBehaviour:
   CurrentAtk: 0
   Time: 0.3
   totalDame: 0
+--- !u!114 &1384776727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384776720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042c6bb7887e20d488ab88a0bff008a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitData: {fileID: 11400000, guid: 1414560186c72f04494ed82bebf63e23, type: 2}
+  CurrentHp: 0
+  CurrentSpeed: 0
+  CurrentAtk: 0
+  NumberBlock: 0
+  isSelected: 0
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  MaxTurnAtk: 0
+  totalDame: 0
 --- !u!1 &1392183756
 GameObject:
   m_ObjectHideFlags: 0
@@ -24532,7 +24716,6 @@ MonoBehaviour:
   prefabGridChon: {fileID: 17032937032497703, guid: 12c668cf36c621a4292a6d55947152ab, type: 3}
   prefabGridDiChuyen: {fileID: 4870159172558642894, guid: 491f3eeaad73ba74d94d89411599feb0, type: 3}
   prefabGridAttack: {fileID: 7751003380055160582, guid: 1e06f687d3396e7438b900325332f904, type: 3}
-  satThuongPrefab: {fileID: 0}
   buttonInformation: {fileID: 1156000890}
   delayGiuaCacEnemy: 1
 --- !u!1 &1529951205
@@ -24877,6 +25060,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1265711422}
+    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1265711428}
   m_SourcePrefab: {fileID: 100100000, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
 --- !u!1 &1677939618
 GameObject:
@@ -25944,6 +26130,34 @@ MonoBehaviour:
   CurrentAtk: 0
   Time: 0.3
   totalDame: 0
+--- !u!114 &1900468114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900468107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042c6bb7887e20d488ab88a0bff008a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitData: {fileID: 11400000, guid: 1414560186c72f04494ed82bebf63e23, type: 2}
+  CurrentHp: 0
+  CurrentSpeed: 0
+  CurrentAtk: 0
+  NumberBlock: 0
+  isSelected: 0
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  MaxTurnAtk: 0
+  totalDame: 0
 --- !u!1 &1922668754
 GameObject:
   m_ObjectHideFlags: 0
@@ -26317,6 +26531,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1900468108}
+    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1900468114}
   m_SourcePrefab: {fileID: 100100000, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
 --- !u!1 &2099873546
 GameObject:
@@ -26606,10 +26823,10 @@ PrefabInstance:
       addedObject: {fileID: 557893524}
     - targetCorrespondingSourceObject: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 557893529}
+      addedObject: {fileID: 557893530}
     - targetCorrespondingSourceObject: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 557893530}
+      addedObject: {fileID: 557893535}
   m_SourcePrefab: {fileID: 100100000, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
 --- !u!1001 &7405265172829357428
 PrefabInstance:
@@ -26681,6 +26898,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7405265172829357435}
+    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7405265172829357440}
   m_SourcePrefab: {fileID: 100100000, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
 --- !u!1 &7405265172829357429 stripped
 GameObject:
@@ -26731,6 +26951,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7405265172829357440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405265172829357429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042c6bb7887e20d488ab88a0bff008a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitData: {fileID: 11400000, guid: 1414560186c72f04494ed82bebf63e23, type: 2}
+  CurrentHp: 0
+  CurrentSpeed: 0
+  CurrentAtk: 0
+  NumberBlock: 0
+  isSelected: 0
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  MaxTurnAtk: 0
+  totalDame: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
