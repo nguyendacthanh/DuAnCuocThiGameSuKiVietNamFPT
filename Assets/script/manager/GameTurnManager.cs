@@ -37,11 +37,11 @@ public class GameTurnManager : MonoBehaviour
         if (currentTurn == Turn.Player)
         {
             currentTurn = Turn.Enemy;
-            CapNhatLuatChoTatCaDonVi();
+            CapNhatLuatChoTatCaDonVi(); 
 
             if (playerManager != null)
             {
-                // playerManager.BatDauLuotEnemy();  
+                playerManager.BatDauLuotEnemy();  
             }
         }
         else
@@ -61,7 +61,7 @@ public class GameTurnManager : MonoBehaviour
 
         foreach (GameObject go in armies)
         {
-            ClassDonVi dv = go.GetComponent<ClassDonVi>();
+            ClassUnit dv = go.GetComponent<ClassUnit>();
             if (dv != null)
             {
                 if (currentTurn == Turn.Player)
@@ -73,7 +73,7 @@ public class GameTurnManager : MonoBehaviour
 
         foreach (GameObject go in enemies)
         {
-            ClassDonVi dv = go.GetComponent<ClassDonVi>();
+            ClassUnit dv = go.GetComponent<ClassUnit>();
             if (dv != null)
             {
                 if (currentTurn == Turn.Enemy)

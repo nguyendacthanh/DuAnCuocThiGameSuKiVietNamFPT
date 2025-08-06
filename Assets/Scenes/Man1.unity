@@ -185,9 +185,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 42216605}
-    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 42216604}
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
@@ -210,38 +207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &42216605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 42216603}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  Cost: 0
-  Population: 0
-  NameArmy: 
-  TypeArmy: 
-  BranchArmy: 
-  Atk: 0
-  Def: 0
-  Hp: 0
-  Charge: 0
-  Speed: 0
-  NumberBlock: 0
-  RangeAtk: 0
-  Mass: 0
-  MaxTurnSpeed: 0
-  CurrentSpeed: 0
-  MaxTurnAtk: 0
-  CurrentAtk: 0
-  Time: 0.3
-  totalDame: 0
 --- !u!114 &42216610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,9 +305,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 121019918}
-    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 121019923}
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
@@ -353,38 +315,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
   m_PrefabInstance: {fileID: 121019916}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &121019918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 121019917}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  Cost: 0
-  Population: 0
-  NameArmy: 
-  TypeArmy: 
-  BranchArmy: 
-  Atk: 0
-  Def: 0
-  Hp: 0
-  Charge: 0
-  Speed: 0
-  NumberBlock: 0
-  RangeAtk: 0
-  Mass: 0
-  MaxTurnSpeed: 0
-  CurrentSpeed: 0
-  MaxTurnAtk: 0
-  CurrentAtk: 0
-  Time: 0.3
-  totalDame: 0
 --- !u!114 &121019923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11161,9 +11091,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1384776722}
-    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1384776721}
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
@@ -11761,9 +11688,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 622180556}
-    - targetCorrespondingSourceObject: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 622180561}
   m_SourcePrefab: {fileID: 100100000, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
 --- !u!1 &557893518 stripped
@@ -12023,38 +11947,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7896938951444944003, guid: 566fca0aa113fca488cfb6223015f58e, type: 3}
   m_PrefabInstance: {fileID: 542928931}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &622180556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 622180555}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  Cost: 0
-  Population: 0
-  NameArmy: 
-  TypeArmy: 
-  BranchArmy: 
-  Atk: 0
-  Def: 0
-  Hp: 0
-  Charge: 0
-  Speed: 0
-  NumberBlock: 0
-  RangeAtk: 0
-  Mass: 0
-  MaxTurnSpeed: 0
-  CurrentSpeed: 0
-  MaxTurnAtk: 0
-  CurrentAtk: 0
-  Time: 0.3
-  totalDame: 0
 --- !u!114 &622180561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12243,9 +12135,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1029119088}
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1029119093}
@@ -13353,38 +13242,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
   m_PrefabInstance: {fileID: 751859439}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1029119088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029119080}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  Cost: 0
-  Population: 0
-  NameArmy: 
-  TypeArmy: 
-  BranchArmy: 
-  Atk: 0
-  Def: 0
-  Hp: 0
-  Charge: 0
-  Speed: 0
-  NumberBlock: 0
-  RangeAtk: 0
-  Mass: 0
-  MaxTurnSpeed: 0
-  CurrentSpeed: 0
-  MaxTurnAtk: 0
-  CurrentAtk: 0
-  Time: 0.3
-  totalDame: 0
 --- !u!114 &1029119093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20442,38 +20299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1265711423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265711421}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  Cost: 0
-  Population: 0
-  NameArmy: 
-  TypeArmy: 
-  BranchArmy: 
-  Atk: 0
-  Def: 0
-  Hp: 0
-  Charge: 0
-  Speed: 0
-  NumberBlock: 0
-  RangeAtk: 0
-  Mass: 0
-  MaxTurnSpeed: 0
-  CurrentSpeed: 0
-  MaxTurnAtk: 0
-  CurrentAtk: 0
-  Time: 0.3
-  totalDame: 0
 --- !u!114 &1265711428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23353,38 +23178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1384776722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1384776720}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  Cost: 0
-  Population: 0
-  NameArmy: 
-  TypeArmy: 
-  BranchArmy: 
-  Atk: 0
-  Def: 0
-  Hp: 0
-  Charge: 0
-  Speed: 0
-  NumberBlock: 0
-  RangeAtk: 0
-  Mass: 0
-  MaxTurnSpeed: 0
-  CurrentSpeed: 0
-  MaxTurnAtk: 0
-  CurrentAtk: 0
-  Time: 0.3
-  totalDame: 0
 --- !u!114 &1384776727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25056,9 +24849,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1265711423}
-    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1265711422}
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
@@ -26098,38 +25888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1900468109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900468107}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  Cost: 0
-  Population: 0
-  NameArmy: 
-  TypeArmy: 
-  BranchArmy: 
-  Atk: 0
-  Def: 0
-  Hp: 0
-  Charge: 0
-  Speed: 0
-  NumberBlock: 0
-  RangeAtk: 0
-  Mass: 0
-  MaxTurnSpeed: 0
-  CurrentSpeed: 0
-  MaxTurnAtk: 0
-  CurrentAtk: 0
-  Time: 0.3
-  totalDame: 0
 --- !u!114 &1900468114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26268,7 +26026,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922668754}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e663bc990b2d014d88b64adc47e06ca, type: 3}
   m_Name: 
@@ -26525,9 +26283,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1900468109}
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1900468108}
@@ -26894,9 +26649,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7405265172829357430}
-    - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 7405265172829357435}
     - targetCorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
       insertIndex: -1
@@ -26907,38 +26659,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1422950724477486116, guid: 6b48a8870bb744d40ac6ad5a46ddc2ea, type: 3}
   m_PrefabInstance: {fileID: 7405265172829357428}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7405265172829357430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7405265172829357429}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSelected: 0
-  Cost: 0
-  Population: 0
-  NameArmy: 
-  TypeArmy: 
-  BranchArmy: 
-  Atk: 0
-  Def: 0
-  Hp: 0
-  Charge: 0
-  Speed: 0
-  NumberBlock: 0
-  RangeAtk: 0
-  Mass: 0
-  MaxTurnSpeed: 0
-  CurrentSpeed: 0
-  MaxTurnAtk: 0
-  CurrentAtk: 0
-  Time: 0.3
-  totalDame: 0
 --- !u!114 &7405265172829357435
 MonoBehaviour:
   m_ObjectHideFlags: 0

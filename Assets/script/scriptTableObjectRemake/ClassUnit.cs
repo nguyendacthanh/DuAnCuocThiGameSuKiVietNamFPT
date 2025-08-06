@@ -1,10 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class ClassUnit : MonoBehaviour
 {
     private ClassSkill skill;
     public UnitData unitData;
-    
+    private float time = 0.1f;
 
     // Biến trạng thái
     public int CurrentHp;
@@ -14,7 +15,7 @@ public class ClassUnit : MonoBehaviour
     public bool isSelected;
 
     // Biến gốc (nếu bạn cần giữ)
-    public int Atk, Def, Hp, Charge, Speed, RangeAtk, Mass, MaxTurnSpeed, MaxTurnAtk, totalDame;
+    public int Atk, Def, Hp, Charge, Speed, RangeAtk, Mass, MaxTurnSpeed, MaxTurnAtk, totalDame=0;
     private void Start()
     {
         if (unitData != null)
@@ -35,14 +36,16 @@ public class ClassUnit : MonoBehaviour
             CurrentSpeed = MaxTurnSpeed;
             CurrentAtk = MaxTurnAtk;
         }
+
+        skill = GetComponent<ClassSkill>();
     }
 
 
     public void Move(Vector3 target)
     {
-        if (isSelected && CurrentSpeed > 0)
+        if (CurrentSpeed > 0)
         {
-            transform.position = target;
+            StartCoroutine(MoveRule(transform.position, target));
             CurrentSpeed--;
         }
     }
@@ -52,14 +55,17 @@ public class ClassUnit : MonoBehaviour
         var unitTarget = target.GetComponent<ClassUnit>();
         if (CurrentAtk > 0)
         {
-            var skills = gameObject.GetComponent<ClassSkill>();
-            skills.TriggerEffect(gameObject, target);
+            CurrentSpeed--;
+            // var skills = GetComponent<ClassSkill>();
+            if (skill != null)
+            {
+                skill.TriggerEffect(gameObject, target);
+            }
             unitTarget.TakeDamage(TotalDame());
             if (unitTarget.CurrentHp > 0)
             {
                 unitTarget.CounterAtk(this.gameObject);
             }
-
             CurrentAtk--;
         }
     }
@@ -79,16 +85,12 @@ public class ClassUnit : MonoBehaviour
     public void CounterAtk(GameObject target)
     {
         ClassUnit unitTarget = target.GetComponent<ClassUnit>();
-        var skills = target.GetComponent<ClassSkill>();
-        skills.TriggerEffect(target, gameObject);
+        // var skills = gameObject.GetComponent<ClassSkill>();
+        if (skill != null)
+        {
+            skill.TriggerEffect(gameObject, target);
+        }
         unitTarget.TakeDamage(CounterDame());
-    }
-
-    public void ResetTurn()
-    {
-        CurrentSpeed = MaxTurnSpeed;
-        CurrentAtk = MaxTurnAtk;
-        NumberBlock = 0;
     }
 
     //=============================Tính Đame====================//
@@ -110,6 +112,45 @@ public class ClassUnit : MonoBehaviour
 
     public int CounterDame()
     {
-        return Mathf.RoundToInt(Atk * 0.5f + Mass);
+        totalDame += Mathf.RoundToInt(Atk * 0.5f + Mass);
+        return totalDame;
+    }
+    public void ResetLuot()
+    {
+        CurrentSpeed = 0;
+        CurrentAtk = 0;
+        NumberBlock = 0;
+    }
+
+    public void KhoiPhucLuot()
+    {
+        CurrentSpeed = MaxTurnSpeed;
+        CurrentAtk = MaxTurnAtk;
+    }
+    private IEnumerator MoveRule(Vector3 StartPosition, Vector3 target)
+    {
+        Vector3 currentPos = StartPosition;
+        int buocX = Mathf.RoundToInt((target.x - StartPosition.x) / 100f);
+        int buocY = Mathf.RoundToInt((target.y - StartPosition.y) / 100f);
+        int stepX = (int)Mathf.Sign(buocX);
+        int stepY = (int)Mathf.Sign(buocY);
+
+        for (int i = 0; i < Mathf.Abs(buocX); i++)
+        {
+            currentPos += new Vector3(stepX * 100f, 0, 0);
+            transform.position = currentPos;
+            yield return new WaitForSeconds(time);
+            NumberBlock++;
+        }
+
+        for (int i = 0; i < Mathf.Abs(buocY); i++)
+        {
+            currentPos += new Vector3(0, stepY * 100f, 0);
+            transform.position = currentPos;
+            yield return new WaitForSeconds(time);
+            NumberBlock++;
+        }
+
+        
     }
 }

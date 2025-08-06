@@ -32,7 +32,8 @@ public class ClassSkill : MonoBehaviour
 
         if (UnitAttacked != null && UnitAttacked.unitData.BranchArmy == "Infantry")
         {
-            UnitAttacker.Atk += 100;
+            UnitAttacker.totalDame = 0;
+            UnitAttacker.totalDame += 100;
         }
     }
 

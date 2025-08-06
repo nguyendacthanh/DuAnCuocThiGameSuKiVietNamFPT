@@ -5,14 +5,14 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
 
-    private ClassDonVi armyEnemy;
-    private ClassDonVi armyPlayer;
+    private ClassUnit armyEnemy;
+    private ClassUnit armyPlayer;
     private float time = 1f;
 
     private void Awake()
     {
-        armyEnemy = GetComponent<ClassDonVi>();
-        armyPlayer = GetComponent<ClassDonVi>();
+        armyEnemy = GetComponent<ClassUnit>();
+       
     }
 
     // public void ThucHienHanhDong()
@@ -28,10 +28,10 @@ public class EnemyAI : MonoBehaviour
     {
             AIAction.EnemyMove(armyEnemy.gameObject);
     }
-    private IEnumerator ChayLuotEnemy()
-    {
-        yield return new WaitForSeconds(time);
-    }
+    // private IEnumerator ChayLuotEnemy()
+    // {
+    //     yield return new WaitForSeconds(time);
+    // }
 
 
 }
