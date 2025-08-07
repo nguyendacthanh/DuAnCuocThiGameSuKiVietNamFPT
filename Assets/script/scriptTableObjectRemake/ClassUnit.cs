@@ -65,7 +65,7 @@ public class ClassUnit : MonoBehaviour
                 skill.TriggerEffect(gameObject, target);
             }
             unitTarget.TakeDamage(TotalDame());
-            if (unitTarget.CurrentHp > 0)
+            if (unitTarget.CurrentHp > 0 &&  unitTarget.isEnemyInCounterAtkRange(gameObject)==true)
             {
                 unitTarget.CounterAtk(this.gameObject);
             }
@@ -153,7 +153,19 @@ public class ClassUnit : MonoBehaviour
             yield return new WaitForSeconds(time);
             NumberBlock++;
         }
+    }
 
-        
+    public bool isEnemyInCounterAtkRange(GameObject target)
+    {
+        Vector2 myPos = transform.position;
+        Vector2 targetPos = target.transform.position;
+
+        // Chuyển sang số ô (giả định mỗi ô là 100 đơn vị)
+        int dx = Mathf.Abs(Mathf.RoundToInt((targetPos.x - myPos.x) / 100f));
+        int dy = Mathf.Abs(Mathf.RoundToInt((targetPos.y - myPos.y) / 100f));
+
+        int manhattanDistance = dx + dy;
+
+        return manhattanDistance <= RangeAtk;
     }
 }
