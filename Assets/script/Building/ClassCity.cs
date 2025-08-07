@@ -26,5 +26,12 @@ public class ClassCity : MonoBehaviour
         }
         textMeshPro.text = cityName;
     }
-    
+    public void TakeDamage(int damage, GameObject attacker)
+    {
+        cityHp -= damage;
+        if (cityHp <= 0)
+        {
+            cityHp = 0;
+        }
+    }
 }

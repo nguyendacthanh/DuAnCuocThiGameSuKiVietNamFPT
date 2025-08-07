@@ -35,17 +35,18 @@ public class PlayerManager : MonoBehaviour
     private GameTurnManager gameTurnManager;
     public void BatDauLuotEnemy()
     {
+        Capture();
         StartCoroutine(ChayLuotEnemy());
     }
     public void BatDauLuotPlayer()
     {
         incomeSystem.RecalculateIncomeAndPopulationFromCities(); // Đếm lại tất cả City
-        incomeSystem.UpdateIncomeAndPopulation();                // Cộng income theo lượt
+        incomeSystem.UpdateIncomeAndPopulation();               // Cộng income theo lượt
+        Capture();
     }
     private IEnumerator ChayLuotEnemy()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
         foreach (GameObject enemy in enemies)
         {
             EnemyAI ai = enemy.GetComponent<EnemyAI>();
@@ -60,4 +61,29 @@ public class PlayerManager : MonoBehaviour
             gameTurnManager.ChuyenSangLuotNguoiChoi();
     }
 
+    public void Capture()
+    {
+        GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] enemy = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] city = GameObject.FindGameObjectsWithTag("City");
+        foreach (var cities in city)
+        {
+            foreach (var p in player)
+            {
+                if (cities.transform.position == p.transform.position)
+                {
+                    cities.GetComponent<ClassCity>().isPlayerCity = true;
+                }
+            }
+
+            foreach (var e in enemy)
+            {
+                if (cities.transform.position == e.transform.position)
+                {
+                    cities.GetComponent<ClassCity>().isPlayerCity = false;
+
+                }
+            }
+        }
+    }
 }

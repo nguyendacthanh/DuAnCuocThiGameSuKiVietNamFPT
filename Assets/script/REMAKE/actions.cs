@@ -54,6 +54,7 @@ public class actions
                 }
             }
         }
+
         return ketQua;
     }
 
@@ -71,7 +72,7 @@ public class actions
         City.AddRange(GameObject.FindGameObjectsWithTag("City"));
     }
 
-    
+
     private GameObject TimTheoViTri(Vector2 ClickPossition, List<GameObject> list)
     {
         foreach (var obj in list)
@@ -81,10 +82,11 @@ public class actions
                 return obj;
             }
         }
+
         return null;
     }
 
-    
+
     public GameObject TimEnemy(Vector2 clickPosition)
     {
         return TimTheoViTri(clickPosition, Enemy);
@@ -118,9 +120,34 @@ public class actions
                     Vector2 viTriCanKiemTra = viTriGoc + new Vector2(dx * 100, dy * 100);
 
                     GameObject enemy = TimEnemy(viTriCanKiemTra);
-                    if (enemy != null && !ketQua.Contains(enemy))
+                    GameObject city = TimCity(viTriCanKiemTra);
+                    bool isplayercity;
+                    if (city == null)
                     {
-                        ketQua.Add(enemy);
+                        if (enemy != null && !ketQua.Contains(enemy))
+                        {
+                            ketQua.Add(enemy);
+                        }
+                    }
+
+                    if (city != null)
+                    {
+                        isplayercity = city.GetComponent<ClassCity>().isPlayerCity;
+                        if (!isplayercity && city.GetComponent<ClassCity>().cityHp > 0
+                            && enemy != null && !ketQua.Contains(enemy))
+                        {
+                            ketQua.Add(enemy);
+                        }
+                        else if (!isplayercity && city.GetComponent<ClassCity>().cityHp > 0 &&
+                                 !ketQua.Contains(city) && enemy == null)
+                        {
+                            ketQua.Add(city);
+                        }
+                        else if (!isplayercity && city.GetComponent<ClassCity>().cityHp == 0 &&
+                                 !ketQua.Contains(city) && enemy != null && !ketQua.Contains(enemy))
+                        {
+                            ketQua.Add(enemy);
+                        }
                     }
                 }
             }
@@ -195,17 +222,36 @@ public class actions
         if (!CoGridAttackTaiViTri(clickPos)) return false;
 
         GameObject enemy = TimEnemy(clickPos);
-        if (enemy == null) return false;
-
+        GameObject city = TimCity(clickPos);
+        if (enemy == null && city == null) return false;
         foreach (GameObject army in Player)
         {
             var donVi = army.GetComponent<ClassUnit>();
             if (donVi.isSelected && donVi.CurrentAtk > 0)
             {
-                donVi.Attack(enemy);
-                XoaGridTheoTag("GridAttack");
-                XoaGridTheoTag("GridMove");
-                return true;
+                if (enemy != null && city != null)
+                {
+                    donVi.Atk = donVi.Atk/2;
+                    donVi.Attack(enemy);
+                    city.GetComponent<ClassCity>().TakeDamage(donVi.TotalDame(),army);
+                    XoaGridTheoTag("GridAttack");
+                    XoaGridTheoTag("GridMove");
+                    return true;
+                }else if (enemy != null && city == null)
+                {
+                    donVi.Attack(enemy);
+                    XoaGridTheoTag("GridAttack");
+                    XoaGridTheoTag("GridMove");
+                    return true;
+                }
+                else
+                {
+                    city.GetComponent<ClassCity>().TakeDamage(donVi.TotalDame(),army);
+                    XoaGridTheoTag("GridAttack");
+                    XoaGridTheoTag("GridMove");
+                    return true;
+                }
+                
             }
         }
 
@@ -293,7 +339,7 @@ public class actions
             XoaGridTheoTag("GridMove");
             XoaGridTheoTag("Grid");
 
-            HienThiGridChon(clickPos, prefabGridChon);
+            // HienThiGridChon(clickPos, prefabGridChon);
             if (donViPlayer.CurrentSpeed > 0)
             {
                 var posList = TamDiChuyen(donViPlayer.transform.position, donViPlayer.Speed);
@@ -353,9 +399,9 @@ public class actions
 
         foreach (var city in City)
             if (city.GetComponent<ClassCity>().isSelected == true)
-        {
-            city.GetComponent<ClassCity>().isSelected = false;
-        }
+            {
+                city.GetComponent<ClassCity>().isSelected = false;
+            }
     }
 
 
@@ -380,6 +426,7 @@ public class actions
         {
             a.GetComponent<ClassUnit>().isSelected = false;
         }
+
         GameObject[] city = GameObject.FindGameObjectsWithTag("City");
         foreach (var a in city)
         {
@@ -435,69 +482,70 @@ public class actions
 
         buttonInformation.SetActive(false);
     }
-    
+
     private bool ClickCity(Vector2 clickPos, GameObject cityObj, GameObject prefabGrid, GameObject prefabGridEnemy)
-{
-    if (cityObj == null) return false;
+    {
+        if (cityObj == null) return false;
 
-    var classCity = cityObj.GetComponent<ClassCity>();
+        var classCity = cityObj.GetComponent<ClassCity>();
 
-    if (classCity.isPlayerCity && viTriGridChon != null && viTriGridChon == clickPos)
-    {
-        cityObj.GetComponent<ClassCity>().isSelected = false;
-        viTriGridChon = null;
-        viTriGridEnemy = null;
-        viTriGridDiChuyen = null;
-        XoaGridTheoTag("Grid");
-        return true;
-    }
-    else if (!classCity.isPlayerCity && viTriGridEnemy != null && viTriGridEnemy == clickPos)
-    {
-        cityObj.GetComponent<ClassCity>().isSelected = false;
-        viTriGridChon = null;
-        viTriGridEnemy = null;
-        viTriGridDiChuyen = null;
-        XoaGridTheoTag("GridEnemy");
-        return true;
-    }
-    else
-    {
-        // Bỏ chọn tất cả city khác
-        foreach (var c in City)
+        if (classCity.isPlayerCity && viTriGridChon != null && viTriGridChon == clickPos)
         {
-            c.GetComponent<ClassCity>().isSelected = false;
-        }
-        cityObj.GetComponent<ClassCity>().isSelected = true;
-
-        // Xóa tất cả grid khác
-        XoaGridTheoTag("GridMove");
-        XoaGridTheoTag("GridAttack");
-        XoaGridTheoTag("GridEnemy");
-        XoaGridTheoTag("Grid");
-
-        if (cityObj.GetComponent<ClassCity>().isPlayerCity)
-        {
-            viTriGridChon = clickPos;
-            HienThiGridChon(clickPos, prefabGrid);
+            cityObj.GetComponent<ClassCity>().isSelected = false;
+            viTriGridChon = null;
             viTriGridEnemy = null;
             viTriGridDiChuyen = null;
+            XoaGridTheoTag("Grid");
+            return true;
+        }
+        else if (!classCity.isPlayerCity && viTriGridEnemy != null && viTriGridEnemy == clickPos)
+        {
+            cityObj.GetComponent<ClassCity>().isSelected = false;
+            viTriGridChon = null;
+            viTriGridEnemy = null;
+            viTriGridDiChuyen = null;
+            XoaGridTheoTag("GridEnemy");
+            return true;
         }
         else
         {
-            viTriGridEnemy = clickPos;
-            HienThiGridEnemy(clickPos, prefabGridEnemy);
-            viTriGridChon = null;
-            viTriGridDiChuyen = null;
+            // Bỏ chọn tất cả city khác
+            foreach (var c in City)
+            {
+                c.GetComponent<ClassCity>().isSelected = false;
+            }
+
+            cityObj.GetComponent<ClassCity>().isSelected = true;
+
+            // Xóa tất cả grid khác
+            XoaGridTheoTag("GridMove");
+            XoaGridTheoTag("GridAttack");
+            XoaGridTheoTag("GridEnemy");
+            XoaGridTheoTag("Grid");
+
+            if (cityObj.GetComponent<ClassCity>().isPlayerCity)
+            {
+                viTriGridChon = clickPos;
+                HienThiGridChon(clickPos, prefabGrid);
+                viTriGridEnemy = null;
+                viTriGridDiChuyen = null;
+            }
+            else
+            {
+                viTriGridEnemy = clickPos;
+                HienThiGridEnemy(clickPos, prefabGridEnemy);
+                viTriGridChon = null;
+                viTriGridDiChuyen = null;
+            }
+
+            // Bỏ chọn tất cả unit
+            foreach (GameObject army in Player)
+                army.GetComponent<ClassUnit>().isSelected = false;
+
+            foreach (GameObject enemy in Enemy)
+                enemy.GetComponent<ClassUnit>().isSelected = false;
+
+            return true;
         }
-
-        // Bỏ chọn tất cả unit
-        foreach (GameObject army in Player)
-            army.GetComponent<ClassUnit>().isSelected = false;
-
-        foreach (GameObject enemy in Enemy)
-            enemy.GetComponent<ClassUnit>().isSelected = false;
-
-        return true;
     }
-}
 }

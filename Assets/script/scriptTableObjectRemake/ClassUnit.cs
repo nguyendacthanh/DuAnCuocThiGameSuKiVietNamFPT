@@ -58,7 +58,11 @@ public class ClassUnit : MonoBehaviour
         var unitTarget = target.GetComponent<ClassUnit>();
         if (CurrentAtk > 0)
         {
-            CurrentSpeed--;
+            if (CurrentSpeed==1)
+            {
+                CurrentSpeed--;
+            }
+            CurrentAtk--;
             // var skills = GetComponent<ClassSkill>();
             if (skill != null)
             {
@@ -69,7 +73,6 @@ public class ClassUnit : MonoBehaviour
             {
                 unitTarget.CounterAtk(this.gameObject);
             }
-            CurrentAtk--;
         }
     }
 
@@ -81,14 +84,13 @@ public class ClassUnit : MonoBehaviour
 
         if (CurrentHp <= 0)
         {
-            Destroy(gameObject); // chết thì xóa
+            Destroy(gameObject);
         }
     }
 
     public void CounterAtk(GameObject target)
     {
         ClassUnit unitTarget = target.GetComponent<ClassUnit>();
-        // var skills = gameObject.GetComponent<ClassSkill>();
         if (skill != null)
         {
             skill.TriggerEffect(gameObject, target);
