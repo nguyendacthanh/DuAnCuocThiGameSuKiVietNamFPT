@@ -8905,6 +8905,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197081886}
   m_CullTransparentMesh: 1
+--- !u!1 &209127895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8924268901197021711, guid: 057419c2ad1efee4f85d602e0d0da551, type: 3}
+  m_PrefabInstance: {fileID: 1193714069}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &209127900
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209127895}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &217271847
 GameObject:
   m_ObjectHideFlags: 0
@@ -20610,6 +20627,10 @@ PrefabInstance:
       propertyPath: cityData
       value: 
       objectReference: {fileID: 11400000, guid: 07d0dbc223034994787d0aebf4b72d8e, type: 2}
+    - target: {fileID: 3800868027695984636, guid: 057419c2ad1efee4f85d602e0d0da551, type: 3}
+      propertyPath: isPlayerCity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7198485709928050029, guid: 057419c2ad1efee4f85d602e0d0da551, type: 3}
       propertyPath: m_LocalPosition.x
       value: 100
@@ -20654,6 +20675,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8924268901197021711, guid: 057419c2ad1efee4f85d602e0d0da551, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 209127900}
     - targetCorrespondingSourceObject: {fileID: 4108867771383261775, guid: 057419c2ad1efee4f85d602e0d0da551, type: 3}
       insertIndex: -1
       addedObject: {fileID: 999400288}

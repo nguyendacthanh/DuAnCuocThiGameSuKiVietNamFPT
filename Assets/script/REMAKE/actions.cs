@@ -231,7 +231,7 @@ public class actions
         }
         else
         {
-            donViEnemy.isSelected = true;
+            // donViEnemy.isSelected = true;
             // donViPlayer.isSelected = false;
             enemyObj.GetComponent<ClassUnit>().isSelected = true;
             XoaGridTheoTag("GridEnemy");
@@ -435,54 +435,69 @@ public class actions
 
         buttonInformation.SetActive(false);
     }
-
-    //City and building
-    private Vector2? viTriGridCity = null; // thêm biến quản lý vị trí city được chọn
-
+    
     private bool ClickCity(Vector2 clickPos, GameObject cityObj, GameObject prefabGrid, GameObject prefabGridEnemy)
+{
+    if (cityObj == null) return false;
+
+    var classCity = cityObj.GetComponent<ClassCity>();
+
+    if (classCity.isPlayerCity && viTriGridChon != null && viTriGridChon == clickPos)
     {
-        if (cityObj == null) return false;
-        var classCity = cityObj.GetComponent<ClassCity>();
-        bool isPlayerCity = classCity.isPlayerCity;
-        if (viTriGridCity != null && viTriGridCity == clickPos)
+        cityObj.GetComponent<ClassCity>().isSelected = false;
+        viTriGridChon = null;
+        viTriGridEnemy = null;
+        viTriGridDiChuyen = null;
+        XoaGridTheoTag("Grid");
+        return true;
+    }
+    else if (!classCity.isPlayerCity && viTriGridEnemy != null && viTriGridEnemy == clickPos)
+    {
+        cityObj.GetComponent<ClassCity>().isSelected = false;
+        viTriGridChon = null;
+        viTriGridEnemy = null;
+        viTriGridDiChuyen = null;
+        XoaGridTheoTag("GridEnemy");
+        return true;
+    }
+    else
+    {
+        // Bỏ chọn tất cả city khác
+        foreach (var c in City)
         {
-            classCity.isSelected = false;
-            XoaGridTheoTag(isPlayerCity ? "Grid" : "GridEnemy");
-            viTriGridCity = null;
-            return false;
+            c.GetComponent<ClassCity>().isSelected = false;
+        }
+        cityObj.GetComponent<ClassCity>().isSelected = true;
+
+        // Xóa tất cả grid khác
+        XoaGridTheoTag("GridMove");
+        XoaGridTheoTag("GridAttack");
+        XoaGridTheoTag("GridEnemy");
+        XoaGridTheoTag("Grid");
+
+        if (cityObj.GetComponent<ClassCity>().isPlayerCity)
+        {
+            viTriGridChon = clickPos;
+            HienThiGridChon(clickPos, prefabGrid);
+            viTriGridEnemy = null;
+            viTriGridDiChuyen = null;
         }
         else
         {
-            foreach (var c in City)
-            {
-                c.GetComponent<ClassCity>().isSelected = false;
-            }
-            classCity.isSelected = true;
-            XoaGridTheoTag("GridMove");
-            XoaGridTheoTag("GridAttack");
-            XoaGridTheoTag("GridEnemy");
-            XoaGridTheoTag("Grid");
-            if (isPlayerCity && classCity.isSelected)
-            {
-
-                viTriGridCity = clickPos;
-                HienThiGridChon(clickPos, prefabGrid);
-                viTriGridEnemy = null;
-            }
-            else if (!isPlayerCity && classCity.isSelected)
-            {
-                viTriGridCity = clickPos;
-                HienThiGridEnemy(clickPos, prefabGridEnemy);
-                viTriGridChon = null;
-            }
-
+            viTriGridEnemy = clickPos;
+            HienThiGridEnemy(clickPos, prefabGridEnemy);
+            viTriGridChon = null;
             viTriGridDiChuyen = null;
-            foreach (GameObject army in Player)
-                army.GetComponent<ClassUnit>().isSelected = false;
-
-            foreach (GameObject enemy in Enemy)
-                enemy.GetComponent<ClassUnit>().isSelected = false;
-            return true;
         }
+
+        // Bỏ chọn tất cả unit
+        foreach (GameObject army in Player)
+            army.GetComponent<ClassUnit>().isSelected = false;
+
+        foreach (GameObject enemy in Enemy)
+            enemy.GetComponent<ClassUnit>().isSelected = false;
+
+        return true;
     }
+}
 }
