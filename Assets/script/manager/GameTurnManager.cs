@@ -89,6 +89,10 @@ public class GameTurnManager : MonoBehaviour
         currentTurn = Turn.Player;
         soLuot++;
         CapNhatLuatChoTatCaDonVi();
+        if (playerManager != null)
+        {
+            playerManager.BatDauLuotPlayer();
+        }
     }
 
     public int CurrenTurn()

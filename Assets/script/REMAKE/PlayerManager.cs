@@ -8,11 +8,13 @@ public class PlayerManager : MonoBehaviour
     public GameObject prefabGridEnemy, prefabGridChon, prefabGridDiChuyen, prefabGridAttack;
     private actions action;
     public GameObject buttonInformation;
-
+    public InComAndPopulation incomeSystem = new InComAndPopulation();
     private void Start()
     {
         action = new actions();
         gameTurnManager = FindAnyObjectByType<GameTurnManager>();
+        incomeSystem.RecalculateIncomeAndPopulationFromCities();
+        incomeSystem.Initialize();
     }
 
     void Update()
@@ -34,6 +36,11 @@ public class PlayerManager : MonoBehaviour
     public void BatDauLuotEnemy()
     {
         StartCoroutine(ChayLuotEnemy());
+    }
+    public void BatDauLuotPlayer()
+    {
+        incomeSystem.RecalculateIncomeAndPopulationFromCities(); // Đếm lại tất cả City
+        incomeSystem.UpdateIncomeAndPopulation();                // Cộng income theo lượt
     }
     private IEnumerator ChayLuotEnemy()
     {
