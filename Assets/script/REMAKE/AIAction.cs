@@ -176,7 +176,6 @@ public class AIAction
 
         return bestPos;
     }
-
     private static Vector3 SnapToGrid(Vector3 pos)
     {
         return new Vector3(
@@ -185,4 +184,5 @@ public class AIAction
             0
         );
     }
+
 }
