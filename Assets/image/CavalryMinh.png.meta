@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 7b3c78a04c55f9443b1ba46fb5591f51
+guid: 272adabe9a34bd5469331aa31ee48389
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5306042181433527288
-    second: SwordMinh_0
+      213: 693435788509943860
+    second: CavalryMinh_0
   - first:
-      213: -6031486238202437023
-    second: SwordMinh_1
+      213: -1762629975572492486
+    second: CavalryMinh_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -54,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 120
+  spritePixelsToUnits: 320
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SwordMinh_1
+      name: CavalryMinh_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 300
-        height: 300
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1626948f83bdb4ca0800000000000000
-      internalID: -6031486238202437023
+      spriteID: 4389da8fc249f9900800000000000000
+      internalID: 693435788509943860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CavalryMinh_1
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 791
+        width: 262
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c70db8e6be9fc24e86774830e3335f3
+      internalID: 2048919332
       vertices: []
       indices: 
       edges: []
@@ -128,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ba99d7691700778439d078dd2a399dc2
+    spriteID: ced689960978ee242878c155e79a18fa
     internalID: 0
     vertices: []
     indices: 
@@ -138,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SwordMinh_1: -6031486238202437023
+      CavalryMinh_0: 693435788509943860
+      CavalryMinh_1: 2048919332
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

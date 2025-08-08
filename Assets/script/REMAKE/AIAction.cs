@@ -9,7 +9,6 @@ public class AIAction
         Vector3 viTriEnemy = enemy.transform.position;
         float minDistance = float.MaxValue;
         GameObject nearestTargetUnit = null;
-
         foreach (GameObject unitPlayer in listUnitPlayer)
         {
             float distance = Vector3.Distance(viTriEnemy, unitPlayer.transform.position);
@@ -19,7 +18,6 @@ public class AIAction
                 nearestTargetUnit = unitPlayer;
             }
         }
-
         return nearestTargetUnit;
     }
 
