@@ -60,52 +60,113 @@ public class AIAction
     public static bool IsTargetInRange(GameObject enemy, GameObject target)
     {
         ClassUnit enemyUnit = enemy.GetComponent<ClassUnit>();
-        GameObject targetUnit = FindNearestArmy(enemy);
-        GameObject targetCity = FindNearestCity(enemy);
         Vector3 enemyPos = enemy.transform.position;
         Vector3 targetPos = target.transform.position;
 
         float range = enemyUnit.RangeAtk * 100f;
         float distance = Mathf.Abs(enemyPos.x - targetPos.x) + Mathf.Abs(enemyPos.y - targetPos.y);
 
-        return distance < range;
+        return distance <= range;
     }
 
     public static void EnemyMove(GameObject enemy)
     {
-        bool isTargetIsCity;
+        bool isTargetIsCity = true;
         ClassUnit enemyUnit = enemy.GetComponent<ClassUnit>();
+        GameObject targetUnit = FindNearestArmy(enemy);
+        GameObject targetCity = FindNearestCity(enemy);
+        ClassCity cityAdj = null;
+        if (targetCity != null)
+            cityAdj = targetCity.GetComponent<ClassCity>();
+
+        ClassUnit unitAdj = null;
+        if (targetUnit != null)
+            unitAdj = targetUnit.GetComponent<ClassUnit>();
+        bool isSameGrid = false;
+        if (targetCity != null && targetUnit != null)
+            isSameGrid = SnapToGrid(targetCity.transform.position) == SnapToGrid(targetUnit.transform.position);
+        GameObject target = null;
         GameObject nearestTarget;
-        if (isNearestTargetIsCity(enemy))
-        {
-            nearestTarget = FindNearestCity(enemy);
-            isTargetIsCity = true;
-        }
+        // GameObject[] enemiesList = GameObject.FindGameObjectsWithTag("Enemy");
+        if (targetCity == null && targetUnit == null) {return;}
         else
         {
-            nearestTarget = FindNearestArmy(enemy);
-            isTargetIsCity = false;
-        }
-        if (nearestTarget == null)
-            return;
-        Vector3 moveToPos;
-        if (IsTargetInRange(enemy, nearestTarget))
-        {
-            if (isTargetIsCity && nearestTarget.GetComponent<ClassCity>().cityHp>0)
+            if (isNearestTargetIsCity(enemy))
             {
-                nearestTarget.GetComponent<ClassCity>().TakeDamage(enemyUnit.TotalDame(),nearestTarget);
-                enemyUnit.CurrentSpeed = Mathf.Max(0, enemyUnit.CurrentSpeed - 1);
-                return;
+                if (targetCity != null && IsEnemyAtPosition(targetCity.transform.position, enemy))
+                {
+                    GameObject newTargetUnit = FindNearestArmy(enemy);
+                    GameObject newTargetCity = FindNearestCity(enemy);
+                    float distUnit = newTargetUnit != null ? Vector3.Distance(enemy.transform.position, newTargetUnit.transform.position) : float.MaxValue;
+                    float distCity = newTargetCity != null ? Vector3.Distance(enemy.transform.position, newTargetCity.transform.position) : float.MaxValue;
+                    if (distUnit < distCity && newTargetUnit != null)
+                    {
+                        target = newTargetUnit;
+                        isTargetIsCity = false;
+                    }
+                    else if (newTargetCity != null)
+                    {
+                        target = newTargetCity;
+                        isTargetIsCity = true;
+                    }
+                    else if (newTargetUnit != null)  // Trường hợp chỉ có unit
+                    {
+                        target = newTargetUnit;
+                        isTargetIsCity = false;
+                    }
+                    else
+                    {
+                        // Không còn mục tiêu nào
+                        return;
+                    }
+                }
+                else
+                {
+                    target = targetCity;
+                    isTargetIsCity = true;
+                }
+                    
+            }
+            else
+            {
+                target = targetUnit;
+                isTargetIsCity = false;
+            }
+        }
+        if (target == null) return;
+        Vector3 moveToPos;
+        if (IsTargetInRange(enemy, target))
+        {
+            if (isTargetIsCity)
+            {
+                if (cityAdj.cityHp > 0  && isSameGrid)
+                {
+                    enemyUnit.Attack(targetUnit);
+                    cityAdj.TakeDamage(enemyUnit.TotalDame(), target);
+                    enemyUnit.CurrentSpeed = Mathf.Max(0, enemyUnit.CurrentSpeed - 1);
+                    return;
+                    
+                }
+                if ( cityAdj.cityHp>0 && !isSameGrid)
+                {
+                    cityAdj.TakeDamage(enemyUnit.TotalDame(), target);
+                    enemyUnit.CurrentSpeed = Mathf.Max(0, enemyUnit.CurrentSpeed - 1);
+                    return;
+                }
+                else
+                {
+                    moveToPos = FindBestMovePosition(enemy, targetCity);
+                }
             }
             else if (!isTargetIsCity)
             {
-                enemyUnit.Attack(nearestTarget);
+                enemyUnit.Attack(targetUnit);
                 enemyUnit.CurrentSpeed = Mathf.Max(0, enemyUnit.CurrentSpeed - 1);
                 return;
             }
         }
 
-        moveToPos = FindBestMovePosition(enemy, nearestTarget);
+        moveToPos = FindBestMovePosition(enemy, target);
 
         // Nếu tìm được vị trí để di chuyển
         if (moveToPos != enemy.transform.position)
@@ -114,10 +175,32 @@ public class AIAction
         }
 
         // Sau khi di chuyển, nếu đã vào tầm thì tấn công
-        if (IsTargetInRange(enemy, nearestTarget))
+        if (IsTargetInRange(enemy, target))
         {
-            enemyUnit.Attack(nearestTarget);
-            enemyUnit.CurrentSpeed = Mathf.Max(0, enemyUnit.CurrentSpeed - 1);
+            if (isTargetIsCity)
+            {
+                if (cityAdj.cityHp > 0 && isSameGrid)
+                {
+                    enemyUnit.Attack(targetUnit);
+                    targetCity.GetComponent<ClassCity>().TakeDamage(enemyUnit.TotalDame(), target);
+                    enemyUnit.CurrentSpeed = Mathf.Max(0, enemyUnit.CurrentSpeed - 1);
+                    return;
+
+                }
+
+                if (cityAdj.cityHp > 0 && !isSameGrid)
+                {
+                    targetCity.GetComponent<ClassCity>().TakeDamage(enemyUnit.TotalDame(), target);
+                    enemyUnit.CurrentSpeed = Mathf.Max(0, enemyUnit.CurrentSpeed - 1);
+                    return;
+                }
+            }
+            else
+            {
+                enemyUnit.Attack(target);
+                enemyUnit.CurrentSpeed = Mathf.Max(0, enemyUnit.CurrentSpeed - 1);
+            }
+            
         }
     }
 
@@ -137,6 +220,12 @@ public class AIAction
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Enemy"))
         {
             if (go != enemy)
+                cantMovePositions.Add(SnapToGrid(go.transform.position));
+        }
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("City"))
+        {
+            ClassCity city = go.GetComponent<ClassCity>();
+            if (city.cityHp > 0 && city.isPlayerCity)
                 cantMovePositions.Add(SnapToGrid(go.transform.position));
         }
 
@@ -164,11 +253,11 @@ public class AIAction
         // Tìm vị trí gần player nhất
         Vector3 bestPos = currentPos;
         float minDistance = float.MaxValue;
-        Vector3 playerPos = target.transform.position;
+        Vector3 targetPos = target.transform.position;
 
         foreach (var pos in possibleMoves)
         {
-            float dist = Vector3.Distance(pos, playerPos);
+            float dist = Vector3.Distance(pos, targetPos);
             if (dist < minDistance)
             {
                 minDistance = dist;
@@ -178,6 +267,22 @@ public class AIAction
 
         return bestPos;
     }
+    private static bool IsEnemyAtPosition(Vector3 position, GameObject currentEnemy)
+    {
+        Vector3 snapPos = SnapToGrid(position);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var enemy in enemies)
+        {
+            if (enemy != currentEnemy)
+            {
+                Vector3 enemyPos = SnapToGrid(enemy.transform.position);
+                if (enemyPos == snapPos)
+                    return true;
+            }
+        }
+        return false;
+    }
+
     private static Vector3 SnapToGrid(Vector3 pos)
     {
         return new Vector3(

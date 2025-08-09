@@ -6,7 +6,7 @@ public class ClassUnit : MonoBehaviour
     private ClassSkill skill;
     public UnitData unitData;
     private float time = 0.1f;
-
+    public GameObject currentTargetCity = null;
     // Biến trạng thái
     public int CurrentHp;
     public int CurrentSpeed;
@@ -15,7 +15,7 @@ public class ClassUnit : MonoBehaviour
     public bool isSelected;
     public string BranchUnit,NameUnit,TypeUnit;
     // Biến gốc (nếu bạn cần giữ)
-    public int Atk, Def, Hp, Charge, Speed, RangeAtk, Mass, MaxTurnSpeed, MaxTurnAtk, totalDame=0;
+    public int Atk, Def, Hp, Charge, Speed, RangeAtk, Mass, MaxTurnSpeed, MaxTurnAtk, totalDame;
     private void Start()
     {
         if (unitData != null)
