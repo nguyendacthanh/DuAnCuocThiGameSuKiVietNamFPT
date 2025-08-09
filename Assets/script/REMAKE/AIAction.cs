@@ -143,7 +143,7 @@ public class AIAction
                 if (cityAdj.cityHp > 0  && isSameGrid)
                 {
                     enemyUnit.Attack(targetUnit);
-                    cityAdj.TakeDamage(enemyUnit.TotalDame(), target);
+                    cityAdj.TakeDamage(Mathf.RoundToInt(enemyUnit.Atk+enemyUnit.ChargeDame()), enemy);
                     enemyUnit.CurrentSpeed = Mathf.Max(0, enemyUnit.CurrentSpeed - 1);
                     return;
                     
