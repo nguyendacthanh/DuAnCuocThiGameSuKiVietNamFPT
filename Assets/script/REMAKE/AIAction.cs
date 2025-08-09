@@ -54,12 +54,14 @@ public class AIAction
         foreach (var city in listCities)
             if(city.GetComponent<ClassCity>().isPlayerCity)
                 nearestCityDist = Mathf.Min(nearestCityDist, Vector3.Distance(enemyPos, city.transform.position));
-        return nearestCityDist <= nearestPlayerDist;
+        return nearestCityDist < nearestPlayerDist;
     }
 
     public static bool IsTargetInRange(GameObject enemy, GameObject target)
     {
         ClassUnit enemyUnit = enemy.GetComponent<ClassUnit>();
+        GameObject targetUnit = FindNearestArmy(enemy);
+        GameObject targetCity = FindNearestCity(enemy);
         Vector3 enemyPos = enemy.transform.position;
         Vector3 targetPos = target.transform.position;
 

@@ -338,14 +338,35 @@ public class actions
 
             XoaGridTheoTag("GridMove");
             XoaGridTheoTag("Grid");
-
             // HienThiGridChon(clickPos, prefabGridChon);
             if (donViPlayer.CurrentSpeed > 0)
             {
                 var posList = TamDiChuyen(donViPlayer.transform.position, donViPlayer.Speed);
                 foreach (Vector2 pos in posList)
                 {
-                    if (TimPlayer(pos) == null && TimEnemy(pos) == null)
+                    GameObject city = TimCity(pos);
+                    bool canMoveInCity;
+                    if(city == null)
+                    {
+                        canMoveInCity = true;
+                    }
+                    else
+                    {
+                        ClassCity cityAdj = city.GetComponent<ClassCity>();
+                        if (cityAdj.isPlayerCity== false && cityAdj.cityHp==0)
+                        {
+                            canMoveInCity = true;
+                        }
+                        else if(cityAdj.isPlayerCity== true)
+                        {
+                            canMoveInCity = true;
+                        }
+                        else
+                        {
+                            canMoveInCity = false;
+                        }
+                    }
+                    if (TimPlayer(pos) == null && TimEnemy(pos) == null && canMoveInCity)
                     {
                         HienThiGridDiChuyen(pos, prefabGridDiChuyen);
                     }
