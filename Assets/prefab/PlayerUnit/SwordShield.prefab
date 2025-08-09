@@ -403,6 +403,7 @@ GameObject:
   - component: {fileID: 11885642071592066}
   - component: {fileID: 3574464595826079047}
   - component: {fileID: 8042149635205665594}
+  - component: {fileID: -767373811115370563}
   - component: {fileID: 1426360553201783687}
   m_Layer: 0
   m_Name: SwordShield
@@ -567,7 +568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 042c6bb7887e20d488ab88a0bff008a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitData: {fileID: 11400000, guid: 1414560186c72f04494ed82bebf63e23, type: 2}
+  unitData: {fileID: 11400000, guid: 956e3eb81ea58af44948c74ad9559044, type: 2}
   CurrentHp: 0
   CurrentSpeed: 0
   CurrentAtk: 0
@@ -586,6 +587,19 @@ MonoBehaviour:
   MaxTurnSpeed: 0
   MaxTurnAtk: 0
   totalDame: 0
+--- !u!114 &-767373811115370563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7896938951444944003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80de7b9a482fb4d44823b30b48ee9b06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillData: {fileID: 11400000, guid: 4ce1c912af40ac44dae2b1718a595e22, type: 2}
 --- !u!95 &1426360553201783687
 Animator:
   serializedVersion: 7
