@@ -23,7 +23,7 @@ public class StatsArmy : MonoBehaviour
             else if (objectName == "Type")
                 text.text = "Type: " + selectedUnit.TypeUnit;
             else if (objectName == "Hp")
-                text.text = "HP: " + selectedUnit.Hp.ToString();
+                text.text = "HP: " + selectedUnit.CurrentHp.ToString();
             else if (objectName == "Defense")
                 text.text = "Defense: " + selectedUnit.Def.ToString();
             else if (objectName == "ChargeDame")
@@ -34,6 +34,16 @@ public class StatsArmy : MonoBehaviour
                 text.text = "Branch: " + selectedUnit.BranchUnit;
             else if (objectName == "NameArmy")
                 text.text = "tên đơn vị: " + selectedUnit.NameUnit;
+            else if (objectName == "Avatar")  // ⚠️ chỉ xử lý sprite nếu là Avatar
+            {
+                Image image = GetComponent<Image>();
+                SpriteRenderer sr = selectedUnit.GetComponent<SpriteRenderer>();
+
+                if (image != null && sr != null)
+                {
+                    image.sprite = sr.sprite;
+                }
+            }
             else
                 text.text = ""; // Không rõ tên thì để trống
         }

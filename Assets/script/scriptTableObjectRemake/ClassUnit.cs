@@ -5,8 +5,10 @@ public class ClassUnit : MonoBehaviour
 {
     private ClassSkill skill;
     public UnitData unitData;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
     private float time = 0.1f;
-    public GameObject currentTargetCity = null;
+    // public GameObject currentTargetCity = null;
     // Biến trạng thái
     public int CurrentHp;
     public int CurrentSpeed;
@@ -18,6 +20,8 @@ public class ClassUnit : MonoBehaviour
     public int Atk, Def, Hp, Charge, Speed, RangeAtk, Mass, MaxTurnSpeed, MaxTurnAtk, totalDame;
     private void Start()
     {
+        animator =gameObject.GetComponent<Animator>();
+        spriteRenderer =gameObject.GetComponent<SpriteRenderer>();
         if (unitData != null)
         {
             // Gán các chỉ số gốc
@@ -55,6 +59,17 @@ public class ClassUnit : MonoBehaviour
 
     public void Attack(GameObject target)
     {
+        if (CheckFlipx(target))
+        {
+            spriteRenderer.flipX = true;
+            animator.SetTrigger("Counter");
+
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+            animator.SetTrigger("Atk");
+        }
         var unitTarget = target.GetComponent<ClassUnit>();
         if (CurrentAtk > 0)
         {
@@ -90,6 +105,17 @@ public class ClassUnit : MonoBehaviour
 
     public void CounterAtk(GameObject target)
     {
+        if (CheckFlipx(target))
+        {
+            spriteRenderer.flipX = true;
+            animator.SetTrigger("Counter");
+
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+            animator.SetTrigger("Atk");
+        }
         ClassUnit unitTarget = target.GetComponent<ClassUnit>();
         if (skill != null)
         {
@@ -170,4 +196,12 @@ public class ClassUnit : MonoBehaviour
 
         return manhattanDistance <= RangeAtk;
     }
+    public bool CheckFlipx(GameObject target)
+    {
+        Vector3 myPos = transform.position;
+        Vector3 targetPos = target.transform.position;
+
+        return targetPos.x <= myPos.x && targetPos.y <= myPos.y;
+    }
+
 }

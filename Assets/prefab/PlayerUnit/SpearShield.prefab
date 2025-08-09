@@ -196,6 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7182451171801167872}
   - component: {fileID: 4629206781963348561}
+  - component: {fileID: 3056363887611090226}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -210,7 +211,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6131738151774835912}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -218,10 +219,10 @@ RectTransform:
   - {fileID: 1556058700192680036}
   - {fileID: 9145845136012166934}
   m_Father: {fileID: 1067173613885882168}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: 5}
+  m_AnchoredPosition: {x: 25, y: 50}
   m_SizeDelta: {x: 40, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4629206781963348561
@@ -275,6 +276,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3056363887611090226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6131738151774835912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d04105a01fb744da32629e281c08b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7866928629446075372
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +301,7 @@ GameObject:
   - component: {fileID: 1676774075674925900}
   - component: {fileID: 6149057922302992187}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: hpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -335,7 +348,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &1676774075674925900
 MonoBehaviour:
@@ -389,9 +402,13 @@ GameObject:
   - component: {fileID: 5215873261471245019}
   - component: {fileID: 11885642071592066}
   - component: {fileID: 3574464595826079047}
+  - component: {fileID: 6076239411859809138}
+  - component: {fileID: 6027434853579708956}
+  - component: {fileID: 5147420411383258747}
+  - component: {fileID: 8629154618835596086}
   m_Layer: 0
-  m_Name: DV_SpearMen_0
-  m_TagString: Army
+  m_Name: SpearShield
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -405,8 +422,8 @@ Transform:
   m_GameObject: {fileID: 7896938951444944003}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 1}
+  m_LocalPosition: {x: -100, y: 100, z: 0}
+  m_LocalScale: {x: 40, y: 40, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1067173613885882168}
@@ -456,7 +473,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
-  m_Sprite: {fileID: 2244109201330915706, guid: d2146814505f95f409110f6c6dd576cf, type: 3}
+  m_Sprite: {fileID: 4789837966929651867, guid: 07dd83931abdcbf4abc6754535c209c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -505,7 +522,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.875, y: 2}
+    oldSize: {x: 2.5, y: 2.5}
     newSize: {x: 1.875, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -540,3 +557,102 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6076239411859809138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7896938951444944003}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5692b3a8aca0c342a23c04105595de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  Cost: 0
+  Population: 0
+  NameArmy: 
+  TypeArmy: 
+  BranchArmy: 
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  NumberBlock: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  CurrentSpeed: 0
+  MaxTurnAtk: 0
+  CurrentAtk: 0
+  Time: 0.3
+  totalDame: 0
+--- !u!114 &6027434853579708956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7896938951444944003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042c6bb7887e20d488ab88a0bff008a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitData: {fileID: 11400000, guid: 1414560186c72f04494ed82bebf63e23, type: 2}
+  animator: {fileID: 0}
+  CurrentHp: 0
+  CurrentSpeed: 0
+  CurrentAtk: 0
+  NumberBlock: 0
+  isSelected: 0
+  BranchUnit: 
+  NameUnit: 
+  TypeUnit: 
+  Atk: 0
+  Def: 0
+  Hp: 0
+  Charge: 0
+  Speed: 0
+  RangeAtk: 0
+  Mass: 0
+  MaxTurnSpeed: 0
+  MaxTurnAtk: 0
+  totalDame: 0
+--- !u!114 &5147420411383258747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7896938951444944003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80de7b9a482fb4d44823b30b48ee9b06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillData: {fileID: 11400000, guid: 4ce1c912af40ac44dae2b1718a595e22, type: 2}
+--- !u!95 &8629154618835596086
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7896938951444944003}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 843509178b676db4a8bbdd4de0ee1015, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
