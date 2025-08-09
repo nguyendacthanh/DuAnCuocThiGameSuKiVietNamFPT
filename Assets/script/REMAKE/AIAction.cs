@@ -64,7 +64,7 @@ public class AIAction
         Vector3 targetPos = target.transform.position;
 
         float range = enemyUnit.RangeAtk * 100;
-        float distance = Vector2.Distance(enemyPos, targetPos);
+        float distance = Vector3.Distance(enemyPos, targetPos);
 
 
         return distance <= range;
@@ -171,46 +171,33 @@ public class AIAction
         Vector3 enemyPos = enemy.transform.position;
 
         // Nếu tìm được vị trí để di chuyển
-        if (moveToPos != enemy.transform.position)
+        enemyUnit.Move(moveToPos, () =>
         {
-            enemyUnit.Move(moveToPos);
-
-            // Cập nhật lại vị trí enemy trước khi kiểm tra tấn công
-            enemyPos = enemy.transform.position;
-
-            // Nếu cần thiết, cập nhật lại targetUnit, cityAdj vì khoảng cách đã thay đổi
-            if (targetUnit != null) unitAdj = targetUnit.GetComponent<ClassUnit>();
-            if (targetCity != null) cityAdj = targetCity.GetComponent<ClassCity>();
-        }
-
-        // Sau khi di chuyển, nếu đã vào tầm thì tấn công
-        if (IsTargetInRange(enemy, target))
-        {
-            if (isTargetIsCity)
+            if (IsTargetInRange(enemy, target))
             {
-                if (cityAdj.cityHp > 0 && isSameGrid)
+                if (isTargetIsCity)
                 {
-                    enemyUnit.Attack(targetUnit);
-                    targetCity.GetComponent<ClassCity>().TakeDamage(enemyUnit.TotalDame(), target);
-                    enemyUnit.CurrentSpeed = Mathf.Max(0, enemyUnit.CurrentSpeed - 1);
-                    return;
-
+                    if (cityAdj.cityHp > 0 && isSameGrid)
+                    {
+                        enemyUnit.Attack(targetUnit);
+                        cityAdj.TakeDamage(enemyUnit.TotalDame(), target);
+                        enemyUnit.CurrentSpeed = 0;
+                    }
+                    else if (cityAdj.cityHp > 0)
+                    {
+                        cityAdj.TakeDamage(enemyUnit.TotalDame(), target);
+                        enemyUnit.CurrentSpeed = 0;
+                    }
                 }
-
-                if (cityAdj.cityHp > 0 && !isSameGrid)
+                else
                 {
-                    targetCity.GetComponent<ClassCity>().TakeDamage(enemyUnit.TotalDame(), target);
-                    enemyUnit.CurrentSpeed = Mathf.Max(0, enemyUnit.CurrentSpeed - 1);
-                    return;
+                    enemyUnit.Attack(target);
+                    enemyUnit.CurrentSpeed = 0;
                 }
             }
-            else
-            {
-                enemyUnit.Attack(target);
-                enemyUnit.CurrentSpeed = Mathf.Max(0, enemyUnit.CurrentSpeed - 1);
-            }
-            
-        }
+        });
+
+        
     }
 
     private static Vector3 FindBestMovePosition(GameObject enemy, GameObject target)

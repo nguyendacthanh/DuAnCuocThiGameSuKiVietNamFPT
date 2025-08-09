@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour
 
     private ClassUnit armyEnemy;
     private ClassUnit armyPlayer;
-    private float time = 1f;
+    private float time = 0.5f;
 
     private void Awake()
     {
@@ -16,11 +16,8 @@ public class EnemyAI : MonoBehaviour
     }
     public IEnumerator ThucHienHanhDong()
     {
-        DiChuyen();
+        AIAction.EnemyMove(armyEnemy.gameObject);
         yield return new WaitForSeconds(time);
     }
-    public void DiChuyen()
-    {
-            AIAction.EnemyMove(armyEnemy.gameObject);
-    }
+
 }

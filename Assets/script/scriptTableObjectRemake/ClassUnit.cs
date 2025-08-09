@@ -48,13 +48,46 @@ public class ClassUnit : MonoBehaviour
     }
 
 
-    public void Move(Vector3 target)
+    public void Move(Vector3 target, System.Action onComplete = null) 
     {
         if (CurrentSpeed > 0)
         {
-            StartCoroutine(MoveRule(transform.position, target));
+            StartCoroutine(MoveRule(transform.position, target, onComplete));
             CurrentSpeed--;
         }
+        StartCoroutine(delaytime());
+    }
+    private IEnumerator MoveRule(Vector3 StartPosition, Vector3 target, System.Action onComplete)
+    {
+        Vector3 currentPos = StartPosition;
+        int buocX = Mathf.RoundToInt((target.x - StartPosition.x) / 100f);
+        int buocY = Mathf.RoundToInt((target.y - StartPosition.y) / 100f);
+        int stepX = (int)Mathf.Sign(buocX);
+        int stepY = (int)Mathf.Sign(buocY);
+
+        for (int i = 0; i < Mathf.Abs(buocX); i++)
+        {
+            currentPos += new Vector3(stepX * 100f, 0, 0);
+            transform.position = currentPos;
+            yield return new WaitForSeconds(time);
+            NumberBlock++;
+        }
+
+        for (int i = 0; i < Mathf.Abs(buocY); i++)
+        {
+            currentPos += new Vector3(0, stepY * 100f, 0);
+            transform.position = currentPos;
+            yield return new WaitForSeconds(time);
+            NumberBlock++;
+        }
+
+        // ✅ Gọi callback nếu có
+        onComplete?.Invoke();
+    }
+
+    public IEnumerator delaytime()
+    {
+        yield return new WaitForSeconds(time);
     }
 
     public void Attack(GameObject target)
@@ -155,30 +188,7 @@ public class ClassUnit : MonoBehaviour
         CurrentSpeed = MaxTurnSpeed;
         CurrentAtk = MaxTurnAtk;
     }
-    private IEnumerator MoveRule(Vector3 StartPosition, Vector3 target)
-    {
-        Vector3 currentPos = StartPosition;
-        int buocX = Mathf.RoundToInt((target.x - StartPosition.x) / 100f);
-        int buocY = Mathf.RoundToInt((target.y - StartPosition.y) / 100f);
-        int stepX = (int)Mathf.Sign(buocX);
-        int stepY = (int)Mathf.Sign(buocY);
-
-        for (int i = 0; i < Mathf.Abs(buocX); i++)
-        {
-            currentPos += new Vector3(stepX * 100f, 0, 0);
-            transform.position = currentPos;
-            yield return new WaitForSeconds(time);
-            NumberBlock++;
-        }
-
-        for (int i = 0; i < Mathf.Abs(buocY); i++)
-        {
-            currentPos += new Vector3(0, stepY * 100f, 0);
-            transform.position = currentPos;
-            yield return new WaitForSeconds(time);
-            NumberBlock++;
-        }
-    }
+    
 
     public bool isEnemyInCounterAtkRange(GameObject target)
     {
