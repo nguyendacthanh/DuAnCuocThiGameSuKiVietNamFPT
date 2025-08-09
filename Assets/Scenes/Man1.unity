@@ -10921,7 +10921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5877831065580672021, guid: 8c660ed3d5f04f44f9c1e7b8012a8db9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 300
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5877831065580672021, guid: 8c660ed3d5f04f44f9c1e7b8012a8db9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11622,7 +11622,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3761482744943936670, guid: b0de1e5d268e09849a588f3c7629876b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3761482744943936670, guid: b0de1e5d268e09849a588f3c7629876b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -24683,6 +24683,14 @@ PrefabInstance:
     - target: {fileID: 1422950724477486116, guid: bf63ceaeb07e0624a93cfc868074dbf2, type: 3}
       propertyPath: m_Name
       value: Spear
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827560134531117561, guid: bf63ceaeb07e0624a93cfc868074dbf2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827560134531117561, guid: bf63ceaeb07e0624a93cfc868074dbf2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5877831065580672021, guid: bf63ceaeb07e0624a93cfc868074dbf2, type: 3}
       propertyPath: m_LocalPosition.x

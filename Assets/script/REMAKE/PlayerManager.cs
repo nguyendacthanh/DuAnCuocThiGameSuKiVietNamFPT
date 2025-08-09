@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
     
-    public float delayGiuaCacEnemy = 1f;
+    public float delayGiuaCacEnemy = 0.5f;
 
     private GameTurnManager gameTurnManager;
     public void BatDauLuotEnemy()
@@ -61,6 +61,9 @@ public class PlayerManager : MonoBehaviour
             gameTurnManager.ChuyenSangLuotNguoiChoi();
     }
 
+
+
+    
     public void Capture()
     {
         GameObject[] player = GameObject.FindGameObjectsWithTag("Player");

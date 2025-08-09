@@ -14,11 +14,6 @@ public class EnemyAI : MonoBehaviour
         armyEnemy = GetComponent<ClassUnit>();
        
     }
-
-    // public void ThucHienHanhDong()
-    // {
-    //     DiChuyen();
-    // }
     public IEnumerator ThucHienHanhDong()
     {
         DiChuyen();
@@ -28,10 +23,4 @@ public class EnemyAI : MonoBehaviour
     {
             AIAction.EnemyMove(armyEnemy.gameObject);
     }
-    // private IEnumerator ChayLuotEnemy()
-    // {
-    //     yield return new WaitForSeconds(time);
-    // }
-
-
 }

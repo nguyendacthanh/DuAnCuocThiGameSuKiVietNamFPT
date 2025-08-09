@@ -63,8 +63,9 @@ public class AIAction
         Vector3 enemyPos = enemy.transform.position;
         Vector3 targetPos = target.transform.position;
 
-        float range = enemyUnit.RangeAtk * 100f;
-        float distance = Mathf.Abs(enemyPos.x - targetPos.x) + Mathf.Abs(enemyPos.y - targetPos.y);
+        float range = enemyUnit.RangeAtk * 100;
+        float distance = Vector2.Distance(enemyPos, targetPos);
+
 
         return distance <= range;
     }
@@ -167,11 +168,19 @@ public class AIAction
         }
 
         moveToPos = FindBestMovePosition(enemy, target);
+        Vector3 enemyPos = enemy.transform.position;
 
         // Nếu tìm được vị trí để di chuyển
         if (moveToPos != enemy.transform.position)
         {
             enemyUnit.Move(moveToPos);
+
+            // Cập nhật lại vị trí enemy trước khi kiểm tra tấn công
+            enemyPos = enemy.transform.position;
+
+            // Nếu cần thiết, cập nhật lại targetUnit, cityAdj vì khoảng cách đã thay đổi
+            if (targetUnit != null) unitAdj = targetUnit.GetComponent<ClassUnit>();
+            if (targetCity != null) cityAdj = targetCity.GetComponent<ClassCity>();
         }
 
         // Sau khi di chuyển, nếu đã vào tầm thì tấn công

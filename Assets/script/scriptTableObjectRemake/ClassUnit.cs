@@ -73,10 +73,7 @@ public class ClassUnit : MonoBehaviour
         var unitTarget = target.GetComponent<ClassUnit>();
         if (CurrentAtk > 0)
         {
-            if (CurrentSpeed==1)
-            {
-                CurrentSpeed--;
-            }
+            CurrentSpeed--;
             CurrentAtk--;
             // var skills = GetComponent<ClassSkill>();
             if (skill != null)
