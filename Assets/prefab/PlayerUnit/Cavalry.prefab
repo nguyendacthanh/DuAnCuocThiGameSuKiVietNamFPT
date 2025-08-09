@@ -114,13 +114,12 @@ GameObject:
   - component: {fileID: 2366199020106789346}
   - component: {fileID: 2163919761452787687}
   - component: {fileID: 5546584023075200020}
-  - component: {fileID: 5610817792851142718}
-  - component: {fileID: 8482931304563732720}
-  - component: {fileID: 1655885396236004487}
-  - component: {fileID: 5710040189150574896}
+  - component: {fileID: 8421355720459916791}
+  - component: {fileID: 1316566047710875018}
+  - component: {fileID: 5488167951583956979}
   m_Layer: 0
-  m_Name: Sword
-  m_TagString: Enemy
+  m_Name: Cavalry
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,7 +133,7 @@ Transform:
   m_GameObject: {fileID: 1422950724477486116}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 200, y: -100, z: 0}
+  m_LocalPosition: {x: 300, y: 0, z: 0}
   m_LocalScale: {x: 40, y: 40, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -185,7 +184,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
-  m_Sprite: {fileID: -6031486238202437023, guid: 7b3c78a04c55f9443b1ba46fb5591f51, type: 3}
+  m_Sprite: {fileID: 1887771600451619798, guid: 4b420a757216173409897c3ceebb459a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -234,7 +233,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5, y: 2.5}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 1.875, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -269,7 +268,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5610817792851142718
+--- !u!114 &8421355720459916791
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf796c667a992f43bc5c1c2c58d7e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8482931304563732720
+--- !u!114 &1316566047710875018
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 042c6bb7887e20d488ab88a0bff008a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitData: {fileID: 11400000, guid: a56004fcaca66814fb56602302d39c5f, type: 2}
+  unitData: {fileID: 11400000, guid: b5fb7800447a08e478893f9eb9367ef5, type: 2}
   CurrentHp: 0
   CurrentSpeed: 0
   CurrentAtk: 0
@@ -312,7 +311,7 @@ MonoBehaviour:
   MaxTurnSpeed: 0
   MaxTurnAtk: 0
   totalDame: 0
---- !u!95 &1655885396236004487
+--- !u!95 &5488167951583956979
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -322,7 +321,7 @@ Animator:
   m_GameObject: {fileID: 1422950724477486116}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2b43e9cd7de74f840b057a7b720eda0f, type: 2}
+  m_Controller: {fileID: 9100000, guid: dfc94349defa7c94e8ae0b166ec79a8b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -334,19 +333,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5710040189150574896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422950724477486116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80de7b9a482fb4d44823b30b48ee9b06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillData: {fileID: 11400000, guid: 4ce1c912af40ac44dae2b1718a595e22, type: 2}
 --- !u!1 &2188919925448583419
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1109618574107548083}
   - component: {fileID: 5474609786976871916}
-  - component: {fileID: 3998887738029196424}
+  - component: {fileID: 2029629408192636643}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -437,7 +423,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3998887738029196424
+--- !u!114 &2029629408192636643
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -543,7 +529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -618,7 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.17726517, a: 1}
+  m_Color: {r: 1, g: 0.19515002, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
