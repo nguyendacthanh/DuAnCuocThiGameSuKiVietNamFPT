@@ -29,7 +29,7 @@ public class SYSTEM : MonoBehaviour
 
     public void PlaySound()
     {
-        animator.SetTrigger("onclick");
+        // animator.SetTrigger("onclick");
         AudioSource.PlayClipAtPoint(soundOn, soundPos.transform.position);
         PlaySoundForOneSecond();
     }

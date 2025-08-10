@@ -206,7 +206,11 @@ public class ClassUnit : MonoBehaviour
 
     public int ChargeDame()
     {
-        return (Charge + Mass) * NumberBlock;
+        if (NumberBlock > 3)
+        {
+            return (Charge + Mass) * NumberBlock;
+        }
+        return 0;
     }
 
     public int CounterDame()
