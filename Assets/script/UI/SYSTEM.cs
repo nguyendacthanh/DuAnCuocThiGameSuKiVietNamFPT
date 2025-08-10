@@ -31,7 +31,7 @@ public class SYSTEM : MonoBehaviour
     {
         animator.SetTrigger("onclick");
         AudioSource.PlayClipAtPoint(soundOn, soundPos.transform.position);
-        StartCoroutine(PlaySoundForOneSecond());
+        PlaySoundForOneSecond();
     }
     public void SetActiveFalse()
     {
