@@ -5,6 +5,8 @@ using Object = UnityEngine.Object;
 
 public class actions
 {
+    public static float X = 10; // Biến công khai X xác định giới hạn (X000 = X * 1000)
+
     //lay toa do click
     // private GameObject ButtonInformation;
     private List<GameObject> Player = new List<GameObject>();
@@ -21,22 +23,34 @@ public class actions
     //hien thi grid
     public void HienThiGridDiChuyen(Vector2 viTri, GameObject prefab)
     {
-        Object.Instantiate(prefab, viTri, Quaternion.identity);
+        if (viTri.x >= 0 && viTri.x <= X * 1000 && viTri.y >= 0 && viTri.y <= X * 1000)
+        {
+            Object.Instantiate(prefab, viTri, Quaternion.identity);
+        }
     }
 
     public void HienThiGridChon(Vector2 viTri, GameObject prefab)
     {
-        Object.Instantiate(prefab, viTri, Quaternion.identity);
+        if (viTri.x >= 0 && viTri.x <= X * 1000 && viTri.y >= 0 && viTri.y <= X * 1000)
+        {
+            Object.Instantiate(prefab, viTri, Quaternion.identity);
+        }
     }
 
     public void HienThiGridAttack(Vector2 viTri, GameObject prefab)
     {
-        Object.Instantiate(prefab, viTri, Quaternion.identity);
+        if (viTri.x >= 0 && viTri.x <= X * 1000 && viTri.y >= 0 && viTri.y <= X * 1000)
+        {
+            Object.Instantiate(prefab, viTri, Quaternion.identity);
+        }
     }
 
     public void HienThiGridEnemy(Vector2 viTri, GameObject prefab)
     {
-        Object.Instantiate(prefab, viTri, Quaternion.identity);
+        if (viTri.x >= 0 && viTri.x <= X * 1000 && viTri.y >= 0 && viTri.y <= X * 1000)
+        {
+            Object.Instantiate(prefab, viTri, Quaternion.identity);
+        }
     }
 
     //tam di chuyen cua player
@@ -58,9 +72,6 @@ public class actions
         return ketQua;
     }
 
-    //
-
-
     // cập nhật lại danh sách của army và enemy mỗi khi có hành động xảy ra
     public void CapNhatToaDo()
     {
@@ -71,7 +82,6 @@ public class actions
         Enemy.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         City.AddRange(GameObject.FindGameObjectsWithTag("City"));
     }
-
 
     private GameObject TimTheoViTri(Vector2 ClickPossition, List<GameObject> list)
     {
@@ -85,7 +95,6 @@ public class actions
 
         return null;
     }
-
 
     public GameObject TimEnemy(Vector2 clickPosition)
     {
@@ -114,39 +123,40 @@ public class actions
         {
             for (int dy = -RangeAtk; dy <= RangeAtk; dy++)
             {
-                // Hình thoi: chỉ lấy các điểm có khoảng cách Manhattan <= tocDo
                 if (Mathf.Abs(dx) + Mathf.Abs(dy) <= RangeAtk)
                 {
                     Vector2 viTriCanKiemTra = viTriGoc + new Vector2(dx * 100, dy * 100);
-
-                    GameObject enemy = TimEnemy(viTriCanKiemTra);
-                    GameObject city = TimCity(viTriCanKiemTra);
-                    bool isplayercity;
-                    if (city == null)
+                    if (viTriCanKiemTra.x >= 0 && viTriCanKiemTra.x <= X * 1000 && viTriCanKiemTra.y >= 0 && viTriCanKiemTra.y <= X * 1000)
                     {
-                        if (enemy != null && !ketQua.Contains(enemy))
+                        GameObject enemy = TimEnemy(viTriCanKiemTra);
+                        GameObject city = TimCity(viTriCanKiemTra);
+                        bool isplayercity;
+                        if (city == null)
                         {
-                            ketQua.Add(enemy);
+                            if (enemy != null && !ketQua.Contains(enemy))
+                            {
+                                ketQua.Add(enemy);
+                            }
                         }
-                    }
 
-                    if (city != null)
-                    {
-                        isplayercity = city.GetComponent<ClassCity>().isPlayerCity;
-                        if (!isplayercity && city.GetComponent<ClassCity>().cityHp > 0
-                            && enemy != null && !ketQua.Contains(enemy))
+                        if (city != null)
                         {
-                            ketQua.Add(enemy);
-                        }
-                        else if (!isplayercity && city.GetComponent<ClassCity>().cityHp > 0 &&
-                                 !ketQua.Contains(city) && enemy == null)
-                        {
-                            ketQua.Add(city);
-                        }
-                        else if (!isplayercity && city.GetComponent<ClassCity>().cityHp == 0 &&
-                                 !ketQua.Contains(city) && enemy != null && !ketQua.Contains(enemy))
-                        {
-                            ketQua.Add(enemy);
+                            isplayercity = city.GetComponent<ClassCity>().isPlayerCity;
+                            if (!isplayercity && city.GetComponent<ClassCity>().cityHp > 0
+                                && enemy != null && !ketQua.Contains(enemy))
+                            {
+                                ketQua.Add(enemy);
+                            }
+                            else if (!isplayercity && city.GetComponent<ClassCity>().cityHp > 0 &&
+                                     !ketQua.Contains(city) && enemy == null)
+                            {
+                                ketQua.Add(city);
+                            }
+                            else if (!isplayercity && city.GetComponent<ClassCity>().cityHp == 0 &&
+                                     !ketQua.Contains(city) && enemy != null && !ketQua.Contains(enemy))
+                            {
+                                ketQua.Add(enemy);
+                            }
                         }
                     }
                 }
@@ -164,6 +174,7 @@ public class actions
         {
             Vector2 clickWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 toaDoClick = ToaDoClick(clickWorld); // Tọa độ lưới
+            if (toaDoClick.x < 0 || toaDoClick.x > X * 1000 || toaDoClick.y < 0 || toaDoClick.y > X * 1000) return;
             CapNhatToaDo(); // Cập nhật danh sách đơn vị
             GameObject enemyObj = TimEnemy(toaDoClick);
             GameObject armyObj = TimPlayer(toaDoClick);
@@ -201,6 +212,7 @@ public class actions
     private bool DiChuyen(Vector2 clickPos)
     {
         if (!CoGridMoveTaiViTri(clickPos)) return false;
+        if (clickPos.x < 0 || clickPos.x > X * 1000 || clickPos.y < 0 || clickPos.y > X * 1000) return false;
 
         foreach (GameObject player in Player)
         {
@@ -220,6 +232,7 @@ public class actions
     private bool TanCong(Vector2 clickPos)
     {
         if (!CoGridAttackTaiViTri(clickPos)) return false;
+        if (clickPos.x < 0 || clickPos.x > X * 1000 || clickPos.y < 0 || clickPos.y > X * 1000) return false;
 
         GameObject enemy = TimEnemy(clickPos);
         GameObject city = TimCity(clickPos);
@@ -231,13 +244,14 @@ public class actions
             {
                 if (enemy != null && city != null)
                 {
-                    donVi.Atk = donVi.Atk/2;
+                    donVi.Atk = donVi.Atk / 2;
                     donVi.Attack(enemy);
-                    city.GetComponent<ClassCity>().TakeDamage(donVi.TotalDame(),army);
+                    city.GetComponent<ClassCity>().TakeDamage(donVi.TotalDame(), army);
                     XoaGridTheoTag("GridAttack");
                     XoaGridTheoTag("GridMove");
                     return true;
-                }else if (enemy != null && city == null)
+                }
+                else if (enemy != null && city == null)
                 {
                     donVi.Attack(enemy);
                     XoaGridTheoTag("GridAttack");
@@ -246,12 +260,11 @@ public class actions
                 }
                 else
                 {
-                    city.GetComponent<ClassCity>().TakeDamage(donVi.TotalDame(),army);
+                    city.GetComponent<ClassCity>().TakeDamage(donVi.TotalDame(), army);
                     XoaGridTheoTag("GridAttack");
                     XoaGridTheoTag("GridMove");
                     return true;
                 }
-                
             }
         }
 
@@ -260,14 +273,11 @@ public class actions
 
     private Vector2? viTriGridEnemy = null, viTriGridChon = null, viTriGridDiChuyen = null;
 
-
     //sự kiện click enemy
     private bool ClickEnemy(Vector2 clickPos, GameObject enemyObj, GameObject prefabGridEnemy)
     {
         if (enemyObj == null) return false;
         var donViEnemy = enemyObj.GetComponent<ClassUnit>();
-        // var donViPlayer = armyObj.GetComponent<ClassUnit>();
-
 
         if (viTriGridEnemy != null && viTriGridEnemy == clickPos)
         {
@@ -277,8 +287,6 @@ public class actions
         }
         else
         {
-            // donViEnemy.isSelected = true;
-            // donViPlayer.isSelected = false;
             enemyObj.GetComponent<ClassUnit>().isSelected = true;
             XoaGridTheoTag("GridEnemy");
             HienThiGridEnemy(clickPos, prefabGridEnemy);
@@ -304,8 +312,6 @@ public class actions
         if (armyObj == null) return false;
 
         var donViPlayer = armyObj.GetComponent<ClassUnit>();
-        //var donViEnemy = enemyObj.GetComponent<ClassUnit>();
-
 
         if (donViPlayer.isSelected)
         {
@@ -317,7 +323,6 @@ public class actions
         }
         else
         {
-            // donViEnemy.isSelected = false;
             foreach (GameObject army in Player)
                 if (army.GetComponent<ClassUnit>().isSelected == true)
                 {
@@ -338,26 +343,26 @@ public class actions
 
             XoaGridTheoTag("GridMove");
             XoaGridTheoTag("Grid");
-            // HienThiGridChon(clickPos, prefabGridChon);
             if (donViPlayer.CurrentSpeed > 0)
             {
                 var posList = TamDiChuyen(donViPlayer.transform.position, donViPlayer.Speed);
                 foreach (Vector2 pos in posList)
                 {
+                    if (pos.x < 0 || pos.x > X * 1000 || pos.y < 0 || pos.y > X * 1000) continue;
                     GameObject city = TimCity(pos);
                     bool canMoveInCity;
-                    if(city == null)
+                    if (city == null)
                     {
                         canMoveInCity = true;
                     }
                     else
                     {
                         ClassCity cityAdj = city.GetComponent<ClassCity>();
-                        if (cityAdj.isPlayerCity== false && cityAdj.cityHp==0)
+                        if (cityAdj.isPlayerCity == false && cityAdj.cityHp == 0)
                         {
                             canMoveInCity = true;
                         }
-                        else if(cityAdj.isPlayerCity== true)
+                        else if (cityAdj.isPlayerCity == true)
                         {
                             canMoveInCity = true;
                         }
@@ -425,7 +430,6 @@ public class actions
             }
     }
 
-
     //xóa grid theo tag
     static void XoaGridTheoTag(string tag)
     {
@@ -479,7 +483,6 @@ public class actions
 
         return false;
     }
-
 
     private void CapNhatButtonInformation(GameObject buttonInformation)
     {

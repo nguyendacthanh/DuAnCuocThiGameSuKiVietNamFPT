@@ -23,36 +23,42 @@ public class GeneralUpgradeUI : MonoBehaviour
     {
         general.baseAtk += value;
         UpdateUI();
+        ProgressManager.Instance.SaveGeneralStats(GeneralManager.Instance.generals);
     }
 
     public void UpgradeDef(int value)
     {
         general.baseDef += value;
         UpdateUI();
+        ProgressManager.Instance.SaveGeneralStats(GeneralManager.Instance.generals);
     }
 
     public void UpgradeHp(int value)
     {
         general.baseHp += value;
         UpdateUI();
+        ProgressManager.Instance.SaveGeneralStats(GeneralManager.Instance.generals);
     }
 
     public void UpgradeCharge(int value)
     {
         general.baseCharge += value;
         UpdateUI();
+        ProgressManager.Instance.SaveGeneralStats(GeneralManager.Instance.generals);
     }
 
     public void UpgradeSpeed(int value)
     {
         general.baseSpeed += value;
         UpdateUI();
+        ProgressManager.Instance.SaveGeneralStats(GeneralManager.Instance.generals);
     }
 
     public void UpgradeMass(int value)
     {
         general.baseMass += value;
         UpdateUI();
+        ProgressManager.Instance.SaveGeneralStats(GeneralManager.Instance.generals);
     }
 
     public void UpdateUI()
