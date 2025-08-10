@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8217839048975545665}
   - component: {fileID: 3800868027695984636}
   m_Layer: 0
-  m_Name: Khu Dinh Cu (1)
+  m_Name: Khu Dinh Cu
   m_TagString: City
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,12 +148,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1f578d6195f8fb48b024ce82e7ace2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cityData: {fileID: 11400000, guid: 07d0dbc223034994787d0aebf4b72d8e, type: 2}
   isSelected: 0
   cityName: fefe
   cityHp: 0
   isPlayerCity: 0
   textMeshPro: {fileID: 8421543971946638640}
   building: []
+  incom: 0
+  population: 0
+  dameDetail: {fileID: 7418249499037560323, guid: eae14bd5fb6b39a4f91ea3a730189a57, type: 3}
 --- !u!1 &4108867771383261775
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +169,7 @@ GameObject:
   - component: {fileID: 1817975960502267843}
   - component: {fileID: 1402299884569441187}
   - component: {fileID: 8421543971946638640}
+  - component: {fileID: 8010043575094516771}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -290,6 +295,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!225 &8010043575094516771
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4108867771383261775}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &8924268901197021711
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +319,7 @@ GameObject:
   - component: {fileID: 7374486750856145951}
   - component: {fileID: 8913735545951823623}
   - component: {fileID: 6608070452923883629}
+  - component: {fileID: 7901761588736775350}
   m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
@@ -392,3 +410,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &7901761588736775350
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8924268901197021711}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

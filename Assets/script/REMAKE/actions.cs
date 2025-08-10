@@ -5,7 +5,13 @@ using Object = UnityEngine.Object;
 
 public class actions
 {
-    public static float X = 10; // Biến công khai X xác định giới hạn (X000 = X * 1000)
+    private MapLimit _mapLimit;
+    public float X => _mapLimit ? _mapLimit.X : 10; // Giá trị mặc định 10 nếu _mapLimit null
+
+    public actions()
+    {
+        _mapLimit = GameObject.FindObjectOfType<MapLimit>();
+    }
 
     //lay toa do click
     // private GameObject ButtonInformation;

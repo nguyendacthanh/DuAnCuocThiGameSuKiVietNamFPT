@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AIAction
 {
-    public static float X = 10; // Biến công khai X xác định giới hạn (X000 = X * 1000)
+    private static MapLimit _mapLimit => GameObject.FindObjectOfType<MapLimit>();
+    public static float X => _mapLimit ? _mapLimit.X : 10; // Giá trị mặc định 10 nếu _mapLimit null
 
     public static GameObject FindNearestArmy(GameObject enemy)
     {

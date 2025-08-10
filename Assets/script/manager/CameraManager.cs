@@ -4,13 +4,13 @@ namespace script
 {
     public class CameraManager : MonoBehaviour
     {
-        public float moveSpeed = 10f;
+        public float moveSpeed = 2000f;
         public float zoomSpeed = 5f;
         public float minZoom = 5f;
         public float maxZoom = 20f;
 
-        public Vector2 minPosition = new Vector2(-500, -500);
-        public Vector2 maxPosition = new Vector2(2000, 1000);
+        public Vector2 minPosition = new Vector2(0, 0);
+        public Vector2 maxPosition = new Vector2(2000, 2000);
 
         private Camera _cam;
 
