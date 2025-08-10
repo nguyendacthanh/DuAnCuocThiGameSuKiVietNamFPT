@@ -1,35 +1,38 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SYSTEM : MonoBehaviour
 {
-    // public TextMeshProUGUI text;
     public GameObject gameObj;
     private Animator animator;
+    public GameObject soundPos;
 
     [Header("Âm thanh")]
-    public AudioSource audioSource;
     public AudioClip soundOn;
 
-    private float time = 1f; // thời gian chạy âm thanh
+    private float time = 1f;
 
     private void Start()
     {
-        animator = gameObj.GetComponent<Animator>();
+        animator = gameObject.GetComponent<Animator>();
 
-        if (audioSource == null)
-            audioSource = GetComponent<AudioSource>();
     }
 
     public void SetActiveTrue()
     {
-        animator.SetTrigger("a");
         gameObj.SetActive(true);
-        StartCoroutine(PlaySoundForOneSecond());
     }
 
+    public void PlaySound()
+    {
+        animator.SetTrigger("onclick");
+        AudioSource.PlayClipAtPoint(soundOn, soundPos.transform.position);
+        StartCoroutine(PlaySoundForOneSecond());
+    }
     public void SetActiveFalse()
     {
         gameObj.SetActive(false);
@@ -37,13 +40,20 @@ public class SYSTEM : MonoBehaviour
 
     private IEnumerator PlaySoundForOneSecond()
     {
-        if (soundOn != null && audioSource != null)
+        if (soundOn != null)
         {
-            audioSource.clip = soundOn;
-            audioSource.Play();
+            AudioSource.PlayClipAtPoint(soundOn, soundPos.transform.position);
             yield return new WaitForSeconds(time);
-            audioSource.Stop();
         }
     }
-
+    public void ToggleGameObject()
+    {
+        animator.SetTrigger("onclick");
+        bool isActive = gameObj.activeSelf;
+        gameObj.SetActive(!isActive);
+    }
+    public void LoadSceneByName(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 }
