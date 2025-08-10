@@ -201,68 +201,77 @@ public class AIAction
     }
 
     private static Vector3 FindBestMovePosition(GameObject enemy, GameObject target)
+{
+    ClassUnit enemyUnit = enemy.GetComponent<ClassUnit>();
+    Vector3 currentPos = enemy.transform.position;
+    int speed = enemyUnit.Speed;
+
+    int maxX = MapLimit.Instance.MaxX;
+    int maxY = MapLimit.Instance.MaxY;
+
+    HashSet<Vector3> cantMovePositions = new HashSet<Vector3>();
+
+    foreach (GameObject go in GameObject.FindGameObjectsWithTag("Player"))
     {
-        ClassUnit enemyUnit = enemy.GetComponent<ClassUnit>();
-        Vector3 currentPos = enemy.transform.position;
-        int speed = enemyUnit.Speed;
+        cantMovePositions.Add(SnapToGrid(go.transform.position));
+    }
 
-        HashSet<Vector3> cantMovePositions = new HashSet<Vector3>();
-
-        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Player"))
-        {
+    foreach (GameObject go in GameObject.FindGameObjectsWithTag("Enemy"))
+    {
+        if (go != enemy)
             cantMovePositions.Add(SnapToGrid(go.transform.position));
-        }
+    }
 
-        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Enemy"))
-        {
-            if (go != enemy)
-                cantMovePositions.Add(SnapToGrid(go.transform.position));
-        }
-        foreach (GameObject go in GameObject.FindGameObjectsWithTag("City"))
-        {
-            ClassCity city = go.GetComponent<ClassCity>();
-            if (city.cityHp > 0 && city.isPlayerCity)
-                cantMovePositions.Add(SnapToGrid(go.transform.position));
-        }
+    foreach (GameObject go in GameObject.FindGameObjectsWithTag("City"))
+    {
+        ClassCity city = go.GetComponent<ClassCity>();
+        if (city.cityHp > 0 && city.isPlayerCity)
+            cantMovePositions.Add(SnapToGrid(go.transform.position));
+    }
 
-        List<Vector3> possibleMoves = new List<Vector3>();
+    List<Vector3> possibleMoves = new List<Vector3>();
 
-        for (int dx = -speed; dx <= speed; dx++)
+    for (int dx = -speed; dx <= speed; dx++)
+    {
+        for (int dy = -speed; dy <= speed; dy++)
         {
-            for (int dy = -speed; dy <= speed; dy++)
+            if (Mathf.Abs(dx) + Mathf.Abs(dy) <= speed)
             {
-                if (Mathf.Abs(dx) + Mathf.Abs(dy) <= speed)
+                Vector3 newPos = currentPos + new Vector3(dx * 100f, dy * 100f, 0);
+                Vector3 snapped = SnapToGrid(newPos);
+
+                // ✅ Giới hạn trong phạm vi map từ -MaxX/-MaxY đến MaxX/MaxY
+                if (snapped.x >= -maxX && snapped.x <= maxX &&
+                    snapped.y >= -maxY && snapped.y <= maxY &&
+                    !cantMovePositions.Contains(snapped))
                 {
-                    Vector3 newPos = currentPos + new Vector3(dx * 100f, dy * 100f, 0);
-                    Vector3 snapped = SnapToGrid(newPos);
-                    if (!cantMovePositions.Contains(snapped))
-                    {
-                        possibleMoves.Add(snapped);
-                    }
+                    possibleMoves.Add(snapped);
                 }
             }
         }
-
-        if (possibleMoves.Count == 0)
-            return currentPos;
-
-        // Tìm vị trí gần player nhất
-        Vector3 bestPos = currentPos;
-        float minDistance = float.MaxValue;
-        Vector3 targetPos = target.transform.position;
-
-        foreach (var pos in possibleMoves)
-        {
-            float dist = Vector3.Distance(pos, targetPos);
-            if (dist < minDistance)
-            {
-                minDistance = dist;
-                bestPos = pos;
-            }
-        }
-
-        return bestPos;
     }
+
+    if (possibleMoves.Count == 0)
+        return currentPos;
+
+    // Tìm vị trí gần target nhất
+    Vector3 bestPos = currentPos;
+    float minDistance = float.MaxValue;
+    Vector3 targetPos = target.transform.position;
+
+    foreach (var pos in possibleMoves)
+    {
+        float dist = Vector3.Distance(pos, targetPos);
+        if (dist < minDistance)
+        {
+            minDistance = dist;
+            bestPos = pos;
+        }
+    }
+
+    return bestPos;
+}
+
     private static bool IsEnemyAtPosition(Vector3 position, GameObject currentEnemy)
     {
         Vector3 snapPos = SnapToGrid(position);

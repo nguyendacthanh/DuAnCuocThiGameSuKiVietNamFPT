@@ -209,6 +209,7 @@ MonoBehaviour:
   MaxTurnSpeed: 0
   MaxTurnAtk: 0
   totalDame: 0
+  dameDetail: {fileID: 7418249499037560323, guid: eae14bd5fb6b39a4f91ea3a730189a57, type: 3}
 --- !u!95 &7225150599350345754
 Animator:
   serializedVersion: 7

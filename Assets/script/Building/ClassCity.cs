@@ -14,6 +14,7 @@ public class ClassCity : MonoBehaviour
     public TextMeshProUGUI textMeshPro;
     public List<BuildingClass> building;
     public int incom , population;
+    public GameObject dameDetail;
     private void Start()
     {
         if (cityData != null)
@@ -28,7 +29,13 @@ public class ClassCity : MonoBehaviour
     }
     public void TakeDamage(int damage, GameObject attacker)
     {
-        cityHp -= damage;
+        
+        int totalDame = damage;
+        var dameDetailAdj = dameDetail.GetComponent<DameDetail>();
+        dameDetailAdj.SetDamageText(totalDame);
+        Vector3 offsetPosition = gameObject.transform.position + new Vector3(75f, 0f, 0f);
+        Instantiate(dameDetail, offsetPosition, Quaternion.identity);
+        cityHp -= totalDame;
         if (cityHp <= 0)
         {
             cityHp = 0;

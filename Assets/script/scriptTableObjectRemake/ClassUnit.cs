@@ -18,6 +18,7 @@ public class ClassUnit : MonoBehaviour
     public string BranchUnit,NameUnit,TypeUnit;
     // Biến gốc (nếu bạn cần giữ)
     public int Atk, Def, Hp, Charge, Speed, RangeAtk, Mass, MaxTurnSpeed, MaxTurnAtk, totalDame;
+    public GameObject dameDetail;
     private void Start()
     {
         animator =gameObject.GetComponent<Animator>();
@@ -113,7 +114,14 @@ public class ClassUnit : MonoBehaviour
             {
                 skill.TriggerEffect(gameObject, target);
             }
-            unitTarget.TakeDamage(TotalDame());
+
+            totalDame = TotalDame();
+            unitTarget.TakeDamage(totalDame);
+            var dameDetailAdj = dameDetail.GetComponent<DameDetail>();
+            dameDetailAdj.SetDamageText(totalDame);
+            Vector3 offsetPosition = target.transform.position + new Vector3(75f, 0f, 0f);
+            Instantiate(dameDetail, offsetPosition, Quaternion.identity);
+
             if (unitTarget.CurrentHp > 0 &&  unitTarget.isEnemyInCounterAtkRange(gameObject)==true)
             {
                 unitTarget.CounterAtk(this.gameObject);
@@ -129,7 +137,7 @@ public class ClassUnit : MonoBehaviour
 
         if (CurrentHp <= 0)
         {
-            Destroy(gameObject);
+            Destroy(gameObject,1f);
         }
     }
 
@@ -151,14 +159,20 @@ public class ClassUnit : MonoBehaviour
         {
             skill.TriggerEffect(gameObject, target);
         }
-        unitTarget.TakeDamage(CounterDame());
+        totalDame = CounterDame();
+        unitTarget.TakeDamage(totalDame);
+        var dameDetailAdj = dameDetail.GetComponent<DameDetail>();
+        dameDetailAdj.SetDamageText(totalDame);
+        Vector3 offsetPosition = target.transform.position + new Vector3(75f, 0f, 0f);
+        Instantiate(dameDetail, offsetPosition, Quaternion.identity);
+
     }
 
     //=============================Tính Đame====================//
     public int TotalDame()
     {
-        totalDame += Atk + ChargeDame();
-        return totalDame;
+        return Mathf.RoundToInt(Atk + ChargeDame());
+
     }
 
     public float DefenseRate()
@@ -173,8 +187,8 @@ public class ClassUnit : MonoBehaviour
 
     public int CounterDame()
     {
-        totalDame += Mathf.RoundToInt(Atk * 0.5f + Mass);
-        return totalDame;
+        
+        return Mathf.RoundToInt(Atk * 0.5f + Mass);
     }
     public void ResetLuot()
     {
