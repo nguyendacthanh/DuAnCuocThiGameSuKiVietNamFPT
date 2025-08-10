@@ -19,4 +19,4 @@ MonoBehaviour:
   baseCharge: 50
   baseSpeed: 1
   baseMass: 10
-  quantity: 1
+  quantity: 0

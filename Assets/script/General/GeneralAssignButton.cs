@@ -36,19 +36,22 @@ public class GeneralAssignButton : MonoBehaviour
                 {
                     if (general.quantity > 0)
                     {
-                        // Gán tướng
-                        GameObject generalGO = Instantiate(generalPrefab, unit.transform);
+                        // Instantiate prefab tại vị trí unit, làm con unit luôn
+                        GameObject generalGO = Instantiate(generalPrefab, unit.transform.position, Quaternion.identity, unit.transform);
+
+                        // Gán tag General cho prefab vừa tạo
                         generalGO.tag = "General";
-                        
-                        // Cộng chỉ số
+
+                        // Cộng chỉ số tướng cho unit
                         classUnit.Atk += general.baseAtk;
                         classUnit.Def += general.baseDef;
                         classUnit.Hp += general.baseHp;
-                        classUnit.CurrentHp += general.baseHp; // Có thể thêm theo nhu cầu
+                        classUnit.CurrentHp += general.baseHp; // Cộng máu hiện tại
                         classUnit.Charge += general.baseCharge;
                         classUnit.Speed += general.baseSpeed;
                         classUnit.Mass += general.baseMass;
 
+                        // Giảm số lượng tướng đi 1
                         GeneralManager.Instance.DecreaseGeneralQuantity(general);
                         break;
                     }
@@ -56,11 +59,12 @@ public class GeneralAssignButton : MonoBehaviour
             }
         }
 
-        // Nếu không còn tướng nào => ẩn hoặc xóa nút
+        // Nếu không còn tướng nào => ẩn nút
         if (!GeneralManager.Instance.HasAvailableGeneral())
         {
             assignButton.gameObject.SetActive(false);
-            // Destroy(assignButton.gameObject); // nếu muốn hủy luôn
+            // Hoặc Destroy(assignButton.gameObject); nếu muốn hủy nút luôn
         }
     }
+
 }
