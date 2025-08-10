@@ -423,6 +423,8 @@ MonoBehaviour:
   MaxTurnSpeed: 0
   MaxTurnAtk: 0
   totalDame: 0
+  soundPos: {fileID: 3955022990310872757}
+  soundOn: {fileID: 8300000, guid: 97c05151ddb7b6f47af409f2b03e87e7, type: 3}
   dameDetail: {fileID: 7418249499037560323, guid: eae14bd5fb6b39a4f91ea3a730189a57, type: 3}
 --- !u!114 &4778307697155730130
 MonoBehaviour:

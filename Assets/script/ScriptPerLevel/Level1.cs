@@ -30,13 +30,13 @@ public class Level1 : MonoBehaviour
         }
         if (enemies.Length == 0 && nonPlayerCities == 0)
         {
-            lose.SetActive(true);
-            win.SetActive(false);
+            win.SetActive(true);
+            lose.SetActive(false);
         }
         else if (player.Length == 0 && PlayerCities == 0)
         {
-            win.SetActive(true);
-            lose.SetActive(false);
+            lose.SetActive(true);
+            win.SetActive(false);
         }
     }
 }

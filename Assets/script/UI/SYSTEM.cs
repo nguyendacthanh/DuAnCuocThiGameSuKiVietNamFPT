@@ -48,7 +48,7 @@ public class SYSTEM : MonoBehaviour
     }
     public void ToggleGameObject()
     {
-        animator.SetTrigger("onclick");
+        // animator.SetTrigger("onclick");
         bool isActive = gameObj.activeSelf;
         gameObj.SetActive(!isActive);
     }

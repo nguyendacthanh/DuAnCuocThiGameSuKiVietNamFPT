@@ -8,6 +8,7 @@ public class ClassUnit : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private float time = 0.1f;
+    private float timeAudio = 1f;
     // public GameObject currentTargetCity = null;
     // Biến trạng thái
     public int CurrentHp;
@@ -18,6 +19,11 @@ public class ClassUnit : MonoBehaviour
     public string BranchUnit,NameUnit,TypeUnit;
     // Biến gốc (nếu bạn cần giữ)
     public int Atk, Def, Hp, Charge, Speed, RangeAtk, Mass, MaxTurnSpeed, MaxTurnAtk, totalDame;
+    
+    public GameObject soundPos;
+    public AudioClip soundOn;
+    
+    
     public GameObject dameDetail;
     private void Start()
     {
@@ -48,6 +54,20 @@ public class ClassUnit : MonoBehaviour
         skill = GetComponent<ClassSkill>();
     }
 
+    public void PlaySound()
+    {
+        animator.SetTrigger("onclick");
+        AudioSource.PlayClipAtPoint(soundOn, soundPos.transform.position);
+        PlaySoundForOneSecond();
+    }
+
+    private void PlaySoundForOneSecond()
+    {
+        if (soundOn != null)
+        {
+            AudioSource.PlayClipAtPoint(soundOn, soundPos.transform.position);
+        }
+    }
 
     public void Move(Vector3 target, System.Action onComplete = null) 
     {
@@ -93,6 +113,8 @@ public class ClassUnit : MonoBehaviour
 
     public void Attack(GameObject target)
     {
+        AudioSource.PlayClipAtPoint(soundOn, soundPos.transform.position);
+        PlaySoundForOneSecond();
         if (CheckFlipx(target))
         {
             spriteRenderer.flipX = true;
@@ -143,6 +165,8 @@ public class ClassUnit : MonoBehaviour
 
     public void CounterAtk(GameObject target)
     {
+        AudioSource.PlayClipAtPoint(soundOn, soundPos.transform.position);
+        PlaySoundForOneSecond();
         if (CheckFlipx(target))
         {
             spriteRenderer.flipX = true;
