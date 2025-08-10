@@ -354,9 +354,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11673689}
         m_TargetAssemblyTypeName: SYSTEM, Assembly-CSharp
-        m_MethodName: SetActiveFalse
+        m_MethodName: SetActiveTrue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7787,6 +7787,8 @@ GameObject:
   - component: {fileID: 952570795}
   - component: {fileID: 952570794}
   - component: {fileID: 952570793}
+  - component: {fileID: 952570797}
+  - component: {fileID: 952570796}
   - component: {fileID: 952570792}
   m_Layer: 5
   m_Name: "\u0110\u0103ng Nh\u1EADp"
@@ -7880,7 +7882,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 952570794}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 952570797}
+        m_TargetAssemblyTypeName: SYSTEM, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 952570797}
+        m_TargetAssemblyTypeName: SYSTEM, Assembly-CSharp
+        m_MethodName: SetActiveFalse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 952570796}
+        m_TargetAssemblyTypeName: SYSTEM, Assembly-CSharp
+        m_MethodName: SetActiveTrue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &952570794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7919,6 +7957,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952570790}
   m_CullTransparentMesh: 1
+--- !u!114 &952570796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952570790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029990a12e922b2448328ce247b4b7c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObj: {fileID: 1293171350}
+  soundPos: {fileID: 0}
+  soundOn: {fileID: 0}
+--- !u!114 &952570797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952570790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029990a12e922b2448328ce247b4b7c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObj: {fileID: 1758321881}
+  soundPos: {fileID: 1579815421}
+  soundOn: {fileID: 8300000, guid: ab46939dcbc146c4dae3e1c3705ba103, type: 3}
 --- !u!1 &957183860
 GameObject:
   m_ObjectHideFlags: 0
@@ -11329,7 +11397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1640259658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11838,6 +11906,8 @@ GameObject:
   - component: {fileID: 1665160680}
   - component: {fileID: 1665160679}
   - component: {fileID: 1665160678}
+  - component: {fileID: 1665160683}
+  - component: {fileID: 1665160682}
   m_Layer: 5
   m_Name: "\u0110\u0103ng K\xFD"
   m_TagString: Untagged
@@ -11930,7 +12000,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1665160680}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1665160683}
+        m_TargetAssemblyTypeName: SYSTEM, Assembly-CSharp
+        m_MethodName: SetActiveFalse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1665160683}
+        m_TargetAssemblyTypeName: SYSTEM, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1665160682}
+        m_TargetAssemblyTypeName: SYSTEM, Assembly-CSharp
+        m_MethodName: SetActiveTrue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1665160680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11969,6 +12075,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665160676}
   m_CullTransparentMesh: 1
+--- !u!114 &1665160682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665160676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029990a12e922b2448328ce247b4b7c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObj: {fileID: 1758321881}
+  soundPos: {fileID: 0}
+  soundOn: {fileID: 0}
+--- !u!114 &1665160683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665160676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029990a12e922b2448328ce247b4b7c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObj: {fileID: 1293171350}
+  soundPos: {fileID: 1579815421}
+  soundOn: {fileID: 8300000, guid: ab46939dcbc146c4dae3e1c3705ba103, type: 3}
 --- !u!1 &1669227893
 GameObject:
   m_ObjectHideFlags: 0
